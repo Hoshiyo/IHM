@@ -1,22 +1,16 @@
-*target*
-*.jar
-*.war
-*.ear
-*.class
+# Created by https://www.gitignore.io
 
-# eclipse specific git ignore
+### Eclipse ###
 *.pydevproject
-.project
 .metadata
-bin/**
-tmp/**
-tmp/**/*
+.gradle
+bin/
+tmp/
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
-.classpath
 .settings/
 .loadpath
 
@@ -25,3 +19,15 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# sbteclipse plugin 
+.target
+
+# TeXlipse plugin
+.texlipse
