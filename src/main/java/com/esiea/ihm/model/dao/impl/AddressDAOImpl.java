@@ -1,15 +1,28 @@
-package com.esiea.contacts.model.dao.impl;
+package com.esiea.ihm.model.dao.impl;
+
+import com.esiea.ihm.entity.Address;
+import com.esiea.ihm.model.dao.IAddressDAO;
 
 public class AddressDAOImpl implements IAddressDAO {
 
-	IAddressDAO addressDAO = null;
+	private static IAddressDAO addressDAO = null;
 	
 	private AddressDAOImpl() {}
 	
 	public static IAddressDAO getInstance() {
 		
-		if (addressDAO == null) addressDAO = new addressDAOImpl();
+		if (addressDAO == null) addressDAO = new AddressDAOImpl();
 		return addressDAO;
+		
+	}
+
+	public void create(Address address) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void delete(Address address) {
+		// TODO Auto-generated method stub
 		
 	}
 }

@@ -1,4 +1,4 @@
-package com.esiea.contacts.model.service;
+package com.esiea.ihm.model.service;
 
 public interface IAddressService {
 

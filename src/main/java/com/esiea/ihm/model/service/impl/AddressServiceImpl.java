@@ -1,12 +1,14 @@
-package com.esiea.contacts.model.service.impl;
+package com.esiea.ihm.model.service.impl;
 
-import com.esiea.contacts.model.dao.IAddressDAO;
-import com.esiea.contacts.model.dao.AddressDAOImpl;
+import com.esiea.ihm.model.dao.IAddressDAO;
+import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
+import com.esiea.ihm.model.service.IAddressService;
+
 
 public class AddressServiceImpl implements IAddressService {
 
 	IAddressDAO addressDAO;
-	IAddressService addressService;
+	private static IAddressService addressService;
 	
 	private AddressServiceImpl() {
 		addressDAO = AddressDAOImpl.getInstance();
@@ -14,7 +16,7 @@ public class AddressServiceImpl implements IAddressService {
 
 	public static IAddressService getInstance() {
 		
-		if (addressService == null) addressService = new addressDAOImpl();
+		if (addressService == null) addressService = new AddressServiceImpl();
 		return addressService;
 		
 	}

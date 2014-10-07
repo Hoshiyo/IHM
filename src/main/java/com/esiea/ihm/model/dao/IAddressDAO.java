@@ -1,4 +1,6 @@
-package com.esiea.contacts.model.dao;
+package com.esiea.ihm.model.dao;
+
+import com.esiea.ihm.entity.Address;
 
 public interface IAddressDAO {
 

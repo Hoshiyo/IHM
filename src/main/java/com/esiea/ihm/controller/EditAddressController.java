@@ -1,4 +1,4 @@
-package com.esiea.contacts.controller;
+package com.esiea.ihm.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
