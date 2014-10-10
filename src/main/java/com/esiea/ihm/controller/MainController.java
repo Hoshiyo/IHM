@@ -1,6 +1,5 @@
 package main.java.com.esiea.ihm.controller;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
@@ -83,8 +82,7 @@ public class MainController {
 	public String addContact(@ModelAttribute("contact") Contact contact,
 			BindingResult result) {
 
-		System.out.println("First Name:" + contact.getFName() + "Last Name:"
-				+ contact.getLName());
+		data.put(Integer.toString(contact.getId()), contact);
 
 		return "index";
 	}

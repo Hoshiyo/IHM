@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Contact {
 	
-	private static int ID = 0;
+	private static int ID = 1;
 	
 	public int mId = -1;
 	private String mFName = null;
