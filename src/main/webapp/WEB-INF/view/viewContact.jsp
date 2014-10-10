@@ -7,6 +7,14 @@
 <title>ESIEA IHM Project</title>
 </head>
 <body>
-	<h1>Display the contact with id : ${contact.getName()}</h1>
+	<h1>Display the contact with id : ${contact.id}</h1>
+	<ul>
+		<li>First name : ${contact.FName}</li>
+		<li>Last name : ${contact.LName}</li>
+		<li>Phone number : ${contact.phoneNbr}</li>
+		<li>Date of birth : ${contact.dateOfBirth}</li>
+		<li>Mail : ${contact.email}</li>
+		<li>Actif : ${contact.actif}</li>
+	</ul>
 </body>
 </html>
