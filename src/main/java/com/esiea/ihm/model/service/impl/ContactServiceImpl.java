@@ -1,6 +1,6 @@
-package com.esiea.ihm.model.service.impl;
+package main.java.com.esiea.ihm.model.service.impl;
 
-import com.esiea.ihm.model.service.IContactService;
+import main.java.com.esiea.ihm.model.service.IContactService;
 
 public class ContactServiceImpl implements IContactService {
 

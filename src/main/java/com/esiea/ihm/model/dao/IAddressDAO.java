@@ -1,6 +1,6 @@
-package com.esiea.ihm.model.dao;
+package main.java.com.esiea.ihm.model.dao;
 
-import com.esiea.ihm.entity.Address;
+import main.java.com.esiea.ihm.entity.Address;
 
 public interface IAddressDAO {
 

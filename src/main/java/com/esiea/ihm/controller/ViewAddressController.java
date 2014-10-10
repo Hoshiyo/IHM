@@ -1,4 +1,4 @@
-package com.esiea.ihm.controller;
+package main.java.com.esiea.ihm.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

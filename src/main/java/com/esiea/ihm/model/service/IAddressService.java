@@ -1,4 +1,4 @@
-package com.esiea.ihm.model.service;
+package main.java.com.esiea.ihm.model.service;
 
 public interface IAddressService {
 

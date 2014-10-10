@@ -1,9 +1,8 @@
-package com.esiea.ihm.model.service.impl;
+package main.java.com.esiea.ihm.model.service.impl;
 
-import com.esiea.ihm.model.dao.IAddressDAO;
-import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
-import com.esiea.ihm.model.service.IAddressService;
-
+import main.java.com.esiea.ihm.model.dao.IAddressDAO;
+import main.java.com.esiea.ihm.model.dao.impl.AddressDAOImpl;
+import main.java.com.esiea.ihm.model.service.IAddressService;
 
 public class AddressServiceImpl implements IAddressService {
 

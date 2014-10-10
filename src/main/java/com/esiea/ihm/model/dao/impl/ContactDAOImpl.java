@@ -1,6 +1,6 @@
-package com.esiea.ihm.model.dao.impl;
+package main.java.com.esiea.ihm.model.dao.impl;
 
-import com.esiea.ihm.model.dao.IContactDAO;
+import main.java.com.esiea.ihm.model.dao.IContactDAO;
 
 public class ContactDAOImpl implements IContactDAO {
 
