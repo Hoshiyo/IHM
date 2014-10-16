@@ -4,7 +4,6 @@ import com.esiea.ihm.model.dao.IAddressDAO;
 import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 import com.esiea.ihm.model.service.IAddressService;
 
-
 public class AddressServiceImpl implements IAddressService {
 
 	IAddressDAO addressDAO;
