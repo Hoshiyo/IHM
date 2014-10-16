@@ -1,5 +1,6 @@
 package com.esiea.ihm.entity;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,41 +10,40 @@ import java.util.List;
  * @author snake984
  *
  */
-public class Contact {
-	
+public class Contact implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1285094871893130945L;
+
 	private static int ID = 1;
-	
-	public int mId = -1;
+
+	private int mId = -1;
 	private String mFName = null;
 	private String mLName = null;
 	private String mEmail = null;
 	private Calendar mDateOfBirth = null;
 	private boolean mActif = false;
 	private String mPhoneNbr = null;;
-	private List<Address> mAddresses = null;
-	
+	private List<Address> mAddresses = new ArrayList<Address>();
+
 	public Contact() {
-		
 	}
-	
+
 	public Contact(String fName, String lName, String email,
-					Calendar dateOfBirth, String phoneNbr) {
-		
+			Calendar dateOfBirth, String phoneNbr) {
+
 		this.mId = ID;
 		ID++;
-		
+
 		this.mFName = fName.substring(0, 1).toUpperCase() + fName.substring(1);
 		this.mLName = lName.toUpperCase();
 		this.mEmail = email;
 		this.mDateOfBirth = dateOfBirth;
 		this.mPhoneNbr = phoneNbr;
-		
-		mAddresses = new ArrayList<Address>();
+
 		mActif = true;
-	}
-	
-	public void addAddress(Address address) {
-		mAddresses.add(address);
 	}
 
 	public int getId() {
@@ -52,6 +52,11 @@ public class Contact {
 
 	public void setId(int mId) {
 		this.mId = mId;
+	}
+
+	public void genId() {
+		this.mId = ID;
+		ID++;
 	}
 
 	public String getFName() {
@@ -81,12 +86,28 @@ public class Contact {
 	public String getDateOfBirth() {
 		if (mDateOfBirth == null)
 			return null;
-		
-		return new SimpleDateFormat("yyyy-MM-dd").format(mDateOfBirth.getTime());
+
+		return new SimpleDateFormat("dd-MM-yyyy")
+				.format(mDateOfBirth.getTime());
 	}
 
-	public void setDateOfBirth(Calendar mDateOfBirth) {
-		this.mDateOfBirth = mDateOfBirth;
+	/**
+	 * Set contact's date of birth
+	 * 
+	 * @param dateOfBirth
+	 *            String with three number separate by any char or String
+	 */
+	public void setDateOfBirth(String dateOfBirth) {
+		String date[] = dateOfBirth.split("[^\\d]+");
+
+		Calendar calendar = Calendar.getInstance();
+		if (dateOfBirth.length() < 3) {
+			mDateOfBirth = calendar;
+			return;
+		}
+
+		calendar.set(Integer.parseInt(date[2]), Integer.parseInt(date[1]),
+				Integer.parseInt(date[0]));
 	}
 
 	public boolean isActif() {
@@ -105,13 +126,16 @@ public class Contact {
 		this.mPhoneNbr = mphoneNbr;
 	}
 
+	public void addAddress(Address address) {
+		mAddresses.add(address);
+	}
+
 	public List<Address> getAddresses() {
 		List<Address> addressList = new ArrayList<Address>(mAddresses);
 		return addressList;
 	}
 
-
-	public void setAddresses(List<Address> mAddresses) {
-		this.mAddresses = mAddresses;
-	}
+	// public void setAddresses(List<Address> addresses) {
+	// mAddresses = addresses;
+	// }
 }

@@ -1,12 +1,19 @@
 package com.esiea.ihm.model.dao.impl;
+<<<<<<< HEAD:src/main/java/com/esiea/ihm/model/dao/impl/ContactDAOImpl.java
 
 import com.esiea.ihm.entity.Contact;
+=======
+>>>>>>> 777c1ac2b90fe94760997639070d1ad2d9e177c1:src/com/esiea/ihm/model/dao/impl/ContactDAOImpl.java
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
 
+<<<<<<< HEAD:src/main/java/com/esiea/ihm/model/dao/impl/ContactDAOImpl.java
+=======
+import com.esiea.ihm.entity.Contact;
+>>>>>>> 777c1ac2b90fe94760997639070d1ad2d9e177c1:src/com/esiea/ihm/model/dao/impl/ContactDAOImpl.java
 import com.esiea.ihm.model.dao.IContactDAO;
 
 public class ContactDAOImpl implements IContactDAO {
