@@ -1,4 +1,4 @@
-package main.java.com.esiea.ihm.controller;
+package com.esiea.ihm.controller;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
 
-import main.java.com.esiea.ihm.entity.Contact;
+import com.esiea.ihm.entity.Contact;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

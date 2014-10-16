@@ -1,13 +1,13 @@
-package main.java.com.esiea.ihm.model.dao.impl;
+package com.esiea.ihm.model.dao.impl;
 
-import main.java.com.esiea.ihm.entity.Contact;
+import com.esiea.ihm.entity.Contact;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
 
-import main.java.com.esiea.ihm.model.dao.IContactDAO;
+import com.esiea.ihm.model.dao.IContactDAO;
 
 public class ContactDAOImpl implements IContactDAO {
 	private static ContactDAOImpl instance = new ContactDAOImpl();

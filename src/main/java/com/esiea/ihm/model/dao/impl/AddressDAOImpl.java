@@ -1,13 +1,13 @@
-package main.java.com.esiea.ihm.model.dao.impl;
+package com.esiea.ihm.model.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import main.java.com.esiea.ihm.entity.Address;
-import main.java.com.esiea.ihm.entity.AddressType;
-import main.java.com.esiea.ihm.entity.Contact;
-import main.java.com.esiea.ihm.model.dao.IAddressDAO;
+import com.esiea.ihm.entity.Address;
+import com.esiea.ihm.entity.AddressType;
+import com.esiea.ihm.entity.Contact;
+import com.esiea.ihm.model.dao.IAddressDAO;
 
 
 public class AddressDAOImpl implements IAddressDAO {

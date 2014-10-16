@@ -1,10 +1,10 @@
-package main.java.com.esiea.ihm.model.dao;
+package com.esiea.ihm.model.dao;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import main.java.com.esiea.ihm.entity.Contact;
+import com.esiea.ihm.entity.Contact;
 
 public interface IContactDAO {
 	

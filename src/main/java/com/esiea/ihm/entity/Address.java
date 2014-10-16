@@ -1,4 +1,4 @@
-package main.java.com.esiea.ihm.entity;
+package com.esiea.ihm.entity;
 
 /**
  * @author snake984

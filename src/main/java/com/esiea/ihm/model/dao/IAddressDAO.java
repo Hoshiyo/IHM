@@ -1,10 +1,10 @@
-package main.java.com.esiea.ihm.model.dao;
+package com.esiea.ihm.model.dao;
 
 import java.util.List;
 
-import main.java.com.esiea.ihm.entity.Address;
-import main.java.com.esiea.ihm.entity.AddressType;
-import main.java.com.esiea.ihm.entity.Contact;
+import com.esiea.ihm.entity.Address;
+import com.esiea.ihm.entity.AddressType;
+import com.esiea.ihm.entity.Contact;
 
 public interface IAddressDAO {
 	
