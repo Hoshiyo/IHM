@@ -19,7 +19,7 @@ import com.esiea.ihm.entity.Address;
 import com.esiea.ihm.entity.Contact;
 
 import static com.esiea.ihm.entity.AddressType.DELIVERY;
-import static com.esiea.ihm.entity.AddressType.PAYEMENT;;
+import static com.esiea.ihm.entity.AddressType.PAYMENT;
 
 @Controller
 @RequestMapping("address")
@@ -40,7 +40,8 @@ public class AddressController {
 		
 		addresses.put("1", new Address(contacts.get("1"), 3, "rue de l'eau", "Konoha", 445,DELIVERY));
 		contacts.get("1").addAddress(addresses.get("1"));
-		addresses.put("2", new Address(contacts.get("1"), 3, "rue de l'herbe", "Konoha", 445,PAYEMENT));
+
+		addresses.put("2", new Address(contacts.get("1"), 3, "rue de l'herbe", "Konoha", 445,PAYMENT));
 		contacts.get("1").addAddress(addresses.get("2"));
 		
 		calendar = Calendar.getInstance();
@@ -50,7 +51,7 @@ public class AddressController {
 
 		addresses.put("3", new Address(contacts.get("2"), 3, "rue de la terre", "Konoha", 445,DELIVERY));
 		contacts.get("2").addAddress(addresses.get("3"));
-		addresses.put("4", new Address(contacts.get("2"), 3, "rue de l'eau", "Konoha", 445,PAYEMENT));
+		addresses.put("4", new Address(contacts.get("2"), 3, "rue de l'eau", "Konoha", 445,PAYMENT));
 		contacts.get("2").addAddress(addresses.get("4"));
 		
 		calendar = Calendar.getInstance();
@@ -66,7 +67,7 @@ public class AddressController {
 		contacts.put("4", new Contact("Mourad", "One piece",
 				"moumou75@capitaine.com", calendar, "06333333"));
 
-		addresses.put("6", new Address(contacts.get("4"), 5, "Câle", "Bateau de Luffy", 000,PAYEMENT));
+		addresses.put("6", new Address(contacts.get("4"), 5, "Câle", "Bateau de Luffy", 000,PAYMENT));
 		contacts.get("4").addAddress(addresses.get("6"));
 	}
 	
@@ -88,6 +89,12 @@ public class AddressController {
 
 		if (contact == null) {
 			return null;
+		}
+		
+		if(contact.getAddresses().size() == 0)
+		{
+			System.out.println("contact address list is null !");
+			return new ModelAndView("index");
 		}
 		
 		ModelAndView model = new ModelAndView("viewAddress");
