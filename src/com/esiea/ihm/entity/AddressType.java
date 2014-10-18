@@ -5,6 +5,14 @@ package com.esiea.ihm.entity;
  */
 public enum AddressType {
 	
-	DELIVERY,PAYEMENT;
+	DELIVERY {
+		public String toString() {
+			return "DELIVERY";
+		}
+	},PAYMENT {
+		public String toString() {
+			return "PAYMENT";
+		}
+	};
 
 }
