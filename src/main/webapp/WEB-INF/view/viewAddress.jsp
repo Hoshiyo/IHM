@@ -14,11 +14,11 @@
 <c:if test="${not empty adresses}">
 <h2>HI !</h2>
 	<ul>
-		<c:forEach var="address" items="${adresses}">
-				<li>Address : ${address.nbr} ${address.street}</li>
-				<li>City : ${address.city}</li>
-				<li>Zip code : ${address.zipCode}</li>
-				<li>Address type : ${address.type}</li>
+		<c:forEach var="listValue" items="${adresses}">
+				<li>Address : ${listValue.nbr} ${listValue.street}
+				City : ${listValue.city}
+				Zip code : ${listValue.zipCode}
+				Address type : ${listValue.type}</li>
 		</c:forEach>
 	</ul>
 	
