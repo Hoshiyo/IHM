@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esiea.ihm.entity.Contact;
-import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 import com.esiea.ihm.model.dao.impl.ContactDAOImpl;
 
 @Controller

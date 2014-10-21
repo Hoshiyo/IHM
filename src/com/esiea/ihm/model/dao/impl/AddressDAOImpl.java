@@ -189,4 +189,8 @@ public class AddressDAOImpl implements IAddressDAO {
 	public Collection<? extends Address> getAddresses() {
 		return mAddressList;
 	}
+
+	public void addAddress(Address address) {
+		mAddressList.add(address);
+	}
 }
