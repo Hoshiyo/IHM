@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!-- TODO: Faire verif en JS ! -->
 <h2>Student Information</h2>
-<form:form id="contactForm" method="PUT" action="/contact/"
+<form:form id="contactForm" action="/contact/"
 	commandName="contact">
 	<table>
 		<tr>

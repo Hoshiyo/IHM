@@ -17,7 +17,7 @@ public class Contact implements Serializable {
 	 */
 	private static final long serialVersionUID = -1285094871893130945L;
 
-	private static int ID = 1;
+	private static int ID = 0;
 
 	private int mId = -1;
 	private String mFName = null;
@@ -25,7 +25,7 @@ public class Contact implements Serializable {
 	private String mEmail = null;
 	private Calendar mDateOfBirth = null;
 	private boolean mActif = false;
-	private String mPhoneNbr = null;;
+	private String mPhoneNbr = null;
 	private List<Address> mAddresses = new ArrayList<Address>();
 
 	public Contact() {

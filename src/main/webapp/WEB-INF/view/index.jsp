@@ -10,9 +10,9 @@
 
 			<ul>
 				<c:forEach var="listValue" items="${lists}">
-					<li id="contact-${listValue.id}">${listValue.FName} <a class="editContact"
-						href="/contact/${listValue.id}/edit">edit</a> <a
-						class="deleteContact" href="/contact/${listValue.id}">delete</a>
+					<li id="contact-${listValue.id}">${listValue.FName} <a
+						class="editContact" href="/contact/${listValue.id}/edit">edit</a>
+						<a class="deleteContact" href="/contact/${listValue.id}">delete</a>
 					</li>
 				</c:forEach>
 			</ul>
@@ -24,43 +24,37 @@
 
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="<c:url value="/resources/themes/js/functions.js" />"></script>
 	<script>
 		$(document).ready(function() {
-			$("#addContact").click(function() {
-				$.ajax({
-					url : "/contact/new",
-					type : "GET"
 
-				}).done(function(html) {
-					$("#container").append(html);
-					$("#contactForm").submit(createContact);
-				})
-			});
-			
+			$("#addContact").click(getContactForm);
+
 			$(".editContact").each(function(id, item) {
-				
+
 				$(item).click(function(e) {
 					e.preventDefault();
-					
+
 					$.ajax({
 						url : $(item).attr("href"),
-						type: "GET"
+						type : "GET"
 
 					}).done(function(html) {
+						$("#contactForm").remove();
 						$("#container").append(html);
 						$("#contactForm").submit(editContact);
 					})
 				})
 			});
-			
+
 			$(".deleteContact").each(function(id, item) {
-				
+
 				$(item).click(function(e) {
 					e.preventDefault();
-					
+
 					$.ajax({
 						url : $(item).attr("href"),
-						type: "DELETE"
+						type : "DELETE"
 
 					}).done(function(html) {
 						$(item).parent().remove();
