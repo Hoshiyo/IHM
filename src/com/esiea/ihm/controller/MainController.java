@@ -1,11 +1,17 @@
 package com.esiea.ihm.controller;
 
+import static com.esiea.ihm.entity.AddressType.DELIVERY;
+import static com.esiea.ihm.entity.AddressType.PAYMENT;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+
+import com.esiea.ihm.entity.Address;
+import com.esiea.ihm.entity.Contact;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -25,7 +31,9 @@ import com.esiea.ihm.entity.Contact;
 @RequestMapping(value = "contact")
 public class MainController {
 
-	public Map<String, Contact> data = new HashMap<String, Contact>();
+	public static Map<String, Address> addresses = new HashMap<String, Address>();
+	public static Map<String, Contact> contacts = new HashMap<String, Contact>();
+	static int address_count = 0;
 
 	@PostConstruct
 	private void init() {
@@ -33,29 +41,45 @@ public class MainController {
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(1992, 11, 11);
-		data.put("1", new Contact("Guillaume", "Bourderye",
+		contacts.put("1", new Contact("Guillaume", "Bourderye",
 				"guillaumebourderye@hotmail.com", calendar, "06000000"));
-
+		
+		addresses.put(Integer.toString(address_count++), new Address(contacts.get("1"), 3, "rue de l'eau", "Konoha", 445,DELIVERY));
+		contacts.get("1").addAddress(addresses.get("1"));
+		addresses.put(Integer.toString(address_count++), new Address(contacts.get("1"), 3, "rue de l'herbe", "Konoha", 445,PAYMENT));
+		contacts.get("1").addAddress(addresses.get("2"));
+		
 		calendar = Calendar.getInstance();
 		calendar.set(1989, 8, 3);
-		data.put("2", new Contact("Anna", "Guyen", "guyen@et.esiea.fr",
+		contacts.put("2", new Contact("Anna", "Guyen", "guyen@et.esiea.fr",
 				calendar, "06111111"));
 
+		addresses.put(Integer.toString(address_count++), new Address(contacts.get("2"), 3, "rue de la terre", "Konoha", 445,DELIVERY));
+		contacts.get("2").addAddress(addresses.get("3"));
+		addresses.put(Integer.toString(address_count++), new Address(contacts.get("2"), 3, "rue de l'eau", "Konoha", 445,PAYMENT));
+		contacts.get("2").addAddress(addresses.get("4"));
+		
 		calendar = Calendar.getInstance();
 		calendar.set(1992, 11, 6);
-		data.put("3", new Contact("Tarek", "Smirani", "smirani@hotmail.com",
+		contacts.put("3", new Contact("Tarek", "Smirani", "smirani@hotmail.com",
 				calendar, "06222222"));
 
+		addresses.put(Integer.toString(address_count++), new Address(contacts.get("3"), 3, "rue de la foudre", "Konoha", 445,DELIVERY));
+		contacts.get("3").addAddress(addresses.get("5"));
+		
 		calendar = Calendar.getInstance();
 		calendar.set(0, 3, 1);
-		data.put("4", new Contact("Mourad", "One piece",
+		contacts.put("4", new Contact("Mourad", "One piece",
 				"moumou75@capitaine.com", calendar, "06333333"));
+
+		addresses.put(Integer.toString(address_count++), new Address(contacts.get("4"), 5, "Câle", "Bateau de Luffy", 000,PAYMENT));
+		contacts.get("4").addAddress(addresses.get("6"));
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView displayContacts() {
 
-		ArrayList<Contact> contacts = new ArrayList<Contact>(data.values());
+		ArrayList<Contact> contacts = new ArrayList<Contact>(this.contacts.values());
 
 		ModelAndView model = new ModelAndView("index");
 		model.addObject("lists", contacts);
@@ -76,7 +100,7 @@ public class MainController {
 		System.out.println("OK");
 		System.out.println("contact: " + contact.getFName());
 		contact.genId();
-		data.put(Integer.toString(contact.getId()), contact);
+		contacts.put(Integer.toString(contact.getId()), contact);
 
 		return contact;
 	}
@@ -84,7 +108,7 @@ public class MainController {
 	@RequestMapping(value = "/{contactId}", method = RequestMethod.GET)
 	public String displayContact(@PathVariable String contactId, ModelMap model) {
 
-		Contact contact = data.get(contactId);
+		Contact contact = contacts.get(contactId);
 
 		if (contact == null) {
 			return "index";
@@ -98,7 +122,7 @@ public class MainController {
 	@RequestMapping(value = "/{contactId}/edit", method = RequestMethod.GET)
 	public ModelAndView editContactForm(@PathVariable String contactId) {
 
-		Contact contact = data.get(contactId);
+		Contact contact = contacts.get(contactId);
 
 		if (contact == null) {
 			return displayContacts();
@@ -111,7 +135,7 @@ public class MainController {
 	@ResponseBody
 	public Contact editContact(@RequestBody Contact contact) {
 
-		data.put(Integer.toString(contact.getId()), contact);
+		contacts.put(Integer.toString(contact.getId()), contact);
 		return contact;
 	}
 
@@ -119,7 +143,7 @@ public class MainController {
 	@ResponseBody
 	public Contact deleteContact(@PathVariable String contactId) {
 
-		return data.remove(contactId);
+		return contacts.remove(contactId);
 	}
 
 	// @RequestMapping(value = "/{contactId}", method = RequestMethod.DELETE)

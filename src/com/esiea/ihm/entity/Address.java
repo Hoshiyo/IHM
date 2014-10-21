@@ -30,6 +30,10 @@ public class Address {
 		this.type = type;
 	}
 
+	public Address(Contact contact) {
+		mContact = contact;
+	}
+
 	public Contact getContact() {
 		return mContact;
 	}

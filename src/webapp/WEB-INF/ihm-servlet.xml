@@ -31,7 +31,5 @@
 	</beans:bean>
 
 	<context:component-scan base-package="com.esiea.ihm.controller" />
-	
-	<resources mapping="/resources/**" location="/resources/themes"/>
 
 </beans:beans>

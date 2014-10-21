@@ -1,5 +1,7 @@
 package com.esiea.ihm.model.dao.impl;
 
+import com.esiea.ihm.entity.Contact;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
