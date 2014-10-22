@@ -6,7 +6,8 @@
 
 		<!-- dialog header -->
 		<div class="modal-header">
-			<button id="closeModal" type="button" class="close" data-dismiss="modal">
+			<button id="closeModal" type="button" class="close"
+				data-dismiss="modal">
 				&times;<span class="sr-only">Close</span>
 			</button>
 			<h4 class="modal-title" id="myModalLabel">Edit Contact</h4>
@@ -69,3 +70,10 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+	$("#dateOfBirth").datepicker({
+		dateFormat : "dd/mm/yy"
+	});
+});
+</script>

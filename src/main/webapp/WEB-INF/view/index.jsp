@@ -8,6 +8,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap.min.css" />"
 			rel="stylesheet">
+		<link href="<c:url value="/resources/themes/jqueryui/jquery-ui.min.css" />"
+			rel="stylesheet">
 		<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap-theme.min.css" />"
 			rel="stylesheet">
 		<style type="text/css">
@@ -78,12 +80,13 @@
 	</div>
 
 	<!-- JavaScript Includes -->
-		<script type="text/javascript"
-			src="<c:url value="/resources/themes/jquery/js/jquery.min.js" />"></script>
-		<script type="text/javascript"
-			src="<c:url value="/resources/themes/bootstrap/js/bootstrap.min.js" />"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<script type="text/javascript"
+		src="<c:url value="../resources/themes/jquery/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="../resources/themes/jqueryui/jquery-ui.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/themes/bootstrap/js/bootstrap.min.js" />"></script>
 	<script src="<c:url value="/resources/themes/js/functions.js" />"></script>
 	<script>
 		$(document).ready(function() {
