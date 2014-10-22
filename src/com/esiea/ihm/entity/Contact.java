@@ -1,10 +1,14 @@
 package com.esiea.ihm.entity;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 
@@ -91,7 +95,7 @@ public class Contact implements Serializable {
 		if (mDateOfBirth == null)
 			return null;
 
-		return new SimpleDateFormat("dd-MM-yyyy")
+		return new SimpleDateFormat("dd/MM/yyyy")
 				.format(mDateOfBirth.getTime());
 	}
 
@@ -102,16 +106,18 @@ public class Contact implements Serializable {
 	 *            String with three number separate by any char or String
 	 */
 	public void setDateOfBirth(String dateOfBirth) {
-		String date[] = dateOfBirth.split("[^\\d]+");
 
-		Calendar calendar = Calendar.getInstance();
-		if (dateOfBirth.length() < 3) {
-			mDateOfBirth = calendar;
+		mDateOfBirth = Calendar.getInstance();
+	    DateFormat df = new SimpleDateFormat("dd/MM/yyy", Locale.FRANCE);
+	    Date result;
+		try {
+			result = df.parse(dateOfBirth);
+		} catch (ParseException e) {
+			mDateOfBirth = Calendar.getInstance();
+			e.printStackTrace();
 			return;
-		}
-
-		calendar.set(Integer.parseInt(date[2]), Integer.parseInt(date[1]),
-				Integer.parseInt(date[0]));
+		} 
+	    mDateOfBirth.setTime(result);
 	}
 
 	public boolean isActif() {

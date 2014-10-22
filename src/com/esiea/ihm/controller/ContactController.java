@@ -1,10 +1,15 @@
 package com.esiea.ihm.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +56,8 @@ public class ContactController {
 	@RequestMapping(value = "/{contactId:[0-9]+}", method = RequestMethod.GET)
 	public String displayContact(@PathVariable String contactId, ModelMap model) {
 
-		Contact contact = ContactDAOImpl.getInstance().getContactByKey(contactId);
+		Contact contact = ContactDAOImpl.getInstance().getContactByKey(
+				contactId);
 
 		if (contact == null) {
 			return "index";
@@ -65,7 +71,8 @@ public class ContactController {
 	@RequestMapping(value = "/{contactId:[0-9]+}/edit", method = RequestMethod.GET)
 	public ModelAndView editContactForm(@PathVariable String contactId) {
 
-		Contact contact = ContactDAOImpl.getInstance().getContactByKey(contactId);
+		Contact contact = ContactDAOImpl.getInstance().getContactByKey(
+				contactId);
 
 		if (contact == null) {
 			return displayContacts();
@@ -85,7 +92,7 @@ public class ContactController {
 	@RequestMapping(value = "/{contactId:[0-9]+}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public Contact deleteContact(@PathVariable String contactId) {
-		
+
 		return ContactDAOImpl.getInstance().removeContact(contactId);
 	}
 

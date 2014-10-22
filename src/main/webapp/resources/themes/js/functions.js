@@ -85,6 +85,10 @@ function editContact(e) {
 	e.preventDefault();
 
 	var data = getContactFormData();
+	
+	if(checkContactData(data) === false) {
+		return;
+	}
 
 	$.ajax({
 		headers : {
@@ -93,7 +97,7 @@ function editContact(e) {
 		},
 		url : $("#contactForm").attr("action") + $("#id").val(),
 		type : "PUT",
-		data : JSON.stringify(json)
+		data : JSON.stringify(data)
 
 	}).done(function(contact) {
 		$("#closeModal").click();

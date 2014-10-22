@@ -1,6 +1,8 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!-- set up the modal to start hidden and fade in and out -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- set up the modal to start hidden and fade in and out -->
 <div class="modal-dialog">
 	<div class="modal-content">
 
@@ -71,9 +73,9 @@
 	</div>
 </div>
 <script>
-$(document).ready(function() {
-	$("#dateOfBirth").datepicker({
-		dateFormat : "dd/mm/yy"
+	$(document).ready(function() {
+		$("#dateOfBirth").datepicker({
+			dateFormat : "dd/mm/yy"
+		});
 	});
-});
 </script>
