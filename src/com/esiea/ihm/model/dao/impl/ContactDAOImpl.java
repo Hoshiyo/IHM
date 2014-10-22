@@ -33,22 +33,22 @@ public class ContactDAOImpl implements IContactDAO {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(1992, 11, 11);
 		mContactList.put("0", new Contact("Guillaume", "Bourderye",
-				"guillaumebourderye@hotmail.com", calendar, "0600000000"));
+				"guillaumebourderye@hotmail.com", calendar, "06 00 00 00 00"));
 
 		calendar = Calendar.getInstance();
 		calendar.set(1989, 8, 3);
 		mContactList.put("1", new Contact("Anna", "Guyen", "guyen@et.esiea.fr",
-				calendar, "0611111111"));
+				calendar, "06 11 11 11 11"));
 
 		calendar = Calendar.getInstance();
 		calendar.set(1992, 11, 6);
 		mContactList.put("2", new Contact("Tarek", "Smirani", "smirani@hotmail.com",
-				calendar, "0622222222"));
+				calendar, "06 22 22 22 22"));
 
 		calendar = Calendar.getInstance();
 		calendar.set(0, 3, 1);
 		mContactList.put("3", new Contact("Mourad", "One piece",
-				"moumou75@capitaine.com", calendar, "0633333333"));
+				"moumou75@capitaine.com", calendar, "06 33 33 33 33"));
 	}
 
 	public Collection<Contact> getContacts() {

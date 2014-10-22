@@ -102,8 +102,8 @@ public class Contact implements Serializable {
 		return mFName;
 	}
 
-	public void setFName(String mFName) {
-		this.mFName = mFName;
+	public void setFName(String fName) {
+		this.mFName = Character.toUpperCase(fName.charAt(0)) + fName.substring(1);;
 	}
     
 	/**
@@ -116,7 +116,7 @@ public class Contact implements Serializable {
 	}
 
 	public void setLName(String mLName) {
-		this.mLName = mLName;
+		this.mLName = mLName.toUpperCase();
 	}
     
 	/**
@@ -191,7 +191,7 @@ public class Contact implements Serializable {
 	}
 
 	public void setPhoneNbr(String mphoneNbr) {
-		this.mPhoneNbr = mphoneNbr;
+		this.mPhoneNbr = mphoneNbr.replaceAll("\\d{2}", "$0 ").trim();
 	}
 
 	public void addAddress(Address address) {
