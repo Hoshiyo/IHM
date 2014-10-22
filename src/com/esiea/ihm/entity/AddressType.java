@@ -1,6 +1,12 @@
 package com.esiea.ihm.entity;
 /**
- * @author snake984
+ * 
+ * Cette énumération nous permet de définir deux types pour l'adresse :
+ * - DELIVERY pour les adresses de livraisons.
+ * - PAYMENT pour les adresses de facturations.
+ * 
+ * @author
+ * @version 1
  *
  */
 public enum AddressType {

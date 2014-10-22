@@ -15,6 +15,17 @@ import com.esiea.ihm.entity.AddressType;
 import com.esiea.ihm.entity.Contact;
 import com.esiea.ihm.model.dao.IAddressDAO;
 
+/**
+ * La classe AddressDAOImpl implémente l'interface IAddressDAO.
+ * 
+ * 
+ * @author Mourad
+ * @version 1
+ * @return une instance de la classe AddressDAOImpl
+ * 
+ *
+ */
+
 public class AddressDAOImpl implements IAddressDAO {
 
 	private static AddressDAOImpl instance = null;
@@ -60,37 +71,67 @@ public class AddressDAOImpl implements IAddressDAO {
 				"Bateau de Luffy", 000, PAYMENT));
 		contacts.get(4).addAddress(mAddressList.get(6));
 	}
-
+    
+	/**
+	 * 
+	 * Compare les adresses. 
+	 * 
+	 */
 	public Comparator<Address> nbrComparator = new Comparator<Address>() {
 		public int compare(Address a1, Address a2) {
 			return (a1.getNbr() - a2.getNbr());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * 
+	 * Compare les codes postaux.
+	 * 
+	 */
 	public Comparator<Address> zipComparator = new Comparator<Address>() {
 		public int compare(Address a1, Address a2) {
 			return (a1.getZipCode() - a2.getZipCode());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * 
+	 * Compare le nom des rues.
+	 * 
+	 */
 	public Comparator<Address> streetComparator = new Comparator<Address>() {
 		public int compare(Address a1, Address a2) {
 			return a1.getStreet().compareToIgnoreCase(a2.getStreet());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * 
+	 * Compare le nom des villes.
+	 * 
+	 */
 	public Comparator<Address> cityComparator = new Comparator<Address>() {
 		public int compare(Address a1, Address a2) {
 			return a1.getCity().compareToIgnoreCase(a2.getCity());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * 
+	 * Compare le nom des types d'adresse (DELIVERY ou PAYMENT).
+	 * 
+	 */
 	public Comparator<Address> typeComparator = new Comparator<Address>() {
 		public int compare(Address a1, Address a2) {
 			return a1.getType().compareTo(a2.getType());
 		}
 	};
-
+    
+	
 	public void CreateAddress(Contact contact, int nbr, String street,
 			String city, int zipCode, AddressType type) {
 		Address newAddress = new Address(contact, nbr, street, city, zipCode,

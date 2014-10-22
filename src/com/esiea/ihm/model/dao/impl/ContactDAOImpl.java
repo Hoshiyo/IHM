@@ -8,6 +8,14 @@ import java.util.List;
 import com.esiea.ihm.entity.Contact;
 import com.esiea.ihm.model.dao.IContactDAO;
 
+/**
+ * 
+ * La classe ContactDAOImpl implémente l'interface IContactDAO
+ * 
+ * @author Mourad
+ * @version 1
+ *
+ */
 public class ContactDAOImpl implements IContactDAO {
 	private static ContactDAOImpl instance = null;
 
@@ -47,47 +55,96 @@ public class ContactDAOImpl implements IContactDAO {
 		mContactList.add(new Contact("Mourad", "One piece",
 				"moumou75@capitaine.com", calendar, "06333333"));
 	}
-
+    /**
+     * 
+     * @return la liste des contacts.
+     * 
+     */
 	public List<Contact> getContacts() {
 		return mContactList;
 	}
-
+    
+	/**
+	 * 
+	 * 
+	 * @return La comparaison entre id.
+	 * 
+	 */
 	public Comparator<Contact> idComparator = new Comparator<Contact>() {
 		public int compare(Contact c1, Contact c2) {
 			return (c1.getId() - c2.getId());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * 
+	 * @return La comparaison entre les prénoms.
+	 * 
+	 */
 	public Comparator<Contact> fNameComparator = new Comparator<Contact>() {
 		public int compare(Contact c1, Contact c2) {
 			return c1.getFName().compareToIgnoreCase(c2.getFName());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * 
+	 * @return La comparaison entre les noms de famille.
+	 * 
+	 */
 	public Comparator<Contact> lNameComparator = new Comparator<Contact>() {
 		public int compare(Contact c1, Contact c2) {
 			return c1.getLName().compareToIgnoreCase(c2.getLName());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * 
+	 * @return La comparaison entre les emails.
+	 * 
+	 */
 	public Comparator<Contact> emailComparator = new Comparator<Contact>() {
 		public int compare(Contact c1, Contact c2) {
 			return c1.getEmail().compareToIgnoreCase(c2.getEmail());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * 
+	 * @return La comparaison entre les dates de naissance.
+	 * 
+	 */
 	public Comparator<Contact> dateOfBirthComparator = new Comparator<Contact>() {
 		public int compare(Contact c1, Contact c2) {
 			return c1.getDateOfBirth().compareTo(c2.getDateOfBirth());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * 
+	 * @return La comparaison entre les numéros de telephone.
+	 * 
+	 */
 	public Comparator<Contact> phoneNbrComparator = new Comparator<Contact>() {
 		public int compare(Contact c1, Contact c2) {
 			return c1.getPhoneNbr().compareToIgnoreCase(c2.getPhoneNbr());
 		}
 	};
-
+    
+	/**
+	 * 
+	 * @param fName
+	 * @param lName
+	 * @param email
+	 * @param dateOfBirth
+	 * @param phoneNbr
+	 * 
+	 */
 	public void createContact(String fName, String lName, String email,
 			Calendar dateOfBirth, String phoneNbr) {
 		Contact newContact = new Contact(fName, lName, email, dateOfBirth,
@@ -195,11 +252,22 @@ public class ContactDAOImpl implements IContactDAO {
 	public void addContact(Contact contact) {
 		mContactList.add(contact);
 	}
-
+    
+	/**
+	 * 
+	 * @param id
+	 * @return les contacts par leurs id.
+	 */
 	public Contact getContactById(int id) {
 		return mContactList.get(id);
 	}
-
+    
+	/**
+	 * 
+	 * @param contactId
+	 * @return La suppression d'un contact.
+	 * 
+	 */
 	public Contact removeContact(int contactId) {
 		return mContactList.remove(contactId);
 	}
