@@ -6,6 +6,8 @@
 <html>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link href="${pageContext.request.contextPath}/favicon.ico"
+			rel="icon" type="image/x-icon">
 		<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap.min.css" />"
 			rel="stylesheet">
 		<link href="<c:url value="/resources/themes/jqueryui/jquery-ui.min.css" />"
@@ -64,13 +66,12 @@
 						<a class="deleteContact" href="/contact/${listValue.id}"><button
 						class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></a>
 						<a class="editAddress" href="/contact/${listValue.id}"><button
-						class="btn btn-default"><span class="glyphicon glyphicon-home"></span></button></a><a class="editContact" href="/contact/${listValue.id}/edit"
+						class="btn btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
+						<a class="editContact" href="/contact/${listValue.id}/edit"
 						data-toggle="modal" data-target="#myModal"><button
 						class="btn btn-default"><span class="glyphicon glyphicon-user"></span></button></a>
 						<h3 class="firstname">${listValue.FName}</h3>
 						<h3 class="lastname">${listValue.LName}</h3>
-						<p class="address">Delivery address : </p>
-						<p class="address">Home address : </p>
 						<p class="phone">01 54 87 51 00</p>
 						<p class="email">montpellier@yahoo.fr</p>
 					</li>
