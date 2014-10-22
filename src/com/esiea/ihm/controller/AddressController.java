@@ -28,7 +28,7 @@ public class AddressController {
 		return model;
 	}
 
-	@RequestMapping(value = "/{addressId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.GET)
 	public String displayAddress(@PathVariable String addressId, ModelMap model) {
 		Address address = AddressDAOImpl.getInstance().getAddressByKey(
 				addressId);
@@ -38,8 +38,8 @@ public class AddressController {
 		model.addAttribute("address", address);
 		return "viewAddress";
 	}
-
-	@RequestMapping(value = "/{addressId}/edit", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/{addressId:[0-9]+}/edit", method = RequestMethod.GET)
 	public ModelAndView editContactForm(@PathVariable String addressId) {
 		Address address = AddressDAOImpl.getInstance().getAddressByKey(
 				addressId);
@@ -66,15 +66,15 @@ public class AddressController {
 		AddressDAOImpl.getInstance().addAddress(address);
 		return address;
 	}
-
-	@RequestMapping(value = "/{addressId}", method = RequestMethod.PUT)
+	
+	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.PUT)
 	@ResponseBody
 	public Address editContact(@RequestBody Address address) {
 		AddressDAOImpl.getInstance().updateAddress(address);
 		return address;
 	}
 
-	@RequestMapping(value = "/{addressId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public Address deleteContact(@PathVariable String addressId) {
 		return AddressDAOImpl.getInstance().removeAddress(addressId);
