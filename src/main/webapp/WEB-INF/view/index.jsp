@@ -60,20 +60,28 @@
 	<div id="container">
 		<c:if test="${not empty lists}">
 
-			<ul class="list-group">
+			<ul id="contactList" class="list-group">
 				<c:forEach var="listValue" items="${lists}">
 					<li id="contact-${listValue.id}" class="list-group-item" >
-						<a class="deleteContact" href="/contact/${listValue.id}"><button
-						class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></a>
-						<a class="editAddress" href="/contact/${listValue.id}"><button
-						class="btn btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
-						<a class="editContact" href="/contact/${listValue.id}/edit"
-						data-toggle="modal" data-target="#myModal"><button
-						class="btn btn-default"><span class="glyphicon glyphicon-user"></span></button></a>
+						<a class="deleteContact" href="/contact/${listValue.id}">
+							<button class="btn btn-default">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+						</a>
+						<a class="editAddress" href="/contact/${listValue.id}">
+							<button class="btn btn-default">
+								<span class="glyphicon glyphicon-home"></span>
+							</button>
+						</a>
+						<a class="editContact" href="/contact/${listValue.id}/edit" data-toggle="modal" data-target="#myModal">
+							<button class="btn btn-default">
+								<span class="glyphicon glyphicon-user"></span>
+							</button>
+						</a>
 						<h3 class="firstname">${listValue.FName}</h3>
 						<h3 class="lastname">${listValue.LName}</h3>
-						<p class="phone">01 54 87 51 00</p>
-						<p class="email">montpellier@yahoo.fr</p>
+						<p class="phone">${listValue.phoneNbr}</p>
+						<p class="email">${listValue.email}</p>
 					</li>
 				</c:forEach>
 			</ul>			
