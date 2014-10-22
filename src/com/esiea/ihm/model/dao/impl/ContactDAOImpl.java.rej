@@ -1,0 +1,97 @@
+diff a/src/com/esiea/ihm/model/dao/impl/ContactDAOImpl.java b/src/com/esiea/ihm/model/dao/impl/ContactDAOImpl.java	(rejected hunks)
+@@ -2,8 +2,11 @@
+ 
+ import java.util.ArrayList;
+ import java.util.Calendar;
++import java.util.Collection;
+ import java.util.Comparator;
++import java.util.HashMap;
+ import java.util.List;
++import java.util.Map;
+ 
+ import com.esiea.ihm.entity.Contact;
+ import com.esiea.ihm.model.dao.IContactDAO;
+@@ -18,7 +21,7 @@
+ 		return instance;
+ 	}
+ 
+-	private List<Contact> mContactList = new ArrayList<Contact>();
++	private Map<String, Contact> mContactList = new HashMap<String, Contact>();
+ 
+ 	private ContactDAOImpl() {
+ 		init();
+@@ -29,27 +32,27 @@
+ 
+ 		Calendar calendar = Calendar.getInstance();
+ 		calendar.set(1992, 11, 11);
+-		mContactList.add(new Contact("Guillaume", "Bourderye",
++		mContactList.put("0", new Contact("Guillaume", "Bourderye",
+ 				"guillaumebourderye@hotmail.com", calendar, "06000000"));
+ 
+ 		calendar = Calendar.getInstance();
+ 		calendar.set(1989, 8, 3);
+-		mContactList.add(new Contact("Anna", "Guyen", "guyen@et.esiea.fr",
++		mContactList.put("1", new Contact("Anna", "Guyen", "guyen@et.esiea.fr",
+ 				calendar, "06111111"));
+ 
+ 		calendar = Calendar.getInstance();
+ 		calendar.set(1992, 11, 6);
+-		mContactList.add(new Contact("Tarek", "Smirani", "smirani@hotmail.com",
++		mContactList.put("2", new Contact("Tarek", "Smirani", "smirani@hotmail.com",
+ 				calendar, "06222222"));
+ 
+ 		calendar = Calendar.getInstance();
+ 		calendar.set(0, 3, 1);
+-		mContactList.add(new Contact("Mourad", "One piece",
++		mContactList.put("3", new Contact("Mourad", "One piece",
+ 				"moumou75@capitaine.com", calendar, "06333333"));
+ 	}
+ 
+-	public List<Contact> getContacts() {
+-		return mContactList;
++	public Collection<Contact> getContacts() {
++		return mContactList.values();
+ 	}
+ 
+ 	public Comparator<Contact> idComparator = new Comparator<Contact>() {
+@@ -93,7 +96,7 @@
+ 		Contact newContact = new Contact(fName, lName, email, dateOfBirth,
+ 				phoneNbr);
+ 
+-		mContactList.add(newContact);
++		mContactList.put(Integer.toString(newContact.genId()), newContact);
+ 	}
+ 
+ 	public ArrayList<Contact> getContactByFName(String fName) {
+@@ -189,23 +192,25 @@
+ 	}
+ 
+ 	public void deleteContact(List<Contact> contacts) {
+-		mContactList.removeAll(contacts);
++		mContactList.remove(contacts);
+ 	}
+ 
+ 	public void addContact(Contact contact) {
+-		mContactList.add(contact);
++		mContactList.put(Integer.toString(contact.getId()), contact);
+ 	}
+ 
+-	public Contact getContactById(int id) {
++	public Contact getContactByKey(String id) {
+ 		return mContactList.get(id);
+ 	}
+ 
+-	public Contact removeContact(int contactId) {
++	public Contact removeContact(String contactId) {
++		Contact contact = mContactList.get(contactId);
++		contact.destroy();
++		
+ 		return mContactList.remove(contactId);
+ 	}
+ 
+ 	public void updateContact(Contact contact) {
+-		mContactList.remove(contact.getId());
+-		mContactList.add(contact.getId(), contact);
++		mContactList.put(Integer.toString(contact.getId()), contact);
+ 	}
+ }

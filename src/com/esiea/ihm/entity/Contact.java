@@ -13,19 +13,27 @@ import java.util.Locale;
 import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 
 /**
- * @author snake984
- *
+ * 
+ * La classe Contact nous permet notamment de recenser les données propre à un contact.
+ * Nous avons : - Un ID (qui fait office de compteur dans notre cas).
+ *              - L'id qui référence le contact.
+ *              - Le nom et prénom.
+ *              - La date de naissance.
+ *              - Le numéro de téléphone.
+ *              - Un booléen nous permettant de voir l'état du contact (un contact crée est actif).
+ * 
+ * @author              
+ * @version 1
+ * 
  */
 public class Contact implements Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -1285094871893130945L;
 
 	private static int ID = 0;
 
-	private int mId = -1;
+	private int mId = -1; // -1 pour un nouveau contact n'ayant pas encore d'id.
 	private String mFName = null;
 	private String mLName = null;
 	private String mEmail = null;
@@ -36,6 +44,15 @@ public class Contact implements Serializable {
 
 	public Contact() {
 	}
+	
+	/**
+	 * 
+	 * @param fName
+	 * @param lName
+	 * @param email
+	 * @param dateOfBirth
+	 * @param phoneNbr
+	 */
 
 	public Contact(String fName, String lName, String email,
 			Calendar dateOfBirth, String phoneNbr) {
@@ -43,15 +60,24 @@ public class Contact implements Serializable {
 		this.mId = ID;
 		ID++;
 
-		this.mFName = fName.substring(0, 1).toUpperCase() + fName.substring(1);
-		this.mLName = lName.toUpperCase();
+		if(fName!=null)
+			this.mFName = fName.substring(0, 1).toUpperCase() + fName.substring(1);
+		
+		if(lName!=null)
+			this.mLName = lName.toUpperCase();
+		
 		this.mEmail = email;
 		this.mDateOfBirth = dateOfBirth;
 		this.mPhoneNbr = phoneNbr;
 
 		mActif = true;
 	}
-
+    
+	/**
+	 * 
+	 * @return l'id du contact.
+	 * 
+	 */
 	public int getId() {
 		return mId;
 	}
@@ -66,7 +92,12 @@ public class Contact implements Serializable {
 		
 		return mId;
 	}
-
+    
+	/**
+	 * 
+	 * @return Le prénom du contact.
+	 * 
+	 */
 	public String getFName() {
 		return mFName;
 	}
@@ -74,7 +105,12 @@ public class Contact implements Serializable {
 	public void setFName(String mFName) {
 		this.mFName = mFName;
 	}
-
+    
+	/**
+	 * 
+	 * @return Le nom de famille du contact.
+	 * 
+	 */
 	public String getLName() {
 		return mLName;
 	}
@@ -82,7 +118,12 @@ public class Contact implements Serializable {
 	public void setLName(String mLName) {
 		this.mLName = mLName;
 	}
-
+    
+	/**
+	 * 
+	 * @return L'adresse mail du contact.
+	 * 
+	 */
 	public String getEmail() {
 		return mEmail;
 	}
@@ -90,7 +131,12 @@ public class Contact implements Serializable {
 	public void setEmail(String mEmail) {
 		this.mEmail = mEmail;
 	}
-
+    
+	/**
+	 * 
+	 * @return La date de naissance du contact (si elle est renseignée).
+	 * 
+	 */
 	public String getDateOfBirth() {
 		if (mDateOfBirth == null)
 			return null;
@@ -100,10 +146,12 @@ public class Contact implements Serializable {
 	}
 
 	/**
-	 * Set contact's date of birth
+	 * 
+	 * On fait un "set" sur la date de naissance des contacts.
 	 * 
 	 * @param dateOfBirth
-	 *            String with three number separate by any char or String
+	 * On a un String avec trois numéros séparé par un "char" ou un "String".
+	 * 
 	 */
 	public void setDateOfBirth(String dateOfBirth) {
 
@@ -119,7 +167,12 @@ public class Contact implements Serializable {
 		} 
 	    mDateOfBirth.setTime(result);
 	}
-
+    
+	/**
+	 * 
+	 * @return L'état du contact (à savoir actif = création du contact, ou passif = contact non crée).
+	 * 
+	 */
 	public boolean isActif() {
 		return mActif;
 	}
@@ -128,6 +181,11 @@ public class Contact implements Serializable {
 		this.mActif = mActif;
 	}
 
+	/**
+	 * 
+	 * @return Le numéro de téléphone du contact.
+	 * 
+	 */
 	public String getPhoneNbr() {
 		return mPhoneNbr;
 	}
@@ -139,7 +197,12 @@ public class Contact implements Serializable {
 	public void addAddress(Address address) {
 		mAddresses.add(address);
 	}
-
+    
+	/**
+	 * Un contact peut posséder une adresse de livraison et de facturation différente.
+	 * @return La liste des adresses du contact.
+	 * 
+	 */
 	public List<Address> getAddresses() {
 		List<Address> addressList = new ArrayList<Address>(mAddresses);
 		return addressList;
@@ -155,7 +218,8 @@ public class Contact implements Serializable {
 	}
 
 	public void deleteAddress(Address address) {
-		mAddresses.remove(address);
+		if(address != null)
+			mAddresses.remove(address);
 	}
 
 	// public void setAddresses(List<Address> addresses) {

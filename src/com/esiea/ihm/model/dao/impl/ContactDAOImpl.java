@@ -98,6 +98,11 @@ public class ContactDAOImpl implements IContactDAO {
 
 		mContactList.put(Integer.toString(newContact.genId()), newContact);
 	}
+	
+	public ArrayList<Contact> getContactList(){
+		ArrayList<Contact> list = new ArrayList<Contact>(mContactList.values());
+		return list;
+	}
 
 	public ArrayList<Contact> getContactByFName(String fName) {
 

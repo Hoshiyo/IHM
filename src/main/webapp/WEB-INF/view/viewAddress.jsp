@@ -9,6 +9,20 @@
 </head>
 <body>
 
+<h1>HELLO</h1>
+<c:if test="${not empty adresses}">
+
+<h2>HI !</h2>
+	<ul>
+		<c:forEach var="address" items="${adresses}">
+				<li>Address : ${address.nbr} ${address.street}</li>
+				<li>City : ${address.city}</li>
+				<li>Zip code : ${address.zipCode}</li>
+				<li>Address type : ${address.type}</li>
+		</c:forEach>
+	</ul>
+	
+</c:if>
 	<h1>HELLO</h1>
 	Address : ${address.nbr} ${address.street} City : ${address.city} Zip
 	code : ${address.zipCode} Address type : ${address.type}
