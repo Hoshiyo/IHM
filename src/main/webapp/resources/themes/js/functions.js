@@ -3,8 +3,7 @@ function getContactForm() {
 		url : "/contact/new",
 
 	}).done(function(html) {
-		$("#contactForm").remove();
-		$("#container").append(html);
+		$("#myModal").html(html);
 		$("#contactForm").submit(createContact);
 	})
 }
@@ -44,6 +43,7 @@ function createContact(e) {
 		data : data,
 
 	}).done(function(contact) {
+		$("#closeModal").click();
 		addContactLine(contact);
 	});
 
@@ -66,6 +66,7 @@ function editContact(e) {
 		data : data
 
 	}).done(function(contact) {
+		$("#closeModal").click();
 		updateContactLine(contact);
 	});
 
@@ -82,5 +83,78 @@ function updateContactLine(contact) {
 			+ contact.id
 			+ "/edit'>edit</a> <a class='deleteContact' href=/contact/"
 			+ contact.id + "'>delete</a>";
+	item.html(html);
+}
+
+function getAddressFormData() {
+	var id = $("#id").val();
+	var nbr = $("#nbr").val();
+	var street = $("#street").val();
+	var city = $("#city").val();
+	var zipCode = $("#zipCode").val();
+	var type = $("#type").val();
+	var json = {
+		"nbr" : nbr,
+		"street" : street,
+		"city" : city,
+		"zipCode" : zipCode,
+		"type" : type
+	};
+
+	return JSON.stringify(json);
+}
+
+function createAddress(e) {
+
+	e.preventDefault();
+
+	var data = getAddressFormData();
+
+	$.ajax({
+		headers : {
+			'Accept' : 'application/json',
+			'Content-Type' : 'application/json'
+		},
+		url : $("#addressForm").attr("action"),
+		type : "POST",
+		data : data,
+
+	}).done(function(address) {
+		addAddressLine(address);
+	});
+
+	return false;
+}
+
+function editAddress(e) {
+
+	e.preventDefault();
+
+	var data = getAddressFormData();
+
+	$.ajax({
+		headers : {
+			'Accept' : 'application/json',
+			'Content-Type' : 'application/json'
+		},
+		url : $("#addressForm").attr("action") + '/' + $("#nbr").val(),
+		type : "PUT",
+		data : data
+
+	}).done(function(address) {
+		updateAddressLine(address);
+	});
+
+	return false;
+}
+
+function addAddressLine(address) {
+	$("#container").append("<li>" + address.contact.FName + "</li>");
+}
+
+function updateAddressLine(address) {
+	var item = $("#address-" + address.contact.FName);
+	var html = address.contact.fname
+			+ " <a class='editAddress' href='/address/" + address.contact.id + "/edit'>edit</a> <a class='deleteAddress' href=/address/" + address.contact.id + "'>delete</a>";
 	item.html(html);
 }

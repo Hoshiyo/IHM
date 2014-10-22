@@ -49,9 +49,9 @@ public class ContactController {
 	}
 
 	@RequestMapping(value = "/{contactId}", method = RequestMethod.GET)
-	public String displayContact(@PathVariable int contactId, ModelMap model) {
+	public String displayContact(@PathVariable String contactId, ModelMap model) {
 
-		Contact contact = ContactDAOImpl.getInstance().getContactById(contactId);
+		Contact contact = ContactDAOImpl.getInstance().getContactByKey(contactId);
 
 		if (contact == null) {
 			return "index";
@@ -63,9 +63,9 @@ public class ContactController {
 	}
 
 	@RequestMapping(value = "/{contactId}/edit", method = RequestMethod.GET)
-	public ModelAndView editContactForm(@PathVariable int contactId) {
+	public ModelAndView editContactForm(@PathVariable String contactId) {
 
-		Contact contact = ContactDAOImpl.getInstance().getContactById(contactId);
+		Contact contact = ContactDAOImpl.getInstance().getContactByKey(contactId);
 
 		if (contact == null) {
 			return displayContacts();
@@ -84,7 +84,7 @@ public class ContactController {
 
 	@RequestMapping(value = "/{contactId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Contact deleteContact(@PathVariable int contactId) {
+	public Contact deleteContact(@PathVariable String contactId) {
 		
 		return ContactDAOImpl.getInstance().removeContact(contactId);
 	}
