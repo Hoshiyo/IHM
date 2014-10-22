@@ -1,3 +1,8 @@
+var emailRegex = '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}$';
+var dateRegex = /((0|1)\d\/(0|1)\d\/\d{4})/;
+var nameRegex = '[a-zA-Z]{3,}';
+var phoneRegex = /(\+\d{3}|0\d)( |-|\.)?\d{2}( |-|\.)?\d{2}( |-|\.)?\d{2}( |-|\.)?\d{2}/;
+
 function getContactForm() {
 	$.ajax({
 		url : "/contact/new",
@@ -24,7 +29,27 @@ function getContactFormData() {
 		"phoneNbr" : phoneNbr
 	};
 
-	return JSON.stringify(json);
+	return json;
+}
+
+function checkContactData(data) {
+
+	if(!data.fname.match(nameRegex)) {
+		alert("First name must contain at least 3 letters (A-Z)");
+	} else if(!data.lname.match(nameRegex)) {
+		alert("Last name must contain at least 3 letters (A-Z)");
+	} else if(!data.dateOfBirth.match(dateRegex)) {
+		console.log(data.dateOfBirth);
+		alert("Date format incorrect (dd/mm/yy)");
+	} else if(!data.phoneNbr.match(phoneRegex)) {
+		alert("Invalid phone number");
+	} else if(!data.email.match(emailRegex)) {
+		alert("Enter a correct email (exemple@ihm.fr)");
+	} else {
+		return true;
+	}
+	
+	return false;
 }
 
 function createContact(e) {
@@ -32,6 +57,11 @@ function createContact(e) {
 	e.preventDefault();
 
 	var data = getContactFormData();
+	console.log(data.fname);
+
+	if(checkContactData(data) === false) {
+		return;
+	}
 
 	$.ajax({
 		headers : {
@@ -40,7 +70,7 @@ function createContact(e) {
 		},
 		url : $("#contactForm").attr("action"),
 		type : "POST",
-		data : data,
+		data : JSON.stringify(data)
 
 	}).done(function(contact) {
 		$("#closeModal").click();
@@ -63,7 +93,7 @@ function editContact(e) {
 		},
 		url : $("#contactForm").attr("action") + $("#id").val(),
 		type : "PUT",
-		data : data
+		data : JSON.stringify(json)
 
 	}).done(function(contact) {
 		$("#closeModal").click();

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esiea.ihm.entity.Address;
-import com.esiea.ihm.entity.Contact;
 import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 import com.esiea.ihm.model.dao.impl.ContactDAOImpl;
 
@@ -33,7 +32,7 @@ public class AddressController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/{addressId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.GET)
 	public String displayAddress(@PathVariable String addressId, ModelMap model) {
 
 		Address address = AddressDAOImpl.getInstance().getAddressByKey(addressId);	
@@ -47,7 +46,7 @@ public class AddressController {
 		return "viewAddress";
 	}
 	
-	@RequestMapping(value = "/{addressId}/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/{addressId:[0-9]+}/edit", method = RequestMethod.GET)
 	public ModelAndView editContactForm(@PathVariable String addressId) {
 
 		Address address = AddressDAOImpl.getInstance().getAddressByKey(addressId);
@@ -76,7 +75,7 @@ public class AddressController {
 		return address;
 	}
 	
-	@RequestMapping(value = "/{addressId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.PUT)
 	@ResponseBody
 	public Address editContact(@RequestBody Address address) {
 
@@ -84,7 +83,7 @@ public class AddressController {
 		return address;
 	}
 
-	@RequestMapping(value = "/{addressId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public Address deleteContact(@PathVariable String addressId) {
 		

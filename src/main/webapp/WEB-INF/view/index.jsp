@@ -6,9 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="../resources/themes/bootstrap/css/bootstrap.min.css"
+<link
+	href="<c:url value="/resources/themes/jqueryui/jquery-ui.min.css" />"
 	rel="stylesheet">
-<link href="../resources/themes/bootstrap/css/bootstrap-theme.min.css"
+<link
+	href="<c:url value="/resources/themes/bootstrap/css/bootstrap.min.css" />"
+	rel="stylesheet">
+<link
+	href="<c:url value="/resources/themes/bootstrap/css/bootstrap-theme.min.css" />"
 	rel="stylesheet">
 <style type="text/css">
 body {
@@ -59,9 +64,11 @@ body {
 
 	<!-- JavaScript Includes -->
 	<script type="text/javascript"
-		src="../resources/themes/jquery/js/jquery.min.js"></script>
+		src="<c:url value="../resources/themes/jquery/jquery.min.js" />"></script>
 	<script type="text/javascript"
-		src="../resources/themes/bootstrap/js/bootstrap.min.js"></script>
+		src="<c:url value="../resources/themes/jqueryui/jquery-ui.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/themes/bootstrap/js/bootstrap.min.js" />"></script>
 	<script src="<c:url value="/resources/themes/js/functions.js" />"></script>
 	<script>
 		$(document).ready(function() {
