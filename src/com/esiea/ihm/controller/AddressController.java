@@ -88,7 +88,7 @@ public class AddressController {
 		Contact contact = contacts.get(contactId);
 
 		if (contact == null) {
-			return null;
+			return new ModelAndView("index");
 		}
 		
 		if(contact.getAddresses().size() == 0)
@@ -96,10 +96,11 @@ public class AddressController {
 			System.out.println("contact address list is null !");
 			return new ModelAndView("index");
 		}
+
+		ArrayList<Address> list = new ArrayList<Address>(contact.getAddresses());
 		
 		ModelAndView model = new ModelAndView("viewAddress");
-		List<Address> addresses = contact.getAddresses();
-		model.addObject("addresses", addresses);
+		model.addObject("addresses", list);
 
 		return model;
 	}

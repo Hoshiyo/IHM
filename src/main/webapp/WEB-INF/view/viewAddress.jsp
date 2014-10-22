@@ -12,11 +12,8 @@
 
 <h1>HELLO</h1>
 <c:if test="${not empty adresses}">
-<<<<<<< HEAD
 
-=======
 <h2>HI !</h2>
->>>>>>> bb6e5ee4a56ecae2d1e51ee26de3af4a8e01cbb0
 	<ul>
 		<c:forEach var="address" items="${adresses}">
 				<li>Address : ${address.nbr} ${address.street}</li>
