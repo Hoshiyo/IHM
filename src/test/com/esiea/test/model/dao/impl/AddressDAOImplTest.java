@@ -26,7 +26,7 @@ public class AddressDAOImplTest {
 		address2 = new Address(contact, 0, null, null, 0, null);
 	}
 
-	@After
+	@After 
 	public void tearDown() throws Exception {
 	}
 
