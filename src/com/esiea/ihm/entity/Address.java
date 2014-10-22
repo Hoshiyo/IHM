@@ -13,7 +13,9 @@ package com.esiea.ihm.entity;
  */
 public class Address {
 	
-	private int mNbr, mZipCode;
+	private static int ID = 0;
+	
+	private int mId, mNbr, mZipCode;
 	private String mStreet, mCity;
 	private Contact mContact;
 	private AddressType type;
@@ -29,6 +31,8 @@ public class Address {
 	 */
 	public Address(Contact contact, int nbr, String street, String city, int zipCode, AddressType type) {
 		
+		genId();
+		
 		mContact = contact;
 		mNbr = nbr;
 		mZipCode = zipCode;
@@ -39,6 +43,18 @@ public class Address {
 
 	public Address(Contact contact) {
 		mContact = contact;
+		genId();
+	}
+	
+	public int getId() {
+		return mId;
+	}
+	
+	private int genId() {
+		mId = ID;
+		++ID;
+		
+		return mId;
 	}
     
 	/**
@@ -113,5 +129,9 @@ public class Address {
 
 	public void setCity(String mCity) {
 		this.mCity = mCity;
+	}
+	
+	public void destroy() {
+		mContact.deleteAddress(this);
 	}
 }

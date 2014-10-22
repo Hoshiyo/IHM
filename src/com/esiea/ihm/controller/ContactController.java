@@ -48,10 +48,10 @@ public class ContactController {
 		return contact;
 	}
 
-	@RequestMapping(value = "/{contactId}", method = RequestMethod.GET)
-	public String displayContact(@PathVariable int contactId, ModelMap model) {
+	@RequestMapping(value = "/{contactId:[0-9]+}", method = RequestMethod.GET)
+	public String displayContact(@PathVariable String contactId, ModelMap model) {
 
-		Contact contact = ContactDAOImpl.getInstance().getContactById(contactId);
+		Contact contact = ContactDAOImpl.getInstance().getContactByKey(contactId);
 
 		if (contact == null) {
 			return "index";
@@ -62,10 +62,10 @@ public class ContactController {
 		return "viewContact";
 	}
 
-	@RequestMapping(value = "/{contactId}/edit", method = RequestMethod.GET)
-	public ModelAndView editContactForm(@PathVariable int contactId) {
+	@RequestMapping(value = "/{contactId:[0-9]+}/edit", method = RequestMethod.GET)
+	public ModelAndView editContactForm(@PathVariable String contactId) {
 
-		Contact contact = ContactDAOImpl.getInstance().getContactById(contactId);
+		Contact contact = ContactDAOImpl.getInstance().getContactByKey(contactId);
 
 		if (contact == null) {
 			return displayContacts();
@@ -74,7 +74,7 @@ public class ContactController {
 		return new ModelAndView("contactForm", "contact", contact);
 	}
 
-	@RequestMapping(value = "/{contactId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{contactId:[0-9]+}", method = RequestMethod.PUT)
 	@ResponseBody
 	public Contact editContact(@RequestBody Contact contact) {
 
@@ -82,9 +82,9 @@ public class ContactController {
 		return contact;
 	}
 
-	@RequestMapping(value = "/{contactId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{contactId:[0-9]+}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Contact deleteContact(@PathVariable int contactId) {
+	public Contact deleteContact(@PathVariable String contactId) {
 		
 		return ContactDAOImpl.getInstance().removeContact(contactId);
 	}

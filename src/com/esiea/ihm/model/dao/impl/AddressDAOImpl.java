@@ -6,7 +6,9 @@ import static com.esiea.ihm.entity.AddressType.PAYMENT;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -41,35 +43,37 @@ public class AddressDAOImpl implements IAddressDAO {
 		init();
 	}
 	
-	private ArrayList<Address> mAddressList = new ArrayList<Address>();
+	private Map<String, Address> mAddressList = new HashMap<String, Address>();
 	
 	@PostConstruct
 	private void init() {
 		System.out.println("Initializing addresses...");
-
-		ArrayList<Contact> contacts = (ArrayList<Contact>) ContactDAOImpl.getInstance().getContacts();
 		
-		mAddressList.add(new Address(contacts.get(1), 3, "rue de l'eau",
+		Contact contact = ContactDAOImpl.getInstance().getContactByKey("0");
+		mAddressList.put("0", new Address(contact, 3, "rue de l'eau",
 				"Konoha", 445, DELIVERY));
-		contacts.get(1).addAddress(mAddressList.get(1));
-		mAddressList.add( new Address(contacts.get(1), 3,
+		contact.addAddress(mAddressList.get(1));
+		mAddressList.put("1", new Address(contact, 3,
 				"rue de l'herbe", "Konoha", 445, PAYMENT));
-		contacts.get(1).addAddress(mAddressList.get(2));
+		contact.addAddress(mAddressList.get(2));
 
-		mAddressList.add(new Address(contacts.get(2), 3,
+		contact = ContactDAOImpl.getInstance().getContactByKey("1");
+		mAddressList.put("2", new Address(contact, 3,
 				"rue de la terre", "Konoha", 445, DELIVERY));
-		contacts.get(2).addAddress(mAddressList.get(3));
-		mAddressList.add(new Address(contacts.get(2), 3, "rue de l'eau",
+		contact.addAddress(mAddressList.get(3));
+		mAddressList.put("3", new Address(contact, 3, "rue de l'eau",
 				"Konoha", 445, PAYMENT));
-		contacts.get(2).addAddress(mAddressList.get(4));
+		contact.addAddress(mAddressList.get(4));
 
-		mAddressList.add(new Address(contacts.get(3), 3,
+		contact = ContactDAOImpl.getInstance().getContactByKey("2");
+		mAddressList.put("4", new Address(contact, 3,
 				"rue de la foudre", "Konoha", 445, DELIVERY));
-		contacts.get(3).addAddress(mAddressList.get(5));
+		contact.addAddress(mAddressList.get(5));
 
-		mAddressList.add(new Address(contacts.get(4), 5, "Câle",
+		contact = ContactDAOImpl.getInstance().getContactByKey("3");
+		mAddressList.put("5", new Address(contact, 5, "Câle",
 				"Bateau de Luffy", 000, PAYMENT));
-		contacts.get(4).addAddress(mAddressList.get(6));
+		contact.addAddress(mAddressList.get(6));
 	}
     
 	/**
@@ -134,13 +138,20 @@ public class AddressDAOImpl implements IAddressDAO {
 	
 	public void CreateAddress(Contact contact, int nbr, String street,
 			String city, int zipCode, AddressType type) {
+		if(contact.getAddresses().contains(AddressType.PAYMENT))
+			return;
+		
 		Address newAddress = new Address(contact, nbr, street, city, zipCode,
 				type);
 
 		contact.addAddress(newAddress);
-		mAddressList.add(newAddress);
+		mAddressList.put(Integer.toString(newAddress.getId()), newAddress);
 	}
 
+	public List<Address> getAddressList(){
+		ArrayList<Address> list = new ArrayList<Address>(mAddressList.values());
+		return list;
+	}
 	public List<Address> getAddressByContact(Contact contact) {
 		List<Address> addressList = new ArrayList<Address>();
 
@@ -218,20 +229,48 @@ public class AddressDAOImpl implements IAddressDAO {
 
 	public void deleteAddress(Address address) {
 
+		if(address==null)
+			return;
+		
+		if(address.getContact()==null)
+			return;
+		
+		int index = -1;
+		index = address.getContact().getAddresses().indexOf(address);
+		
+		if(index == -1)
+		{
+			return;
+		}
+		
 		address.getContact()
 				.getAddresses()
 				.remove(address
 						.getContact()
 						.getAddresses()
-						.get(address.getContact().getAddresses()
-								.indexOf(address)));
+						.indexOf(address));
 	}
 
 	public Collection<? extends Address> getAddresses() {
-		return mAddressList;
+		return mAddressList.values();
 	}
 
 	public void addAddress(Address address) {
-		mAddressList.add(address);
+		mAddressList.put(Integer.toString(address.getId()), address);
+	}
+
+	public Address getAddressByKey(String id) {
+		return mAddressList.get(id);
+	}
+
+	public Address removeAddress(String addressId) {
+		Address address = mAddressList.get(addressId);
+		address.destroy();
+		
+		return mAddressList.remove(addressId);
+	}
+
+	public void updateAddress(Address address) {
+		mAddressList.put(Integer.toString(address.getId()), address);
 	}
 }

@@ -1,34 +1,79 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!-- TODO: Faire verif en JS ! -->
-<h2>Student Information</h2>
-<form:form id="contactForm" method="PUT" action="/contact/"
-	commandName="contact">
-	<table>
-		<tr>
-			<td><form:hidden id="id" path="id"></form:hidden></td>
-		</tr>
-		<tr>
-			<td><form:label path="fName">First Name</form:label></td>
-			<td><form:input id="fName" path="fName" /></td>
-		</tr>
-		<tr>
-			<td><form:label path="lName">Last Name</form:label></td>
-			<td><form:input id="lName" path="lName" /></td>
-		</tr>
-		<tr>
-			<td><form:label path="email">Email</form:label></td>
-			<td><form:input id="email" path="email" /></td>
-		</tr>
-		<tr>
-			<td><form:label path="dateOfBirth">Date of birth</form:label></td>
-			<td><form:input id="dateOfBirth" path="dateOfBirth" /></td>
-		</tr>
-		<tr>
-			<td><form:label path="phoneNbr">Phone number</form:label></td>
-			<td><form:input id="phoneNbr" path="phoneNbr" /></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" value="Submit" /></td>
-		</tr>
-	</table>
-</form:form>
+<!-- set up the modal to start hidden and fade in and out -->
+
+<div class="modal-dialog">
+	<div class="modal-content">
+
+		<!-- dialog header -->
+		<div class="modal-header">
+			<button id="closeModal" type="button" class="close"
+				data-dismiss="modal">
+				&times;<span class="sr-only">Close</span>
+			</button>
+			<h4 class="modal-title" id="myModalLabel">Edit Contact</h4>
+		</div>
+
+		<!-- dialog body -->
+		<div class="modal-body">
+			<form:form id="contactForm" method="PUT" action="/contact/"
+				commandName="contact" class="form-horizontal" role="form">
+
+				<form:hidden path="id" />
+
+				<div class="form-group">
+					<form:label path="fName" class="col-sm-2 control-label">First Name</form:label>
+					<div class="col-sm-10">
+						<form:input class="form-control" path="fName"
+							placeholder="Enter Your First Name" />
+					</div>
+				</div>
+				<div class="form-group">
+					<form:label path="lName" class="col-sm-2 control-label">Last
+								Name</form:label>
+					<div class="col-sm-10">
+						<form:input class="form-control" path="lName"
+							placeholder="Enter Your Last Name" />
+					</div>
+				</div>
+				<div class="form-group">
+					<form:label path="dateOfBirth" class="col-sm-2 control-label">Anniversary
+								Date</form:label>
+					<div class="col-sm-10">
+						<form:input class="form-control" path="dateOfBirth"
+							placeholder="Enter Your Anniversary Date" />
+					</div>
+				</div>
+				<div class="form-group">
+					<form:label path="phoneNbr" class="col-sm-2 control-label">Phone</form:label>
+					<div class="col-sm-10">
+						<form:input class="form-control" path="phoneNbr"
+							placeholder="Enter Your Phone" />
+					</div>
+				</div>
+				<div class="form-group">
+					<form:label path="email" class="col-sm-2 control-label">Email</form:label>
+					<div class="col-sm-10">
+						<form:input class="form-control" path="email"
+							placeholder="Enter Your Email" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<label> <input type="checkbox"> Actif
+							</label>
+						</div>
+					</div>
+				</div>
+				<input type="submit" class="btn btn-primary" value="Submit" />
+			</form:form>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+	$("#dateOfBirth").datepicker({
+		dateFormat : "dd/mm/yy"
+	});
+});
+</script>
