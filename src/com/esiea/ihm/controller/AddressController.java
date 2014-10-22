@@ -1,7 +1,6 @@
 package com.esiea.ihm.controller;
 
 import java.util.ArrayList;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,93 +11,65 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.esiea.ihm.entity.Address;
-import com.esiea.ihm.entity.Contact;
-
-import static com.esiea.ihm.entity.AddressType.DELIVERY;
-import static com.esiea.ihm.entity.AddressType.PAYMENT;
 import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 import com.esiea.ihm.model.dao.impl.ContactDAOImpl;
 
 @Controller
 @RequestMapping("address")
 public class AddressController {
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView displayAddresses() {
-
-		ArrayList<Address> addresses = new ArrayList<Address>(AddressDAOImpl.getInstance().getAddresses());
-
+		ArrayList<Address> addresses = new ArrayList<Address>(AddressDAOImpl
+				.getInstance().getAddresses());
 		ModelAndView model = new ModelAndView("listAddress");
 		model.addObject("lists", addresses);
-
-
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/{addressId}", method = RequestMethod.GET)
 	public String displayAddress(@PathVariable String addressId, ModelMap model) {
-
-		Address address = AddressDAOImpl.getInstance().getAddressByKey(addressId);	
-		
+		Address address = AddressDAOImpl.getInstance().getAddressByKey(
+				addressId);
 		if (address == null) {
 			return "index";
 		}
-		
 		model.addAttribute("address", address);
-
 		return "viewAddress";
 	}
-	
+
 	@RequestMapping(value = "/{addressId}/edit", method = RequestMethod.GET)
 	public ModelAndView editContactForm(@PathVariable String addressId) {
-
-		Address address = AddressDAOImpl.getInstance().getAddressByKey(addressId);
-
+		Address address = AddressDAOImpl.getInstance().getAddressByKey(
+				addressId);
 		if (address == null) {
 			return displayAddresses();
 		}
-
 		return new ModelAndView("addressForm", "address", address);
 	}
-	
+
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String createAddressForm(@RequestParam(value="contact", required=true, defaultValue="-1")String contactID, Model model) {
-		model.addAttribute("address", new Address(ContactDAOImpl.getInstance().getContactByKey(contactID)));
+	public String createAddressForm(
+			@RequestParam(value = "contact", required = true, defaultValue = "-1") String contactID,
+			Model model) {
+		model.addAttribute("address", new Address(ContactDAOImpl.getInstance()
+				.getContactByKey(contactID)));
 		return "addressForm";
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public Address createAddress(@RequestBody Address address) {
-
 		System.out.println("OK");
 		System.out.println("contact: " + address.getContact().getFName());
 		AddressDAOImpl.getInstance().addAddress(address);
-
-		if (contact == null) {
-			return new ModelAndView("index");
-		}
-		
-		if(contact.getAddresses().size() == 0)
-		{
-			System.out.println("contact address list is null !");
-			return new ModelAndView("index");
-		}
-
-		ArrayList<Address> list = new ArrayList<Address>(contact.getAddresses());
-		
-		ModelAndView model = new ModelAndView("viewAddress");
-		model.addObject("addresses", list);
-
 		return address;
 	}
-	
+
 	@RequestMapping(value = "/{addressId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public Address editContact(@RequestBody Address address) {
-
 		AddressDAOImpl.getInstance().updateAddress(address);
 		return address;
 	}
@@ -106,7 +77,6 @@ public class AddressController {
 	@RequestMapping(value = "/{addressId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public Address deleteContact(@PathVariable String addressId) {
-		
 		return AddressDAOImpl.getInstance().removeAddress(addressId);
 	}
 }

@@ -24,8 +24,7 @@ public class Address {
 	 */
 	public Address(Contact contact, int nbr, String street, String city, int zipCode, AddressType type) {
 		
-		mId = ID;
-		++ID;
+		genId();
 		
 		mContact = contact;
 		mNbr = nbr;
@@ -37,13 +36,14 @@ public class Address {
 
 	public Address(Contact contact) {
 		mContact = contact;
+		genId();
 	}
 	
 	public int getId() {
 		return mId;
 	}
 	
-	public int genId() {
+	private int genId() {
 		mId = ID;
 		++ID;
 		

@@ -97,13 +97,20 @@ public class AddressDAOImpl implements IAddressDAO {
 
 	public void CreateAddress(Contact contact, int nbr, String street,
 			String city, int zipCode, AddressType type) {
+		if(contact.getAddresses().contains(AddressType.PAYMENT))
+			return;
+		
 		Address newAddress = new Address(contact, nbr, street, city, zipCode,
 				type);
 
 		contact.addAddress(newAddress);
-		mAddressList.put(Integer.toString(newAddress.genId()), newAddress);
+		mAddressList.put(Integer.toString(newAddress.getId()), newAddress);
 	}
 
+	public List<Address> getAddressList(){
+		ArrayList<Address> list = new ArrayList<Address>(mAddressList.values());
+		return list;
+	}
 	public List<Address> getAddressByContact(Contact contact) {
 		List<Address> addressList = new ArrayList<Address>();
 
@@ -181,13 +188,26 @@ public class AddressDAOImpl implements IAddressDAO {
 
 	public void deleteAddress(Address address) {
 
+		if(address==null)
+			return;
+		
+		if(address.getContact()==null)
+			return;
+		
+		int index = -1;
+		index = address.getContact().getAddresses().indexOf(address);
+		
+		if(index == -1)
+		{
+			return;
+		}
+		
 		address.getContact()
 				.getAddresses()
 				.remove(address
 						.getContact()
 						.getAddresses()
-						.get(address.getContact().getAddresses()
-								.indexOf(address)));
+						.indexOf(address));
 	}
 
 	public Collection<? extends Address> getAddresses() {

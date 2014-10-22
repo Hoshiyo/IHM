@@ -39,8 +39,12 @@ public class Contact implements Serializable {
 		this.mId = ID;
 		ID++;
 
-		this.mFName = fName.substring(0, 1).toUpperCase() + fName.substring(1);
-		this.mLName = lName.toUpperCase();
+		if(fName!=null)
+			this.mFName = fName.substring(0, 1).toUpperCase() + fName.substring(1);
+		
+		if(lName!=null)
+			this.mLName = lName.toUpperCase();
+		
 		this.mEmail = email;
 		this.mDateOfBirth = dateOfBirth;
 		this.mPhoneNbr = phoneNbr;
@@ -149,7 +153,8 @@ public class Contact implements Serializable {
 	}
 
 	public void deleteAddress(Address address) {
-		mAddresses.remove(address);
+		if(address != null)
+			mAddresses.remove(address);
 	}
 
 	// public void setAddresses(List<Address> addresses) {
