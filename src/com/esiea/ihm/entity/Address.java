@@ -6,7 +6,9 @@ package com.esiea.ihm.entity;
  */
 public class Address {
 	
-	private int mNbr, mZipCode;
+	private static int ID = 0;
+	
+	private int mId, mNbr, mZipCode;
 	private String mStreet, mCity;
 	private Contact mContact;
 	private AddressType type;
@@ -22,12 +24,30 @@ public class Address {
 	 */
 	public Address(Contact contact, int nbr, String street, String city, int zipCode, AddressType type) {
 		
+		mId = ID;
+		++ID;
+		
 		mContact = contact;
 		mNbr = nbr;
 		mZipCode = zipCode;
 		mStreet = street;
 		mCity = city;
 		this.type = type;
+	}
+
+	public Address(Contact contact) {
+		mContact = contact;
+	}
+	
+	public int getId() {
+		return mId;
+	}
+	
+	public int genId() {
+		mId = ID;
+		++ID;
+		
+		return mId;
 	}
 
 	public Contact getContact() {
@@ -73,5 +93,9 @@ public class Address {
 
 	public void setCity(String mCity) {
 		this.mCity = mCity;
+	}
+	
+	public void destroy() {
+		mContact.deleteAddress(this);
 	}
 }
