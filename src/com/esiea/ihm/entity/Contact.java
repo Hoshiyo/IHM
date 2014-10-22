@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
+
 /**
  * @author snake984
  *
@@ -54,9 +56,11 @@ public class Contact implements Serializable {
 		this.mId = mId;
 	}
 
-	public void genId() {
-		this.mId = ID;
+	public int genId() {
+		mId = ID;
 		ID++;
+		
+		return mId;
 	}
 
 	public String getFName() {
@@ -133,6 +137,19 @@ public class Contact implements Serializable {
 	public List<Address> getAddresses() {
 		List<Address> addressList = new ArrayList<Address>(mAddresses);
 		return addressList;
+	}
+
+	/**
+	 * Delete the contact's addresses from the DB
+	 */
+	public void destroy() {
+		for (Address address : mAddresses) {
+			AddressDAOImpl.getInstance().deleteAddress(address);
+		}
+	}
+
+	public void deleteAddress(Address address) {
+		mAddresses.remove(address);
 	}
 
 	// public void setAddresses(List<Address> addresses) {

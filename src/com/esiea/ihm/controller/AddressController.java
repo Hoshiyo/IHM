@@ -1,10 +1,10 @@
 package com.esiea.ihm.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,31 +33,35 @@ public class AddressController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/{contactId}", method = RequestMethod.GET)
-	public ModelAndView displayAddress(@PathVariable int contactId) {
+	@RequestMapping(value = "/{addressId}", method = RequestMethod.GET)
+	public String displayAddress(@PathVariable String addressId, ModelMap model) {
 
-		Contact contact = ContactDAOImpl.getInstance().getContactById(contactId);
-
-		if (contact == null) {
-			return null;
+		Address address = AddressDAOImpl.getInstance().getAddressByKey(addressId);	
+		
+		if (address == null) {
+			return "index";
 		}
 		
-		if(contact.getAddresses().size() == 0)
-		{
-			System.out.println("contact address list is null !");
-			return new ModelAndView("index");
-		}
-		
-		ModelAndView model = new ModelAndView("viewAddress");
-		List<Address> addresses = new ArrayList<Address>(contact.getAddresses());
-		model.addObject("addresses", addresses);
+		model.addAttribute("address", address);
 
-		return model;
+		return "viewAddress";
+	}
+	
+	@RequestMapping(value = "/{addressId}/edit", method = RequestMethod.GET)
+	public ModelAndView editContactForm(@PathVariable String addressId) {
+
+		Address address = AddressDAOImpl.getInstance().getAddressByKey(addressId);
+
+		if (address == null) {
+			return displayAddresses();
+		}
+
+		return new ModelAndView("addressForm", "address", address);
 	}
 	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String createAddressForm(@RequestParam(value="contact", required=true, defaultValue="-1")int contactID, Model model) {
-		model.addAttribute("address", new Address(ContactDAOImpl.getInstance().getContactById(contactID)));
+	public String createAddressForm(@RequestParam(value="contact", required=true, defaultValue="-1")String contactID, Model model) {
+		model.addAttribute("address", new Address(ContactDAOImpl.getInstance().getContactByKey(contactID)));
 		return "addressForm";
 	}
 	
@@ -70,5 +74,20 @@ public class AddressController {
 		AddressDAOImpl.getInstance().addAddress(address);
 
 		return address;
+	}
+	
+	@RequestMapping(value = "/{addressId}", method = RequestMethod.PUT)
+	@ResponseBody
+	public Address editContact(@RequestBody Address address) {
+
+		AddressDAOImpl.getInstance().updateAddress(address);
+		return address;
+	}
+
+	@RequestMapping(value = "/{addressId}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public Address deleteContact(@PathVariable String addressId) {
+		
+		return AddressDAOImpl.getInstance().removeAddress(addressId);
 	}
 }
