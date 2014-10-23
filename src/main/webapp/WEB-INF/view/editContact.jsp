@@ -12,7 +12,7 @@
 		<h1>IHM : ${message}</h1>
 		
 <!-- set up the modal to start hidden and fade in and out -->
-<div id="myModal" class="modal fade">
+<div id="contactModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
     <!-- dialog header -->

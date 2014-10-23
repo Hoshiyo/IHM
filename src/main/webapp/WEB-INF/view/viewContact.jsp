@@ -5,13 +5,17 @@
 <!--
 	ul li {
 		list-style-type: none;
+		margin: 10px 0;
 	}
 	h3.firstname,
 	h3.lastname {
 		display: inline;
 	}
-	li[value] {
+	span.info {
 		color: gray;
+	}
+	span.address {
+		font-weight: bold;
 	}
 -->
 </style>
@@ -19,18 +23,25 @@
 <ul>
 	<li><h3 class="firstname">${contact.FName}</h3>
 	<h3 class="lastname">${contact.LName}</h3></li>
-	<li value="Phone number :"> ${contact.phoneNbr}</li>
-	<li>Date of birth : ${contact.dateOfBirth}</li>
-	<li>Mail : ${contact.email}</li>
-	<li>Actif : ${contact.actif}</li>
+	<li><span class="info">Phone number :</span> ${contact.phoneNbr}</li>
+	<li><span class="info">Date of birth :</span> ${contact.dateOfBirth}</li>
+	<li><span class="info">Mail :</span> ${contact.email}</li>
+	<li><span class="info">Actif :</span> ${contact.actif}</li>
 </ul>
 
 <c:if test="${not empty addresses}">
 
 	<ul id="addressList" class="list-group">
 		<c:forEach var="address" items="${addresses}">
-			<li>${address.type}: ${address.nbr}${address.street} -
-				${address.city}, ${address.zipCode}</li>
+			<li><span class="address">${address.type} :</span>
+				${address.nbr}${address.street} - ${address.city}, ${address.zipCode}</li>
 		</c:forEach>
 	</ul>
 </c:if>
+
+<a href="javascript:history.go(-1)"><button id="backHomePage" class="btn btn-default">Back To Home Page</button></a>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
