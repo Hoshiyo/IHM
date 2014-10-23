@@ -137,9 +137,13 @@ public class ContactController {
 				.getContactByEmail(searchParam));
 
 		ArrayList<Contact> contactByPhoneNbrList = new ArrayList<Contact>();
-		contactByPhoneNbrList.addAll(ContactDAOImpl.getInstance()
-				.getContactByPhoneNbr(searchParam));
-
+		contactByPhoneNbrList.addAll(ContactDAOImpl.getInstance().getContactByPhoneNbr(searchParam));
+		
+		/*if(contactByNameList.size()==0 && contactByEmailList.size()==0 && contactByPhoneNbrList.size()==0)
+		{
+			return displayContacts();
+		}*/
+		
 		model.addObject("nameList", contactByNameList);
 		model.addObject("emailList", contactByEmailList);
 		model.addObject("phoneList", contactByPhoneNbrList);
