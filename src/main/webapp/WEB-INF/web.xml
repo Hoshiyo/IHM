@@ -17,6 +17,11 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<mime-mapping>
+		<extension>ico</extension>
+		<mime-type>image/x-icon</mime-type>
+	</mime-mapping>
+
    <servlet-mapping>
 	  <servlet-name>ihm</servlet-name>
 	  <url-pattern>/</url-pattern>

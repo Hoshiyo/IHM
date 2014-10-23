@@ -34,21 +34,21 @@ function getContactFormData() {
 
 function checkContactData(data) {
 
-	if(!data.fname.match(nameRegex)) {
+	if (!data.fname.match(nameRegex)) {
 		alert("First name must contain at least 3 letters (A-Z)");
-	} else if(!data.lname.match(nameRegex)) {
+	} else if (!data.lname.match(nameRegex)) {
 		alert("Last name must contain at least 3 letters (A-Z)");
-	} else if(!data.dateOfBirth.match(dateRegex)) {
+	} else if (!data.dateOfBirth.match(dateRegex)) {
 		console.log(data.dateOfBirth);
 		alert("Date format incorrect (dd/mm/yy)");
-	} else if(!data.phoneNbr.match(phoneRegex)) {
+	} else if (!data.phoneNbr.match(phoneRegex)) {
 		alert("Invalid phone number");
-	} else if(!data.email.match(emailRegex)) {
+	} else if (!data.email.match(emailRegex)) {
 		alert("Enter a correct email (exemple@ihm.fr)");
 	} else {
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -59,7 +59,7 @@ function createContact(e) {
 	var data = getContactFormData();
 	console.log(data.fname);
 
-	if(checkContactData(data) === false) {
+	if (checkContactData(data) === false) {
 		return;
 	}
 
@@ -85,8 +85,8 @@ function editContact(e) {
 	e.preventDefault();
 
 	var data = getContactFormData();
-	
-	if(checkContactData(data) === false) {
+
+	if (checkContactData(data) === false) {
 		return;
 	}
 
@@ -107,17 +107,72 @@ function editContact(e) {
 	return false;
 }
 
+function createContactLine(contact) {
+	var contactLine = 
+"<li id='contact-" + contact.id + "' class='list-group-item new-contact-line' > \
+	<a class='deleteContact' href='/contact/" + contact.id + "'> \
+		<button class='btn btn-default'> \
+			<span class='glyphicon glyphicon-trash'></span> \
+		</button> \
+	</a> \
+	<a class='editAddress' href='/contact/" + contact.id + "'> \
+		<button class='btn btn-default'><span class='glyphicon glyphicon-home'> \
+			</span> \
+		</button> \
+	</a> \
+	<a class='editContact' href='/contact/" + contact.id + "/edit' data-toggle='modal' data-target='#myModal'> \
+		<button class='btn btn-default'> \
+			<span class='glyphicon glyphicon-user'></span> \
+		</button> \
+	</a> \
+	<h3 class='firstname'>" + contact.fname + "</h3> \
+	<h3 class='lastname'>" + contact.lname + "</h3> \
+	<p class='phone'>" + contact.phoneNbr + "</p> \
+	<p class='email'>" + contact.email + "</p> \
+</li>";
+	
+	return contactLine;
+}
+
+function setEventOnNewContact(item) {
+	$(".new-contact-line .deleteContact").click(function(e) {
+		e.preventDefault();
+
+		$.ajax({
+			url : $(item).attr("href"),
+			type : "DELETE"
+
+		}).done(function(html) {
+			$(item).parent().remove();
+		})
+	});
+	
+	$(".new-contact-line .editContact").click(function(e) {
+		e.preventDefault();
+
+		$.ajax({
+			url : $(item).attr("href"),
+			type : "GET"
+
+		}).done(function(html) {
+			$("#myModal").html(html);
+			$("#contactForm").submit(editContact);
+		})
+	});
+	
+	$(".new-contact-line").removeClass("new-contact-line");
+}
+
 function addContactLine(contact) {
-	$("#container").append("<li>" + contact.fname + "</li>");
+	$("#contactList").append(createContactLine(contact));
+	setEventOnNewContact(item);
 }
 
 function updateContactLine(contact) {
 	var item = $("#contact-" + contact.id);
-	var html = contact.fname + " <a class='editContact' href='/contact/"
-			+ contact.id
-			+ "/edit'>edit</a> <a class='deleteContact' href=/contact/"
-			+ contact.id + "'>delete</a>";
-	item.html(html);
+	var html = createContactLine(contact);
+	item.replaceWith(html);
+	setEventOnNewContact(item);
 }
 
 function getAddressFormData() {
@@ -189,6 +244,8 @@ function addAddressLine(address) {
 function updateAddressLine(address) {
 	var item = $("#address-" + address.contact.FName);
 	var html = address.contact.fname
-			+ " <a class='editAddress' href='/address/" + address.contact.id + "/edit'>edit</a> <a class='deleteAddress' href=/address/" + address.contact.id + "'>delete</a>";
+			+ " <a class='editAddress' href='/address/" + address.contact.id
+			+ "/edit'>edit</a> <a class='deleteAddress' href=/address/"
+			+ address.contact.id + "'>delete</a>";
 	item.html(html);
 }
