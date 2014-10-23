@@ -15,12 +15,17 @@
 	#addressList .deleteAddress {
 		float: right;
 		padding: 3px;
+		margin-top: -10px;
 	}
 	span.info {
 		color: gray;
 	}
 	span.address {
 		font-weight: bold;
+	}
+	div.back {
+		text-align: center;
+		margin-top: 50px;
 	}
 -->
 </style>
@@ -49,9 +54,10 @@
 						<span class="glyphicon glyphicon-home"></span>
 					</button>
 				</a><span class="address">${address.type} :</span>
-				${address.nbr}${address.street} - ${address.city}, ${address.zipCode}</li>
+				${address.nbr}, ${address.street} - ${address.city}, ${address.zipCode}</li>
 		</c:forEach>
 	</ul>
 </c:if>
-
-<a href="javascript:history.go(-1)"><button id="backHomePage" class="btn btn-default">Back To Home Page</button></a>
+<div class="back">
+	<a href="javascript:history.go(-1)"><button id="backHomePage" class="btn btn-default">Back To Home Page</button></a>
+</div>
