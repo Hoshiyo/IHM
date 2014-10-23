@@ -32,6 +32,9 @@
 		h3.lastname {
 			display: inline;
 		}
+		div.viewContact {
+			cursor: pointer;
+		}
 	</style>
 		
 	<!-- JavaScript Includes -->

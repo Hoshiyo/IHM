@@ -15,6 +15,7 @@
 	#addressList .deleteAddress {
 		float: right;
 		padding: 3px;
+		margin-top: -10px;
 	}
 	span.info {
 		color: gray;
@@ -53,7 +54,7 @@
 						<span class="glyphicon glyphicon-home"></span>
 					</button>
 				</a><span class="address">${address.type} :</span>
-				${address.nbr}${address.street} - ${address.city}, ${address.zipCode}</li>
+				${address.nbr}, ${address.street} - ${address.city}, ${address.zipCode}</li>
 		</c:forEach>
 	</ul>
 </c:if>
