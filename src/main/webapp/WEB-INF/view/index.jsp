@@ -19,7 +19,7 @@
 				margin: 20px;
 			}
 			.list-group .editContact,
-			.list-group .editAddress,
+			.list-group .createAddress,
 			.list-group .deleteContact {
 				float: right;
 				padding: 3px;
@@ -104,7 +104,7 @@
 		$(document).ready(function() {
 
 			$("#addContact").click(getContactForm);
-			$('.createAddress').click(getAddressForm);
+			$(".createAddress").click(getAddressForm);
 
 			$(".editContact").each(function(id, item) {
 
