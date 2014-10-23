@@ -245,8 +245,14 @@ public class AddressDAOImpl implements IAddressDAO {
 	public List<Address> getAddressByContact(Contact contact) {
 		List<Address> addressList = new ArrayList<Address>();
 
+		Address address;
 		for (int i = 0; i < mAddressList.size(); i++) {
-			if (mAddressList.get(Integer.toString(i)).getContact()
+			address = mAddressList.get(Integer.toString(i));
+			
+			if(address == null) {
+				continue;
+			}
+			if (address.getContact()
 					.equals(contact)) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
@@ -258,8 +264,14 @@ public class AddressDAOImpl implements IAddressDAO {
 	public List<Address> getAddressByNbr(int nbr) {
 		List<Address> addressList = new ArrayList<Address>();
 
+		Address address;
 		for (int i = 0; i < mAddressList.size(); i++) {
-			if (mAddressList.get(Integer.toString(i)).getNbr() == nbr) {
+			address = mAddressList.get(Integer.toString(i));
+			
+			if(address == null) {
+				continue;
+			}
+			if (address.getNbr() == nbr) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
 		}
@@ -268,11 +280,16 @@ public class AddressDAOImpl implements IAddressDAO {
 	}
 
 	public List<Address> getAddressByStreet(String street) {
-
 		List<Address> addressList = new ArrayList<Address>();
 
+		Address address;
 		for (int i = 0; i < mAddressList.size(); i++) {
-			if (mAddressList.get(Integer.toString(i)).getStreet()
+			address = mAddressList.get(Integer.toString(i));
+			
+			if(address == null) {
+				continue;
+			}
+			if (address.getStreet()
 					.equalsIgnoreCase(street)) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
@@ -282,11 +299,16 @@ public class AddressDAOImpl implements IAddressDAO {
 	}
 
 	public List<Address> getAddressByCity(String city) {
-
 		List<Address> addressList = new ArrayList<Address>();
 
+		Address address;
 		for (int i = 0; i < mAddressList.size(); i++) {
-			if (mAddressList.get(Integer.toString(i)).getCity()
+			address = mAddressList.get(Integer.toString(i));
+			
+			if(address == null) {
+				continue;
+			}
+			if (address.getCity()
 					.equalsIgnoreCase(city)) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
@@ -296,11 +318,16 @@ public class AddressDAOImpl implements IAddressDAO {
 	}
 
 	public List<Address> getAddressByZip(int zipCode) {
-
 		List<Address> addressList = new ArrayList<Address>();
 
+		Address address;
 		for (int i = 0; i < mAddressList.size(); i++) {
-			if (mAddressList.get(Integer.toString(i)).getZipCode() == zipCode) {
+			address = mAddressList.get(Integer.toString(i));
+			
+			if(address == null) {
+				continue;
+			}
+			if (address.getZipCode() == zipCode) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
 		}
@@ -309,11 +336,16 @@ public class AddressDAOImpl implements IAddressDAO {
 	}
 
 	public List<Address> getAddressByType(AddressType type) {
-
 		List<Address> addressList = new ArrayList<Address>();
 
+		Address address;
 		for (int i = 0; i < mAddressList.size(); i++) {
-			if (mAddressList.get(Integer.toString(i)).getType().equals(type)) {
+			address = mAddressList.get(Integer.toString(i));
+			
+			if(address == null) {
+				continue;
+			}
+			if (address.getType().equals(type)) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
 		}
@@ -337,6 +369,8 @@ public class AddressDAOImpl implements IAddressDAO {
 
 		address.getContact().getAddresses()
 				.remove(address.getContact().getAddresses().indexOf(address));
+		
+		mAddressList.remove(Integer.toString(address.getId()));
 	}
 
 	public Collection<? extends Address> getAddresses() {

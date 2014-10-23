@@ -61,12 +61,19 @@
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 
+<<<<<<< HEAD
 		<form id="searchContact" class="navbar-form navbar-left" role="search" action="/contact/search" method="GET">
+=======
+		<form class="navbar-form navbar-left" role="search" action="search" method="GET">
+>>>>>>> dc1dfc533462f99812fdaff2b208b0a382228adc
 			<div class="form-group">
 				<input id="searchField" type="text" name="search" class="form-control-search" placeholder="Search"/>
 			</div>
-			<button type="submit" class="btn btn-default">
-				<span class="glyphicon glyphicon-search"></span>
+			<button id="searchContact" class="btn btn-default">
+				<img src="<c:url value="/searchByContact.png" />" alt="search contact" height="18" width="18">
+			</button>
+			<button id="searchAddress" type="submit" class="btn btn-default">
+				<img src="<c:url value="/searchByAddress.png" />" alt="search address" height="18" width="18">
 			</button>
 		</form>
 	</nav>
@@ -107,12 +114,12 @@
 	<script>
 		$(document).ready(function() {
 			initContactList();
-			$("#searchContact").submit(function(e) {
+			$("#searchContact").click(function(e) {
 				
 				e.preventDefault();
 				
 				$.ajax({
-					url : $(this).attr("action") + "?search=" + $("#searchField").val(),
+					url : "search?search=" + $("#searchField").val(),
 					type : "GET"
 
 				}).done(function(html) {
@@ -120,12 +127,12 @@
 					$("#backHomePage").click(displayHomePage);
 				})
 			});
-			$("#searchAddress").submit(function(e) {
+			$("#searchAddress").click(function(e) {
 				
 				e.preventDefault();
 				
 				$.ajax({
-					url : $(this).attr("action") + "?search=" + $("#searchField").val(),
+					url : "../address/search?search=" + $("#searchField").val(),
 					type : "GET"
 
 				}).done(function(html) {
