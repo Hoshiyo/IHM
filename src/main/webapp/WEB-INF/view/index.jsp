@@ -6,36 +6,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-		<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap.min.css" />"
-			rel="stylesheet">
-		<link href="<c:url value="/resources/themes/jqueryui/jquery-ui.min.css" />"
-			rel="stylesheet">
-		<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap-theme.min.css" />"
-			rel="stylesheet">
-		<style type="text/css">
-			body {
-				margin: 20px;
-			}
-			.list-group .editContact,
-			.list-group .editAddress,
-			.list-group .deleteContact {
-				float: right;
-				padding: 3px;
-			}
-			p {
-				line-height: 1em;
-				margin: 10px 0 !important;
-			}
-			h3.firstname,
-			h3.lastname {
-				display: inline;
-			}
-			
-		</style>
-		<title>Home page</title>
-	</head>
+	<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap.min.css" />"
+		rel="stylesheet">
+	<link href="<c:url value="/resources/themes/jqueryui/jquery-ui.min.css" />"
+		rel="stylesheet">
+	<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap-theme.min.css" />"
+		rel="stylesheet">
+	<style type="text/css">
+		body {
+			margin: 20px;
+		}
+		.list-group .editContact,
+		.list-group .editAddress,
+		.list-group .deleteContact {
+			float: right;
+			padding: 3px;
+		}
+		p {
+			line-height: 1em;
+			margin: 10px 0 !important;
+		}
+		h3.firstname,
+		h3.lastname {
+			display: inline;
+		}
+		
+	</style>
+		
+	<!-- JavaScript Includes -->
+	<script type="text/javascript"
+		src="<c:url value="../resources/themes/jquery/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="../resources/themes/jqueryui/jquery-ui.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/themes/bootstrap/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value="/resources/themes/js/functions.js" />"></script>
+	
+	<title>Home page</title>
+</head>
+
 <body>
 	<h2>iWho's Who</h2>
 
@@ -62,7 +73,7 @@
 
 			<ul id="contactList" class="list-group">
 				<c:forEach var="listValue" items="${lists}">
-					<li id="contact-${listValue.id}" class="list-group-item" >
+					<li id="contact-${listValue.id}" class="list-group-item viewContact" >
 						<a class="deleteContact" href="/contact/${listValue.id}">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-trash"></span>
@@ -88,50 +99,9 @@
 		</c:if>
 	</div>
 
-	<!-- JavaScript Includes -->
-
-	<script type="text/javascript"
-		src="<c:url value="../resources/themes/jquery/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="../resources/themes/jqueryui/jquery-ui.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/themes/bootstrap/js/bootstrap.min.js" />"></script>
-	<script src="<c:url value="/resources/themes/js/functions.js" />"></script>
 	<script>
 		$(document).ready(function() {
-
-			$("#addContact").click(getContactForm);
-
-			$(".editContact").each(function(id, item) {
-
-				$(item).click(function(e) {
-					e.preventDefault();
-
-					$.ajax({
-						url : $(item).attr("href"),
-						type : "GET"
-
-					}).done(function(html) {
-						$("#contactModal").html(html);
-						$("#contactForm").submit(editContact);
-					})
-				})
-			});
-
-			$(".deleteContact").each(function(id, item) {
-
-				$(item).click(function(e) {
-					e.preventDefault();
-
-					$.ajax({
-						url : $(item).attr("href"),
-						type : "DELETE"
-
-					}).done(function(html) {
-						$(item).parent().remove();
-					})
-				})
-			});
+			initContactList();
 		});
 	</script>
 
