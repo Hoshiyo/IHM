@@ -189,6 +189,7 @@ public class AddressDAOImpl implements IAddressDAO {
 	public void CreateAddress(Contact contact, int nbr, String street,
 			String city, int zipCode, AddressType type) {
 
+		if(type == PAYMENT)
 		for (int i = 0; i < contact.getAddresses().size(); i++) {
 			if (contact.getAddresses().get(i).getType().equals(PAYMENT))
 				return;

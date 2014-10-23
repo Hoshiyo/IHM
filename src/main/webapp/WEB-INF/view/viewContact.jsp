@@ -39,12 +39,12 @@
 	<ul id="addressList" class="list-group">
 		<c:forEach var="address" items="${addresses}">
 			<li class="list-group-item" >
-				<a class="deleteAddress" href="/contact/${address.id}">
+				<a class="deleteAddress" href="${address.id}">
 					<button class="btn btn-default">
 						<span class="glyphicon glyphicon-trash"></span>
 					</button>
 				</a>
-				<a class="editAddress" href="/contact/${address.id}/edit" data-toggle="modal" data-target="#addressModal">
+				<a class="editAddress" href="${address.id}/edit" data-toggle="modal" data-target="#addressModal">
 					<button class="btn btn-default">
 						<span class="glyphicon glyphicon-home"></span>
 					</button>

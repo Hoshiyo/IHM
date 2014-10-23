@@ -6,7 +6,7 @@ var nbrRegex = '^[0-9]+$';
 
 function getContactForm() {
 	$.ajax({
-		url : "/contact/new",
+		url : "new",
 
 	}).done(function(html) {
 		$("#contactModal").html(html);
@@ -232,7 +232,7 @@ function displayHomePage(e) {
 	e.preventDefault();
 
 	$.ajax({
-		url : "/contact/",
+		url : "contact/",
 		type : "GET"
 
 	}).done(function(html) {

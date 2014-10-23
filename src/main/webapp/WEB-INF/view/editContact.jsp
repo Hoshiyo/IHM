@@ -40,7 +40,7 @@
 		      </div>
 		   </div>
 		   <div class="form-group">
-		      <label for="birthday" class="col-sm-2 control-label">Anniversary Date</label>
+		      <label for="birthday" class="col-sm-2 control-label">Birth Date</label>
 		      <div class="col-sm-10">
 		         <input type="text" class="form-control" id="birthday" 
 		            placeholder="Enter Your Anniversary Date">
