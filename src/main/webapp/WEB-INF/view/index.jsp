@@ -35,6 +35,9 @@
 		div.viewContact {
 			cursor: pointer;
 		}
+		div.viewContact:hover {
+			color: #428bca;
+		}
 	</style>
 		
 	<!-- JavaScript Includes -->
@@ -66,7 +69,10 @@
 				<input type="text" name="search" class="form-control-search" placeholder="Search"/>
 			</div>
 			<button id="searchContact" type="submit" class="btn btn-default">
-				<span class="glyphicon glyphicon-search"></span>
+				<img src="<c:url value="/searchByContact.png" />" alt="search contact" height="18" width="18">
+			</button>
+			<button id="searchAddress" type="submit" class="btn btn-default">
+				<img src="<c:url value="/searchByAddress.png" />" alt="search address" height="18" width="18">
 			</button>
 		</form>
 	</nav>

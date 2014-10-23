@@ -27,18 +27,22 @@
 				margin-bottom: 10px;
 				padding-bottom: 10px;
 			}
+			span.search {
+				font-weight: bold;
+			}
 			div.back {
 				text-align: center;
-				margin-top: 50px;
+				margin: 50px 0;
 			}
+
 		</style>
-		<title>Search Results Contact</title>
+		<title>Search Results</title>
+
 	</head>
 	<body>
 		<h1>Search Contact</h1>
 		
-		<c:choose>
-			<c:when test="${not empty nameList}">
+			<c:if test="${not empty nameList}">
 				<h3>By Name</h3>
 				<ul>
 					<c:forEach var="contact" items="${nameList}">
@@ -51,9 +55,9 @@
 					</c:forEach>
 				</ul>
 				
-			</c:when>			
+			</c:if>			
 			
-			<c:when test="${not empty emailList}">
+			<c:if test="${not empty emailList}">
 				<h3>By Email</h3>
 				<ul>
 					<c:forEach var="contact" items="${emailList}">
@@ -66,9 +70,9 @@
 					</c:forEach>
 				</ul>
 				
-			</c:when>
+			</c:if>
 			
-			<c:when test="${not empty phoneList}">
+			<c:if test="${not empty phoneList}">
 				<h3>By Phone Number</h3>
 				<ul>
 					<c:forEach var="contact" items="${phoneList}">
@@ -79,15 +83,13 @@
 						<li>Mail : ${contact.email}</li>
 						<li class="last">Actif : ${contact.actif}</li>
 					</c:forEach>
-				</ul>
-				
-			</c:when>
-			<c:otherwise>
-				<p>Not Found Result</p>
-			</c:otherwise>
-		</c:choose>
+				</ul>		
+			</c:if>
+			
+		
 		<div class="back">
 			<a href="javascript:history.go(-1)"><button id="backHomePage" class="btn btn-default">Back To Home Page</button></a>
 		</div>
+		
 	</body>
 </html>

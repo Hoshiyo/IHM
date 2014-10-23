@@ -110,6 +110,7 @@ public class AddressController {
 		model.addObject("nbrList", addressByNbrList);
 		model.addObject("streetList", addressByStreetList);
 		model.addObject("cityList", addressByCityList);
+		
 		return model;
 	}
 }

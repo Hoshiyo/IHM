@@ -27,15 +27,20 @@
 				margin-bottom: 10px;
 				padding-bottom: 10px;
 			}
+			span.search {
+				font-weight: bold;
+			}
 			div.back {
 				text-align: center;
-				margin-top: 50px;
+				margin: 50px 0;
 			}
+
 		</style>
 		<title>Search results</title>
+		
 	</head>
 	<body>
-		<h1>Search Results Address</h1>
+		<h1 >Search Results Address</h1>
 		
 		<c:if test="${not empty nbrList}">
 			<h3>By Number</h3>
@@ -79,5 +84,6 @@
 		<div class="back">
 			<a href="javascript:history.go(-1)"><button id="backHomePage" class="btn btn-default">Back To Home Page</button></a>
 		</div>
+	
 	</body>
 </html>
