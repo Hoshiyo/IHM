@@ -48,9 +48,9 @@
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 
-		<form class="navbar-form navbar-left" role="search">
+		<form class="navbar-form navbar-left" role="search" action="/contact/search" method="GET">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
+				<input type="text" name="search" class="form-control-search" placeholder="Search"/>
 			</div>
 			<button id="searchContact" type="submit" class="btn btn-default">
 				<span class="glyphicon glyphicon-search"></span>

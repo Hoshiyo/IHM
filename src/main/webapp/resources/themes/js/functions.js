@@ -178,6 +178,7 @@ function updateContactLine(contact) {
 	$(id + " .phone").html(contact.phoneNbr);
 }
 
+
 /*
  * TODO
  * 
