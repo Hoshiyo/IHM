@@ -78,10 +78,12 @@
 								<span class="glyphicon glyphicon-user"></span>
 							</button>
 						</a>
-						<h3 class="firstname">${listValue.FName}</h3>
-						<h3 class="lastname">${listValue.LName}</h3>
-						<p class="phone">${listValue.phoneNbr}</p>
-						<p class="email">${listValue.email}</p>
+						<div class="viewAllInfoContact">
+							<h3 class="firstname">${listValue.FName}</h3>
+							<h3 class="lastname">${listValue.LName}</h3>
+							<p class="phone">${listValue.phoneNbr}</p>
+							<p class="email">${listValue.email}</p>
+						</div>
 					</li>
 				</c:forEach>
 			</ul>			
