@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esiea.ihm.entity.Contact;
+import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 import com.esiea.ihm.model.dao.impl.ContactDAOImpl;
 
 @Controller
@@ -29,6 +31,7 @@ public class ContactController {
 
 		ArrayList<Contact> contacts = new ArrayList<Contact>(ContactDAOImpl
 				.getInstance().getContacts());
+		AddressDAOImpl.getInstance();
 
 		ModelAndView model = new ModelAndView("index");
 		model.addObject("lists", contacts);
@@ -94,6 +97,31 @@ public class ContactController {
 	public Contact deleteContact(@PathVariable String contactId) {
 
 		return ContactDAOImpl.getInstance().removeContact(contactId);
+	}
+	
+	@RequestMapping(value="/search", method= RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView searchContact(@RequestBody String searchParam) {
+		if(searchParam == null)
+			return displayContacts();
+		
+		ModelAndView model = new ModelAndView("searchContact");
+		
+		ArrayList<Contact> contactByNameList = new ArrayList<Contact>();
+		contactByNameList.addAll(ContactDAOImpl.getInstance().getContactByFName(searchParam));
+		contactByNameList.addAll(ContactDAOImpl.getInstance().getContactByLName(searchParam));
+		
+		ArrayList<Contact> contactByEmailList = new ArrayList<Contact>();
+		contactByEmailList.addAll(ContactDAOImpl.getInstance().getContactByEmail(searchParam));
+		
+		ArrayList<Contact> contactByPhoneNbrList = new ArrayList<Contact>();
+		contactByPhoneNbrList.addAll(ContactDAOImpl.getInstance().getContactByPhoneNbr(searchParam));
+		
+		
+		model.addObject("nameList", contactByNameList);
+		model.addObject("emailList", contactByEmailList);
+		model.addObject("phoneList", contactByPhoneNbrList);
+		return model;
 	}
 
 	// @RequestMapping(value = "/{contactId}", method = RequestMethod.DELETE)

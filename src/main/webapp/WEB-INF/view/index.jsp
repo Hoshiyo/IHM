@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,7 @@
 		<title>Home page</title>
 	</head>
 <body>
-	<h2>Hello World!</h2>
+	<h2>iWho's Who</h2>
 
 	<div id="myModal" class="modal fade"></div>
 
@@ -49,7 +50,7 @@
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
-			<button type="submit" class="btn btn-default">
+			<button id="searchContact" type="submit" class="btn btn-default">
 				<span class="glyphicon glyphicon-search"></span>
 			</button>
 		</form>
@@ -69,9 +70,9 @@
 						class="btn btn-default"><span class="glyphicon glyphicon-user"></span></button></a>
 						<h3 class="firstname">${listValue.FName}</h3>
 						<h3 class="lastname">${listValue.LName}</h3>
-						<p class="address">Delivery address : </p>
-						<p class="address">Home address : </p>
-						<p class="phone">01 54 87 51 00</p>
+						<p class="address">Delivery address: ${listValue.getLastDeliveryStringAddress()}</p>
+						<p class="address">Payment address: ${listValue.getPaymentStringAddress()}</p>
+						<p class="phone">${listValue.phoneNbr}</p>
 						<p class="email">montpellier@yahoo.fr</p>
 					</li>
 				</c:forEach>

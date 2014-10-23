@@ -41,14 +41,34 @@ public class ContactDAOImpl implements IContactDAO {
 				calendar, "0611111111"));
 
 		calendar = Calendar.getInstance();
-		calendar.set(1992, 11, 6);
+		calendar.set(1992, 12, 6);
 		mContactList.put("2", new Contact("Tarek", "Smirani", "smirani@hotmail.com",
 				calendar, "0622222222"));
 
 		calendar = Calendar.getInstance();
 		calendar.set(0, 3, 1);
-		mContactList.put("3", new Contact("Mourad", "One piece",
+		mContactList.put("3", new Contact("Mourad", "El Ouarieghli",
 				"moumou75@capitaine.com", calendar, "0633333333"));
+		
+		calendar = Calendar.getInstance();
+		calendar.set(1939, 12, 6);
+		mContactList.put("4", new Contact("Bruce", "Wayne", "bruce.wayne@gotham.com", calendar, "0745826544"));
+		
+		calendar = Calendar.getInstance();
+		calendar.set(1962, 4, 10);
+		mContactList.put("5", new Contact("Peter", "Parker", "peter.parker@dailybugle.com", calendar, "0614785241"));
+		
+		calendar = Calendar.getInstance();
+		calendar.set(1941, 7, 21);
+		mContactList.put("6", new Contact("Oliver", "Queen", "ollie.queen@queenconsolidated.com", calendar, "0745269522"));
+		
+		calendar = Calendar.getInstance();
+		calendar.set(1948, 1, 14);
+		mContactList.put("7", new Contact("Edward", "Nigma", "edward.nigma@gcpd.com", calendar, "unknown"));
+		
+		calendar = Calendar.getInstance();
+		calendar.set(1941, 12, 1);
+		mContactList.put("8", new Contact("Oswald", "Cobblepot", "oswald.cobblepot@gotham.com", calendar, "unknown"));
 	}
 
 	public Collection<Contact> getContacts() {
@@ -110,8 +130,9 @@ public class ContactDAOImpl implements IContactDAO {
 
 		for (int i = 0; i < mContactList.size(); i++) {
 
-			if (mContactList.get(i).getFName().equalsIgnoreCase(fName)) {
-				contacts.add(mContactList.get(i));
+			if(mContactList.get(Integer.toString(i))!=null)
+			if (mContactList.get(Integer.toString(i)).getFName().equalsIgnoreCase(fName)) {
+				contacts.add(mContactList.get(Integer.toString(i)));
 			}
 		}
 
@@ -123,8 +144,9 @@ public class ContactDAOImpl implements IContactDAO {
 
 		for (int i = 0; i < mContactList.size(); i++) {
 
-			if (mContactList.get(i).getLName().equalsIgnoreCase(lName)) {
-				contacts.add(mContactList.get(i));
+			if(mContactList.get(Integer.toString(i))!=null)
+			if (mContactList.get(Integer.toString(i)).getLName().equalsIgnoreCase(lName)) {
+				contacts.add(mContactList.get(Integer.toString(i)));
 			}
 		}
 
@@ -136,7 +158,8 @@ public class ContactDAOImpl implements IContactDAO {
 
 		for (int i = 0; i < mContactList.size(); i++) {
 
-			if (mContactList.get(i).getEmail().equalsIgnoreCase(email)) {
+			if(mContactList.get(Integer.toString(i))!=null)
+			if (mContactList.get(Integer.toString(i)).getEmail().equalsIgnoreCase(email)) {
 				contacts.add(mContactList.get(i));
 			}
 		}
@@ -163,8 +186,9 @@ public class ContactDAOImpl implements IContactDAO {
 
 		for (int i = 0; i < mContactList.size(); i++) {
 
-			if (mContactList.get(i).getPhoneNbr().equalsIgnoreCase(phoneNbr)) {
-				contacts.add(mContactList.get(i));
+			if(mContactList.get(Integer.toString(i))!=null)
+			if (mContactList.get(Integer.toString(i)).getPhoneNbr().equalsIgnoreCase(phoneNbr)) {
+				contacts.add(mContactList.get(Integer.toString(i)));
 			}
 		}
 
@@ -176,8 +200,9 @@ public class ContactDAOImpl implements IContactDAO {
 
 		for (int i = 0; i < mContactList.size(); i++) {
 
-			if (mContactList.get(i).isActif()) {
-				contacts.add(mContactList.get(i));
+			if(mContactList.get(Integer.toString(i))!=null)
+			if (mContactList.get(Integer.toString(i)).isActif()) {
+				contacts.add(mContactList.get(Integer.toString(i)));
 			}
 		}
 

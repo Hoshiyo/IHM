@@ -207,6 +207,34 @@ public class Contact implements Serializable {
 		List<Address> addressList = new ArrayList<Address>(mAddresses);
 		return addressList;
 	}
+	
+	public String getPaymentStringAddress() {
+		for(int i=0; i<mAddresses.size();i++)
+		{
+			if(mAddresses.get(i)!=null)
+			if(mAddresses.get(i).getType().equals(AddressType.PAYMENT))
+				return (mAddresses.get(i).getNbr()+" "+mAddresses.get(i).getStreet()+" "+mAddresses.get(i).getCity()+" "+mAddresses.get(i).getZipCode());
+		}
+		
+		return "null";
+	}
+	
+	public String getLastDeliveryStringAddress() {
+		Address resultAddress = null;
+		
+		for(int i=0; i<mAddresses.size(); i++)
+		{
+			if(mAddresses.get(i)!=null)
+			if(mAddresses.get(i).getType().equals(AddressType.DELIVERY))
+				resultAddress=mAddresses.get(i);
+		}
+		
+		if(resultAddress!=null)
+		{
+			return (resultAddress.getNbr()+" "+resultAddress.getStreet()+" "+resultAddress.getCity()+" "+resultAddress.getZipCode());
+		}
+		return "null";
+	}
 
 	/**
 	 * Delete the contact's addresses from the DB
