@@ -127,7 +127,6 @@ public class ContactController {
 		ArrayList<Contact> contactByPhoneNbrList = new ArrayList<Contact>();
 		contactByPhoneNbrList.addAll(ContactDAOImpl.getInstance().getContactByPhoneNbr(searchParam));
 		
-		
 		model.addObject("nameList", contactByNameList);
 		model.addObject("emailList", contactByEmailList);
 		model.addObject("phoneList", contactByPhoneNbrList);
