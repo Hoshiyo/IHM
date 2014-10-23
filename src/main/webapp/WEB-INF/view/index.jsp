@@ -81,15 +81,8 @@
 						</a>
 						<h3 class="firstname">${listValue.FName}</h3>
 						<h3 class="lastname">${listValue.LName}</h3>
-<<<<<<< HEAD
-						<p class="address">Delivery address: ${listValue.getLastDeliveryStringAddress()}</p>
-						<p class="address">Payment address: ${listValue.getPaymentStringAddress()}</p>
-						<p class="phone">${listValue.phoneNbr}</p>
-						<p class="email">montpellier@yahoo.fr</p>
-=======
 						<p class="phone">${listValue.phoneNbr}</p>
 						<p class="email">${listValue.email}</p>
->>>>>>> 56c316fc656a07649c125c01c0c95da1ee05e873
 					</li>
 				</c:forEach>
 			</ul>			
