@@ -180,6 +180,22 @@ function initContactList() {
 	$("#addContact").click(getContactForm);
 	$(".createAddress").click(getAddressForm);
 
+	$(".viewContact").each(function(id, item) {
+
+		$(item).click(function(e) {
+			e.preventDefault();
+
+			$.ajax({
+				url : $(item).parent().attr("id").replace("contact-", ""),
+				type : "GET"
+
+			}).done(function(html) {
+				$("body").html(html);
+				$("#backHomePage").click(displayHomePage)
+			})
+		})
+	});
+	
 	$(".editContact").each(function(id, item) {
 
 		$(item).click(function(e) {
@@ -210,6 +226,18 @@ function initContactList() {
 			})
 		})
 	});
+}
+
+function displayHomePage(e) {
+	e.preventDefault();
+
+	$.ajax({
+		url : "/contact/",
+		type : "GET"
+
+	}).done(function(html) {
+		$("body").html(html);
+	})
 }
 
 /*
