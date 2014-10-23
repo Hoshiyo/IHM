@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-
 import com.esiea.ihm.entity.Address;
 import com.esiea.ihm.entity.AddressType;
 import com.esiea.ihm.entity.Contact;
@@ -38,76 +36,88 @@ public class AddressDAOImpl implements IAddressDAO {
 		}
 		return instance;
 	}
-	
+
 	private AddressDAOImpl() {
 		init();
 	}
-	
+
 	private Map<String, Address> mAddressList = new HashMap<String, Address>();
-	
+
 	private void init() {
 		System.out.println("Initializing addresses...");
 		
 		Contact contact = ContactDAOImpl.getInstance().getContactByKey("0");
-		mAddressList.put("0", new Address(contact, 3, "rue de l'eau",
-				"Konoha", 445, DELIVERY));
-		contact.addAddress(mAddressList.get(1));
-		mAddressList.put("1", new Address(contact, 3,
-				"rue de l'herbe", "Konoha", 445, PAYMENT));
-		contact.addAddress(mAddressList.get(2));
+		Address address = new Address(contact, 3, "rue de l'eau", "Konoha",
+				445, DELIVERY);
+		mAddressList.put("0", address);
+		contact.addAddress(address);
+		address = new Address(contact, 3, "rue de l'herbe", "Konoha", 445,
+				PAYMENT);
+		mAddressList.put("1", address);
+		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("1");
-		mAddressList.put("2", new Address(contact, 3,
-				"rue de la terre", "Konoha", 445, DELIVERY));
-		contact.addAddress(mAddressList.get(3));
-		mAddressList.put("3", new Address(contact, 3, "rue de l'eau",
-				"Konoha", 445, PAYMENT));
-		contact.addAddress(mAddressList.get(4));
+		address = new Address(contact, 3, "rue de la terre", "Konoha", 445,
+				DELIVERY);
+		mAddressList.put("2", address);
+		contact.addAddress(address);
+		address = new Address(contact, 3, "rue de l'eau", "Konoha", 445,
+				PAYMENT);
+		mAddressList.put("3", address);
+		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("2");
-		mAddressList.put("4", new Address(contact, 3,
-				"rue de la foudre", "Konoha", 445, DELIVERY));
-		contact.addAddress(mAddressList.get(5));
+		address = new Address(contact, 3, "rue de la foudre", "Konoha", 445,
+				DELIVERY);
+		mAddressList.put("4", address);
+		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("3");
-		mAddressList.put("5", new Address(contact, 5, "Câle",
-				"Bateau de Luffy", 000, PAYMENT));
-		contact.addAddress(mAddressList.get(6));
-		
+		address = new Address(contact, 5, "Câle", "Bateau de Luffy", 000,
+				PAYMENT);
+		mAddressList.put("5", address);
+		contact.addAddress(address);
+
 		contact = ContactDAOImpl.getInstance().getContactByKey("4");
-		mAddressList.put("6", new Address(contact, 16, "Ripper Street",
-				"Gotham", 638, PAYMENT));
-		contact.addAddress(mAddressList.get(7));
-		
+		address = new Address(contact, 16, "Ripper Street", "Gotham", 638,
+				PAYMENT);
+		mAddressList.put("6", address);
+		contact.addAddress(address);
+
 		contact = ContactDAOImpl.getInstance().getContactByKey("4");
-		mAddressList.put("7", new Address(contact, 7, "Space Square",
-				"Gotham", 638, DELIVERY));
-		contact.addAddress(mAddressList.get(8));
-		
+		address = new Address(contact, 7, "Space Square", "Gotham", 638,
+				DELIVERY);
+		mAddressList.put("7", address);
+		contact.addAddress(address);
+
 		contact = ContactDAOImpl.getInstance().getContactByKey("5");
-		mAddressList.put("8", new Address(contact, 8, "Central Park",
-				"New York", 457, PAYMENT));
-		contact.addAddress(mAddressList.get(9));
-		
+		address = new Address(contact, 8, "Central Park", "New York", 457,
+				PAYMENT);
+		mAddressList.put("8", address);
+		contact.addAddress(address);
+
 		contact = ContactDAOImpl.getInstance().getContactByKey("5");
-		mAddressList.put("9", new Address(contact, 27, "5th Avenue",
-				"New York", 457, PAYMENT));
-		contact.addAddress(mAddressList.get(10));
-		
+		address = new Address(contact, 27, "5th Avenue", "New York", 457,
+				PAYMENT);
+		mAddressList.put("9", address);
+		contact.addAddress(address);
+
 		contact = ContactDAOImpl.getInstance().getContactByKey("6");
-		mAddressList.put("10", new Address(contact, 20, "Shiper's Dock",
-				"Gotham", 638, PAYMENT));
-		contact.addAddress(mAddressList.get(11));
-		
+		address = new Address(contact, 20, "Shiper's Dock", "Gotham", 638,
+				PAYMENT);
+		mAddressList.put("10", address);
+		contact.addAddress(address);
+
 		contact = ContactDAOImpl.getInstance().getContactByKey("6");
-		mAddressList.put("11", new Address(contact, 20, "Shiper's Dock",
-				"Gotham", 638, DELIVERY));
-		contact.addAddress(mAddressList.get(12));
+		address = new Address(contact, 20, "Shiper's Dock", "Gotham", 638,
+				DELIVERY);
+		mAddressList.put("11", address);
+		contact.addAddress(address);
 	}
-    
+
 	/**
 	 * 
-	 * Compare les adresses. 
+	 * Compare les adresses.
 	 * 
 	 */
 	public Comparator<Address> nbrComparator = new Comparator<Address>() {
@@ -115,7 +125,7 @@ public class AddressDAOImpl implements IAddressDAO {
 			return (a1.getNbr() - a2.getNbr());
 		}
 	};
-    
+
 	/**
 	 * 
 	 * 
@@ -127,7 +137,7 @@ public class AddressDAOImpl implements IAddressDAO {
 			return (a1.getZipCode() - a2.getZipCode());
 		}
 	};
-    
+
 	/**
 	 * 
 	 * 
@@ -139,7 +149,7 @@ public class AddressDAOImpl implements IAddressDAO {
 			return a1.getStreet().compareToIgnoreCase(a2.getStreet());
 		}
 	};
-    
+
 	/**
 	 * 
 	 * 
@@ -151,7 +161,7 @@ public class AddressDAOImpl implements IAddressDAO {
 			return a1.getCity().compareToIgnoreCase(a2.getCity());
 		}
 	};
-    
+
 	/**
 	 * 
 	 * 
@@ -163,16 +173,15 @@ public class AddressDAOImpl implements IAddressDAO {
 			return a1.getType().compareTo(a2.getType());
 		}
 	};
-    
-	
+
 	public void CreateAddress(Contact contact, int nbr, String street,
 			String city, int zipCode, AddressType type) {
-		
-		for(int i=0; i<contact.getAddresses().size(); i++) {
-			if(contact.getAddresses().get(i).getType().equals(PAYMENT))
+
+		for (int i = 0; i < contact.getAddresses().size(); i++) {
+			if (contact.getAddresses().get(i).getType().equals(PAYMENT))
 				return;
 		}
-		
+
 		Address newAddress = new Address(contact, nbr, street, city, zipCode,
 				type);
 
@@ -180,15 +189,17 @@ public class AddressDAOImpl implements IAddressDAO {
 		mAddressList.put(Integer.toString(newAddress.getId()), newAddress);
 	}
 
-	public List<Address> getAddressList(){
+	public List<Address> getAddressList() {
 		ArrayList<Address> list = new ArrayList<Address>(mAddressList.values());
 		return list;
 	}
+
 	public List<Address> getAddressByContact(Contact contact) {
 		List<Address> addressList = new ArrayList<Address>();
 
 		for (int i = 0; i < mAddressList.size(); i++) {
-			if (mAddressList.get(Integer.toString(i)).getContact().equals(contact)) {
+			if (mAddressList.get(Integer.toString(i)).getContact()
+					.equals(contact)) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
 		}
@@ -213,7 +224,8 @@ public class AddressDAOImpl implements IAddressDAO {
 		List<Address> addressList = new ArrayList<Address>();
 
 		for (int i = 0; i < mAddressList.size(); i++) {
-			if (mAddressList.get(Integer.toString(i)).getStreet().equalsIgnoreCase(street)) {
+			if (mAddressList.get(Integer.toString(i)).getStreet()
+					.equalsIgnoreCase(street)) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
 		}
@@ -226,7 +238,8 @@ public class AddressDAOImpl implements IAddressDAO {
 		List<Address> addressList = new ArrayList<Address>();
 
 		for (int i = 0; i < mAddressList.size(); i++) {
-			if (mAddressList.get(Integer.toString(i)).getCity().equalsIgnoreCase(city)) {
+			if (mAddressList.get(Integer.toString(i)).getCity()
+					.equalsIgnoreCase(city)) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
 		}
@@ -261,26 +274,21 @@ public class AddressDAOImpl implements IAddressDAO {
 
 	public void deleteAddress(Address address) {
 
-		if(address==null)
+		if (address == null)
 			return;
-		
-		if(address.getContact()==null)
+
+		if (address.getContact() == null)
 			return;
-		
+
 		int index = -1;
 		index = address.getContact().getAddresses().indexOf(address);
-		
-		if(index == -1)
-		{
+
+		if (index == -1) {
 			return;
 		}
-		
-		address.getContact()
-				.getAddresses()
-				.remove(address
-						.getContact()
-						.getAddresses()
-						.indexOf(address));
+
+		address.getContact().getAddresses()
+				.remove(address.getContact().getAddresses().indexOf(address));
 	}
 
 	public Collection<? extends Address> getAddresses() {
@@ -298,7 +306,7 @@ public class AddressDAOImpl implements IAddressDAO {
 	public Address removeAddress(String addressId) {
 		Address address = mAddressList.get(addressId);
 		address.destroy();
-		
+
 		return mAddressList.remove(addressId);
 	}
 

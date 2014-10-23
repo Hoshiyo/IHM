@@ -18,6 +18,7 @@ public class ContactDAOImpl implements IContactDAO {
 		if (instance == null) {
 			instance = new ContactDAOImpl();
 		}
+		
 		return instance;
 	}
 

@@ -8,9 +8,13 @@ function getContactForm() {
 		url : "/contact/new",
 
 	}).done(function(html) {
-		$("#myModal").html(html);
+		$("#contactModal").html(html);
 		$("#contactForm").submit(createContact);
 	})
+}
+
+function getContactDetails() {
+	//TODO 
 }
 
 function getContactFormData() {
@@ -120,7 +124,7 @@ function createContactLine(contact) {
 			</span> \
 		</button> \
 	</a> \
-	<a class='editContact' href='/contact/" + contact.id + "/edit' data-toggle='modal' data-target='#myModal'> \
+	<a class='editContact' href='/contact/" + contact.id + "/edit' data-toggle='modal' data-target='#contactModal'> \
 		<button class='btn btn-default'> \
 			<span class='glyphicon glyphicon-user'></span> \
 		</button> \
@@ -157,7 +161,7 @@ function addContactLine(contact) {
 			type : "GET"
 
 		}).done(function(html) {
-			$("#myModal").html(html);
+			$("#contactModal").html(html);
 			$("#contactForm").submit(editContact);
 		})
 	});
@@ -172,6 +176,13 @@ function updateContactLine(contact) {
 	$(id + " .email").html(contact.email);
 	$(id + " .phone").html(contact.phoneNbr);
 }
+
+/*
+ * TODO
+ * 
+ * A CORRIGER PAR RAPPORT AU DESSUS
+ * 
+ */
 
 function getAddressFormData() {
 	var id = $("#id").val();

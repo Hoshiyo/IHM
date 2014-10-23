@@ -1,23 +1,20 @@
 package com.esiea.ihm.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-import org.springframework.beans.propertyeditors.CustomDateEditor;
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esiea.ihm.entity.Address;
 import com.esiea.ihm.entity.Contact;
 import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 import com.esiea.ihm.model.dao.impl.ContactDAOImpl;
@@ -26,12 +23,17 @@ import com.esiea.ihm.model.dao.impl.ContactDAOImpl;
 @RequestMapping(value = "contact")
 public class ContactController {
 
+	@PostConstruct
+	private void init() {
+		ContactDAOImpl.getInstance();
+		AddressDAOImpl.getInstance();
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView displayContacts() {
 
 		ArrayList<Contact> contacts = new ArrayList<Contact>(ContactDAOImpl
 				.getInstance().getContacts());
-		AddressDAOImpl.getInstance();
 
 		ModelAndView model = new ModelAndView("index");
 		model.addObject("lists", contacts);
@@ -61,12 +63,15 @@ public class ContactController {
 
 		Contact contact = ContactDAOImpl.getInstance().getContactByKey(
 				contactId);
-
+		
 		if (contact == null) {
 			return "index";
 		}
-
+		
+		ArrayList<Address> addresses = new ArrayList<Address>(contact.getAddresses());
+		
 		model.addAttribute("contact", contact);
+		model.addAttribute("addresses", addresses);
 
 		return "viewContact";
 	}
