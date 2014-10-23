@@ -6,8 +6,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+	<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap.min.css" />"
+		rel="stylesheet">
+	<link href="<c:url value="/resources/themes/jqueryui/jquery-ui.min.css" />"
+		rel="stylesheet">
+	<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap-theme.min.css" />"
+		rel="stylesheet">
+	<style type="text/css">
+		body {
+			margin: 20px;
+		}
+		.list-group .editContact,
+		.list-group .editAddress,
+		.list-group .deleteContact {
+			float: right;
+			padding: 3px;
+		}
+		p {
+			line-height: 1em;
+			margin: 10px 0 !important;
+		}
+		h3.firstname,
+		h3.lastname {
+			display: inline;
+		}
+		
+	</style>
+		
+	<!-- JavaScript Includes -->
+	<script type="text/javascript"
+		src="<c:url value="../resources/themes/jquery/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="../resources/themes/jqueryui/jquery-ui.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/themes/bootstrap/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value="/resources/themes/js/functions.js" />"></script>
+	
+	<title>Home page</title>
+</head>
+
+<<<<<<< HEAD
+=======
 		<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap.min.css" />"
 			rel="stylesheet">
 		<link href="<c:url value="/resources/themes/jqueryui/jquery-ui.min.css" />"
@@ -36,6 +77,7 @@
 		</style>
 		<title>Home page</title>
 	</head>
+>>>>>>> 126f717e2d9109d2bfe0b84d0313ca4b55c141c1
 <body>
 	<h2>iWho's Who</h2>
 
@@ -79,7 +121,11 @@
 								<span class="glyphicon glyphicon-user"></span>
 							</button>
 						</a>
+<<<<<<< HEAD
+						<div class="viewContact">
+=======
 						<div>
+>>>>>>> 126f717e2d9109d2bfe0b84d0313ca4b55c141c1
 							<h3 class="firstname">${listValue.FName}</h3>
 							<h3 class="lastname">${listValue.LName}</h3>
 							<p class="phone">${listValue.phoneNbr}</p>
@@ -91,51 +137,9 @@
 		</c:if>
 	</div>
 
-	<!-- JavaScript Includes -->
-
-	<script type="text/javascript"
-		src="<c:url value="../resources/themes/jquery/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="../resources/themes/jqueryui/jquery-ui.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/themes/bootstrap/js/bootstrap.min.js" />"></script>
-	<script src="<c:url value="/resources/themes/js/functions.js" />"></script>
 	<script>
 		$(document).ready(function() {
-
-			$("#addContact").click(getContactForm);
-			$(".createAddress").click(getAddressForm);
-
-			$(".editContact").each(function(id, item) {
-
-				$(item).click(function(e) {
-					e.preventDefault();
-
-					$.ajax({
-						url : $(item).attr("href"),
-						type : "GET"
-
-					}).done(function(html) {
-						$("#contactModal").html(html);
-						$("#contactForm").submit(editContact);
-					})
-				})
-			});
-
-			$(".deleteContact").each(function(id, item) {
-
-				$(item).click(function(e) {
-					e.preventDefault();
-
-					$.ajax({
-						url : $(item).attr("href"),
-						type : "DELETE"
-
-					}).done(function(html) {
-						$(item).parent().remove();
-					})
-				})
-			});
+			initContactList();
 		});
 	</script>
 

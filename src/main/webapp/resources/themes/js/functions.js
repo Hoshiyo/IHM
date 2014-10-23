@@ -14,10 +14,6 @@ function getContactForm() {
 	})
 }
 
-function getContactDetails() {
-	//TODO 
-}
-
 function getContactFormData() {
 	var id = $("#id").val();
 	var fName = $("#fName").val();
@@ -180,6 +176,41 @@ function updateContactLine(contact) {
 	$(id + " .phone").html(contact.phoneNbr);
 }
 
+function initContactList() {
+	$("#addContact").click(getContactForm);
+	$(".createAddress").click(getAddressForm);
+
+	$(".editContact").each(function(id, item) {
+
+		$(item).click(function(e) {
+			e.preventDefault();
+
+			$.ajax({
+				url : $(item).attr("href"),
+				type : "GET"
+
+			}).done(function(html) {
+				$("#contactModal").html(html);
+				$("#contactForm").submit(editContact);
+			})
+		})
+	});
+
+	$(".deleteContact").each(function(id, item) {
+
+		$(item).click(function(e) {
+			e.preventDefault();
+
+			$.ajax({
+				url : $(item).attr("href"),
+				type : "DELETE"
+
+			}).done(function(html) {
+				$(item).parent().remove();
+			})
+		})
+	});
+}
 
 /*
  * TODO
