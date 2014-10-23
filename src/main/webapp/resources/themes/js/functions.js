@@ -7,7 +7,7 @@ var adrTypeRegex = '(0|1)'
 
 function getContactForm() {
 	$.ajax({
-		url : "new",
+		url : "/contact/new",
 
 	}).done(function(html) {
 		$("#contactModal").html(html);
@@ -266,7 +266,7 @@ function displayHomePage(e) {
 	e.preventDefault();
 
 	$.ajax({
-		url : "",
+		url : "/contact/",
 		type : "GET"
 
 	}).done(function(html) {
