@@ -64,11 +64,11 @@
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 
-		<form id="searchContact" class="navbar-form navbar-left" role="search" action="search" method="GET">
+		<form class="navbar-form navbar-left" role="search" action="search" method="GET">
 			<div class="form-group">
 				<input id="searchField" type="text" name="search" class="form-control-search" placeholder="Search"/>
 			</div>
-			<button id="searchContact" type="submit" class="btn btn-default">
+			<button id="searchContact" class="btn btn-default">
 				<img src="<c:url value="/searchByContact.png" />" alt="search contact" height="18" width="18">
 			</button>
 			<button id="searchAddress" type="submit" class="btn btn-default">
@@ -113,12 +113,12 @@
 	<script>
 		$(document).ready(function() {
 			initContactList();
-			$("#searchContact").submit(function(e) {
+			$("#searchContact").click(function(e) {
 				
 				e.preventDefault();
 				
 				$.ajax({
-					url : $(this).attr("action") + "?search=" + $("#searchField").val(),
+					url : "search?search=" + $("#searchField").val(),
 					type : "GET"
 
 				}).done(function(html) {
@@ -126,12 +126,12 @@
 					$("#backHomePage").click(displayHomePage);
 				})
 			});
-			$("#searchAddress").submit(function(e) {
+			$("#searchAddress").click(function(e) {
 				
 				e.preventDefault();
 				
 				$.ajax({
-					url : $(this).attr("action") + "?search=" + $("#searchField").val(),
+					url : "../address/search?search=" + $("#searchField").val(),
 					type : "GET"
 
 				}).done(function(html) {

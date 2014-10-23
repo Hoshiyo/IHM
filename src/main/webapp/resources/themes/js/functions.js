@@ -134,6 +134,7 @@ function createContactLine(contact) {
 			<span class='glyphicon glyphicon-user'></span> \
 		</button> \
 	</a> \
+	<div class='viewContact'> \
 	<h3 class='firstname'>"
 			+ contact.fname + "</h3> \
 	<h3 class='lastname'>" + contact.lname
@@ -141,6 +142,7 @@ function createContactLine(contact) {
 	<p class='phone'>" + contact.phoneNbr
 			+ "</p> \
 	<p class='email'>" + contact.email + "</p> \
+	</div> \
 </li>";
 
 	return contactLine;

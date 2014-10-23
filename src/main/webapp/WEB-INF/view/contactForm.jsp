@@ -17,7 +17,7 @@
 
 		<!-- dialog body -->
 		<div class="modal-body">
-			<form:form id="contactForm" method="PUT" action="contact"
+			<form:form id="contactForm" method="PUT" action="./"
 				commandName="contact" class="form-horizontal" role="form">
 
 				<form:hidden path="id" />
