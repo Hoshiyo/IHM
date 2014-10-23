@@ -48,27 +48,27 @@ public class ContactDAOImpl implements IContactDAO {
 		calendar = Calendar.getInstance();
 		calendar.set(0, 3, 1);
 		mContactList.put("3", new Contact("Mourad", "El Ouarieghli",
-				"moumou75@capitaine.com", calendar, "0633333333"));
+				"moumou75@capitaine.com", calendar, "06 33 33 33 33"));
 		
 		calendar = Calendar.getInstance();
 		calendar.set(1939, 12, 6);
-		mContactList.put("4", new Contact("Bruce", "Wayne", "bruce.wayne@gotham.com", calendar, "0745826544"));
+		mContactList.put("4", new Contact("Bruce", "Wayne", "bruce.wayne@gotham.com", calendar, "07 45 82 65 44"));
 		
 		calendar = Calendar.getInstance();
 		calendar.set(1962, 4, 10);
-		mContactList.put("5", new Contact("Peter", "Parker", "peter.parker@dailybugle.com", calendar, "0614785241"));
+		mContactList.put("5", new Contact("Peter", "Parker", "peter.parker@dailybugle.com", calendar, "06 14 78 52 41"));
 		
 		calendar = Calendar.getInstance();
 		calendar.set(1941, 7, 21);
-		mContactList.put("6", new Contact("Oliver", "Queen", "ollie.queen@queenconsolidated.com", calendar, "0745269522"));
+		mContactList.put("6", new Contact("Oliver", "Queen", "ollie.queen@queenconsolidated.com", calendar, "07 45 26 95 22"));
 		
 		calendar = Calendar.getInstance();
 		calendar.set(1948, 1, 14);
-		mContactList.put("7", new Contact("Edward", "Nigma", "edward.nigma@gcpd.com", calendar, "unknown"));
+		mContactList.put("7", new Contact("Edward", "Nigma", "edward.nigma@gcpd.com", calendar, "03 47 93 79 15"));
 		
 		calendar = Calendar.getInstance();
 		calendar.set(1941, 12, 1);
-		mContactList.put("8", new Contact("Oswald", "Cobblepot", "oswald.cobblepot@gotham.com", calendar, "unknown"));
+		mContactList.put("8", new Contact("Oswald", "Cobblepot", "oswald.cobblepot@gotham.com", calendar, "05 25 85 76 12"));
 	}
 
 	public Collection<Contact> getContacts() {
