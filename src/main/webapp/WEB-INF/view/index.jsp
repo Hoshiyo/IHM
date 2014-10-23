@@ -61,11 +61,11 @@
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 
-		<form class="navbar-form navbar-left" role="search" action="search" method="GET">
+		<form id="searchContact" class="navbar-form navbar-left" role="search" action="search" method="GET">
 			<div class="form-group">
-				<input type="text" name="search" class="form-control-search" placeholder="Search"/>
+				<input id="searchField" type="text" name="search" class="form-control-search" placeholder="Search"/>
 			</div>
-			<button id="searchContact" type="submit" class="btn btn-default">
+			<button type="submit" class="btn btn-default">
 				<span class="glyphicon glyphicon-search"></span>
 			</button>
 		</form>
@@ -107,6 +107,19 @@
 	<script>
 		$(document).ready(function() {
 			initContactList();
+			$("#searchContact").submit(function(e) {
+				
+				e.preventDefault();
+				
+				$.ajax({
+					url : $(this).attr("action") + "?search=" + $("#searchField").val(),
+					type : "GET"
+
+				}).done(function(html) {
+					$("body").html(html);
+					$("#backHomePage").click(displayHomePage);
+				})
+			});
 		});
 	</script>
 

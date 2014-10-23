@@ -266,7 +266,7 @@ function displayHomePage(e) {
 	e.preventDefault();
 
 	$.ajax({
-		url : "contact/",
+		url : "",
 		type : "GET"
 
 	}).done(function(html) {
