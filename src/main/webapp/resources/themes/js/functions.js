@@ -182,7 +182,7 @@ function initContactList() {
 			e.preventDefault();
 
 			$.ajax({
-				url : "/contact/" + $(item).attr("id").replace("contact-", ""),
+				url : "/contact/" + $(item).parent().attr("id").replace("contact-", ""),
 				type : "GET"
 
 			}).done(function(html) {

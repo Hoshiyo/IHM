@@ -50,11 +50,11 @@
 <body>
 	<h2>iWho's Who</h2>
 
-	<div id="contactModal" class="modal fade"></div>
+	<div id="myModal" class="modal fade"></div>
 
 	<nav class="navbar navbar-default" role="navigation">
 		<button id="addContact" class="btn btn-default navbar-btn"
-			data-toggle="modal" data-target="#contactModal">
+			data-toggle="modal" data-target="#myModal">
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 
@@ -73,7 +73,7 @@
 
 			<ul id="contactList" class="list-group">
 				<c:forEach var="listValue" items="${lists}">
-					<li id="contact-${listValue.id}" class="list-group-item viewContact" >
+					<li id="contact-${listValue.id}" class="list-group-item" >
 						<a class="deleteContact" href="/contact/${listValue.id}">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-trash"></span>
@@ -84,15 +84,17 @@
 								<span class="glyphicon glyphicon-home"></span>
 							</button>
 						</a>
-						<a class="editContact" href="/contact/${listValue.id}/edit" data-toggle="modal" data-target="#contactModal">
+						<a class="editContact" href="/contact/${listValue.id}/edit" data-toggle="modal" data-target="#myModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-user"></span>
 							</button>
 						</a>
-						<h3 class="firstname">${listValue.FName}</h3>
-						<h3 class="lastname">${listValue.LName}</h3>
-						<p class="phone">${listValue.phoneNbr}</p>
-						<p class="email">${listValue.email}</p>
+						<div class="viewContact">
+							<h3 class="firstname">${listValue.FName}</h3>
+							<h3 class="lastname">${listValue.LName}</h3>
+							<p class="phone">${listValue.phoneNbr}</p>
+							<p class="email">${listValue.email}</p>
+						</div>
 					</li>
 				</c:forEach>
 			</ul>			
