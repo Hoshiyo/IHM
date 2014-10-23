@@ -40,6 +40,7 @@
 	<h2>iWho's Who</h2>
 
 	<div id="contactModal" class="modal fade"></div>
+	<div id="addressModal" class="modal fade"></div>
 
 	<nav class="navbar navbar-default" role="navigation">
 		<button id="addContact" class="btn btn-default navbar-btn"
@@ -68,7 +69,7 @@
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</a>
-						<a class="editAddress" href="/contact/${listValue.id}">
+						<a class="createAddress" href="/address/new" data-toggle="modal" data-target="#addressModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-home"></span>
 							</button>
@@ -103,6 +104,7 @@
 		$(document).ready(function() {
 
 			$("#addContact").click(getContactForm);
+			$('.createAddress').click(getAddressForm);
 
 			$(".editContact").each(function(id, item) {
 

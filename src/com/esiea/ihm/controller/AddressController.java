@@ -56,6 +56,7 @@ public class AddressController {
 	public String createAddressForm(
 			@RequestParam(value = "contact", required = true, defaultValue = "-1") String contactID,
 			Model model) {
+		System.out.println("I'm in /new !!!");
 		model.addAttribute("address", new Address(ContactDAOImpl.getInstance()
 				.getContactByKey(contactID)));
 		return "addressForm";

@@ -2,6 +2,7 @@ var emailRegex = '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}$';
 var dateRegex = /((0|1)\d\/(0|1)\d\/\d{4})/;
 var nameRegex = '[a-zA-Z]{3,}';
 var phoneRegex = /(\+\d{3}|0\d)( |-|\.)?\d{2}( |-|\.)?\d{2}( |-|\.)?\d{2}( |-|\.)?\d{2}/;
+var nbrRegex = '^[0-9]+$';
 
 function getContactForm() {
 	$.ajax({
@@ -184,6 +185,18 @@ function updateContactLine(contact) {
  * 
  */
 
+
+
+function getAddressForm() {
+	$.ajax({
+		url : "/address/new",
+
+	}).done(function(html) {
+		$("#addressModal").html(html);
+		$("#addressForm").submit(createAddress);
+	})
+}
+
 function getAddressFormData() {
 	var id = $("#id").val();
 	var nbr = $("#nbr").val();
@@ -199,7 +212,7 @@ function getAddressFormData() {
 		"type" : type
 	};
 
-	return JSON.stringify(json);
+	return json;
 }
 
 function createAddress(e) {
@@ -207,6 +220,10 @@ function createAddress(e) {
 	e.preventDefault();
 
 	var data = getAddressFormData();
+	if (checkAddressData(data) === false) {
+		return;
+	}
+	
 
 	$.ajax({
 		headers : {
@@ -218,6 +235,8 @@ function createAddress(e) {
 		data : data,
 
 	}).done(function(address) {
+		console.log("Look");
+		$("#closeModal").click();
 		addAddressLine(address);
 	});
 
@@ -258,3 +277,20 @@ function updateAddressLine(address) {
 			+ address.contact.id + "'>delete</a>";
 	item.html(html);
 }
+
+function checkAddressData(data) {
+
+	if (!data.nbr.match(nbrRegex)) {
+	alert("Number must contain 1 number (0-9)");
+	} else if (!data.street.match(nameRegex)) {
+	alert("Last name must contain at least 3 letters (A-Z)");
+	} else if (!data.city.match(nameRegex)) {
+	alert("City must contain at least 3 letters (A-Z)");
+	} else if (!data.zipCode.match(nbrRegex)) {
+	alert("ZipCode must contain at least 3 number (0-9)");
+	} else {
+	return true;
+	}
+
+	return false;
+	}

@@ -16,7 +16,7 @@
 
 		<!-- dialog body -->
 		<div class="modal-body">
-			<form:form id="addressForm" method="PUT" action="/address/"
+			<form:form id="addressForm" method="POST" action="/address/"
 				commandName="address" class="form-horizontal" role="form">
 				
 				<form:hidden path="id" />
