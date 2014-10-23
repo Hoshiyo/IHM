@@ -32,7 +32,7 @@ public class ContactController {
 		ContactDAOImpl.getInstance();
 		AddressDAOImpl.getInstance();
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView displayContacts() {
 
@@ -67,13 +67,14 @@ public class ContactController {
 
 		Contact contact = ContactDAOImpl.getInstance().getContactByKey(
 				contactId);
-		
+
 		if (contact == null) {
 			return "index";
 		}
-		
-		ArrayList<Address> addresses = new ArrayList<Address>(contact.getAddresses());
-		
+
+		ArrayList<Address> addresses = new ArrayList<Address>(
+				contact.getAddresses());
+
 		model.addAttribute("contact", contact);
 		model.addAttribute("addresses", addresses);
 
@@ -93,6 +94,13 @@ public class ContactController {
 		return new ModelAndView("contactForm", "contact", contact);
 	}
 
+	@RequestMapping(value = "/{contactId:[0-9]+}/newAddress", method = RequestMethod.GET)
+	public String createAddressForm(@PathVariable String contactId, Model model) {
+		model.addAttribute("address", new Address(ContactDAOImpl.getInstance()
+				.getContactByKey(contactId)));
+		return "addressForm";
+	}
+
 	@RequestMapping(value = "/{contactId:[0-9]+}", method = RequestMethod.PUT)
 	@ResponseBody
 	public Contact editContact(@RequestBody Contact contact) {
@@ -107,25 +115,34 @@ public class ContactController {
 
 		return ContactDAOImpl.getInstance().removeContact(contactId);
 	}
-	
-	@RequestMapping(value="/search", method= RequestMethod.GET)
-	public ModelAndView searchContact(@RequestParam(value="search") String searchParam) {
-		if(searchParam == null)
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView searchContact(
+			@RequestParam(value = "search") String searchParam) {
+		if (searchParam == null)
 			return displayContacts();
-		
-		System.out.println("Search= "+searchParam);
-		
+
+		System.out.println("Search= " + searchParam);
+
 		ModelAndView model = new ModelAndView("searchContact");
-		
+
 		ArrayList<Contact> contactByNameList = new ArrayList<Contact>();
-		contactByNameList.addAll(ContactDAOImpl.getInstance().getContactByFName(searchParam));
-		contactByNameList.addAll(ContactDAOImpl.getInstance().getContactByLName(searchParam));
-		
+		contactByNameList.addAll(ContactDAOImpl.getInstance()
+				.getContactByFName(searchParam));
+		contactByNameList.addAll(ContactDAOImpl.getInstance()
+				.getContactByLName(searchParam));
+
 		ArrayList<Contact> contactByEmailList = new ArrayList<Contact>();
-		contactByEmailList.addAll(ContactDAOImpl.getInstance().getContactByEmail(searchParam));
-		
+		contactByEmailList.addAll(ContactDAOImpl.getInstance()
+				.getContactByEmail(searchParam));
+
 		ArrayList<Contact> contactByPhoneNbrList = new ArrayList<Contact>();
 		contactByPhoneNbrList.addAll(ContactDAOImpl.getInstance().getContactByPhoneNbr(searchParam));
+		
+		/*if(contactByNameList.size()==0 && contactByEmailList.size()==0 && contactByPhoneNbrList.size()==0)
+		{
+			return displayContacts();
+		}*/
 		
 		model.addObject("nameList", contactByNameList);
 		model.addObject("emailList", contactByEmailList);

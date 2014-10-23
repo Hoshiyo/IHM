@@ -62,16 +62,11 @@ public class AddressController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody
-	public Address createAddress(@RequestBody Address address) {
-		System.out.println("OK");
-		System.out.println("contact: " + address.getContact().getFName());
-		address.getStreet().substring(0, 0).toUpperCase();
-		address.getCity().substring(0, 0).toUpperCase();
-		
-	    
+	public String createAddress(@RequestBody Address address) {
+		address.getContact().addAddress(address);
 		AddressDAOImpl.getInstance().addAddress(address);
-		return address;
+		
+		return "index";
 	}
 	
 	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.PUT)

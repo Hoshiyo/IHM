@@ -64,9 +64,9 @@
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 
-		<form class="navbar-form navbar-left" role="search" action="/contact/search" method="GET">
+		<form id="searchContact" class="navbar-form navbar-left" role="search" action="search" method="GET">
 			<div class="form-group">
-				<input type="text" name="search" class="form-control-search" placeholder="Search"/>
+				<input id="searchField" type="text" name="search" class="form-control-search" placeholder="Search"/>
 			</div>
 			<button id="searchContact" type="submit" class="btn btn-default">
 				<img src="<c:url value="/searchByContact.png" />" alt="search contact" height="18" width="18">
@@ -83,17 +83,17 @@
 			<ul id="contactList" class="list-group">
 				<c:forEach var="listValue" items="${lists}">
 					<li id="contact-${listValue.id}" class="list-group-item" >
-						<a class="deleteContact" href="/contact/${listValue.id}">
+						<a class="deleteContact" href="${listValue.id}">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</a>
-						<a class="createAddress" href="/address/new" data-toggle="modal" data-target="#addressModal">
+						<a class="createAddress" href="${listValue.id}/newAddress" data-toggle="modal" data-target="#addressModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-home"></span>
 							</button>
 						</a>
-						<a class="editContact" href="/contact/${listValue.id}/edit" data-toggle="modal" data-target="#contactModal">
+						<a class="editContact" href="${listValue.id}/edit" data-toggle="modal" data-target="#contactModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-user"></span>
 							</button>
@@ -113,6 +113,19 @@
 	<script>
 		$(document).ready(function() {
 			initContactList();
+			$("#searchContact").submit(function(e) {
+				
+				e.preventDefault();
+				
+				$.ajax({
+					url : $(this).attr("action") + "?search=" + $("#searchField").val(),
+					type : "GET"
+
+				}).done(function(html) {
+					$("body").html(html);
+					$("#backHomePage").click(displayHomePage);
+				})
+			});
 		});
 	</script>
 
