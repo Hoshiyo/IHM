@@ -13,6 +13,10 @@ function getContactForm() {
 	})
 }
 
+function getContactDetails() {
+	//TODO 
+}
+
 function getContactFormData() {
 	var id = $("#id").val();
 	var fName = $("#fName").val();
@@ -172,6 +176,13 @@ function updateContactLine(contact) {
 	$(id + " .email").html(contact.email);
 	$(id + " .phone").html(contact.phoneNbr);
 }
+
+/*
+ * TODO
+ * 
+ * A CORRIGER PAR RAPPORT AU DESSUS
+ * 
+ */
 
 function getAddressFormData() {
 	var id = $("#id").val();

@@ -205,6 +205,7 @@ public class Contact implements Serializable {
 	 */
 	public List<Address> getAddresses() {
 		List<Address> addressList = new ArrayList<Address>(mAddresses);
+		System.out.println("Hello: " + mAddresses.size());
 		return addressList;
 	}
 	
