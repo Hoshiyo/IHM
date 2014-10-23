@@ -355,9 +355,9 @@ function editAddress(e) {
 			'Accept' : 'application/json',
 			'Content-Type' : 'application/json'
 		},
-		url : $("#addressForm").attr("action") + '/' + $("#nbr").val(),
+		url : $("#addressForm").attr("action") + '/' + $("#id").val(),
 		type : "PUT",
-		data : data
+		data : JSON.stringify(data)
 
 	}).done(function(address) {
 		updateAddressLine(address);
@@ -371,10 +371,7 @@ function addAddressLine(address) {
 }
 
 function updateAddressLine(address) {
-	var item = $("#address-" + address.contact.FName);
-	var html = address.contact.fname
-			+ " <a class='editAddress' href='/address/" + address.contact.id
-			+ "/edit'>edit</a> <a class='deleteAddress' href=/address/"
-			+ address.contact.id + "'>delete</a>";
-	item.html(html);
+	var id = "#address-" + address.id;
+	$(id + " .addressInfo").html(address.type + " :");
+	$(id + " .addressInfo").html(address.nbr, address.street - address.city, address.zipCode);
 }

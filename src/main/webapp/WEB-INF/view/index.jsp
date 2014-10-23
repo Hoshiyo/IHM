@@ -120,6 +120,19 @@
 					$("#backHomePage").click(displayHomePage);
 				})
 			});
+			$("#searchAddress").submit(function(e) {
+				
+				e.preventDefault();
+				
+				$.ajax({
+					url : $(this).attr("action") + "?search=" + $("#searchField").val(),
+					type : "GET"
+
+				}).done(function(html) {
+					$("body").html(html);
+					$("#backHomePage").click(displayHomePage);
+				})
+			});
 		});
 	</script>
 

@@ -416,5 +416,7 @@ public class AddressDAOImpl implements IAddressDAO {
 	    }
 	    address.setCity(res.toString());
 		mAddressList.put(Integer.toString(address.getId()), address);
+		
+		address.getContact().updateAddress(address);
 	}
 }
