@@ -74,7 +74,7 @@ public class AddressController {
 	public Address editAddress(@RequestBody Address address) {
 		AddressDAOImpl.getInstance().updateAddress(address);
 		
-		return new Address(null, address.getNbr(), address.getStreet(), address.getCity(), address.getZipCode(), address.getType());
+		return new Address(null, address.getNbr(), address.getStreet(), address.getCity(), address.getZipCode(), null);
 	}
 
 	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.DELETE)
@@ -95,7 +95,11 @@ public class AddressController {
 		
 		ArrayList<Address> addressByNbrList = new ArrayList<Address>();
 		
-		addressByNbrList.addAll(AddressDAOImpl.getInstance().getAddressByNbr(Integer.parseInt(searchParam)));
+		try {
+			addressByNbrList.addAll(AddressDAOImpl.getInstance().getAddressByNbr(Integer.parseInt(searchParam)));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
 		
 		ArrayList<Address> addressByStreetList = new ArrayList<Address>();
 		addressByStreetList.addAll(AddressDAOImpl.getInstance().getAddressByStreet(searchParam));
