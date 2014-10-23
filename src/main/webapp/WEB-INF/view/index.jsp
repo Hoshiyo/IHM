@@ -35,9 +35,6 @@
 		div.viewContact {
 			cursor: pointer;
 		}
-		div.viewContact:hover {
-			color: #428bca;
-		}
 	</style>
 		
 	<!-- JavaScript Includes -->

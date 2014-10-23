@@ -49,7 +49,7 @@
 					<li>Address : ${address.nbr} ${address.street}</li>
 					<li>City : ${address.city}</li>
 					<li>Zip code : ${address.zipCode}</li>
-					<li>Address type : ${address.type}</li>
+					<li class="last">Address type : ${address.type}</li>
 				</c:forEach>
 			</ul>
 			
@@ -62,7 +62,7 @@
 						<li>Address : ${address.nbr} ${address.street}</li>
 						<li>City : ${address.city}</li>
 						<li>Zip code : ${address.zipCode}</li>
-						<li>Address type : ${address.type}</li>
+						<li class="last">Address type : ${address.type}</li>
 				</c:forEach>
 			</ul>
 			
