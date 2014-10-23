@@ -120,7 +120,7 @@ function createContactLine(contact) {
 			<span class='glyphicon glyphicon-trash'></span> \
 		</button> \
 	</a> \
-	<a class='editAddress' href='/contact/" + contact.id + "'> \
+	<a class='createAddress' href='/contact/" + contact.id + "'> \
 		<button class='btn btn-default'><span class='glyphicon glyphicon-home'> \
 			</span> \
 		</button> \
@@ -141,6 +141,8 @@ function createContactLine(contact) {
 
 function addContactLine(contact) {
 	$("#contactList").append(createContactLine(contact));
+	
+	$(".new-contact-line .createAddress").click(getAddressForm);
 	
 	$(".new-contact-line .deleteContact").click(function(e) {
 		e.preventDefault();
@@ -216,6 +218,23 @@ function getAddressFormData() {
 	return json;
 }
 
+function checkAddressData(data) {
+
+	if (!data.nbr.match(nbrRegex)) {
+		alert("Number must contain 1 number (0-9)");
+	} else if (!data.street.match(nameRegex)) {
+		alert("Street must contain at least 3 letters (A-Z)");
+	} else if (!data.city.match(nameRegex)) {
+		alert("City must contain at least 3 letters (A-Z)");
+	} else if (!data.zipCode.match(nbrRegex)) {
+		alert("ZipCode must contain at least 3 number (0-9)");
+	} else {
+		return true;
+	}
+
+	return false;
+}
+
 function createAddress(e) {
 
 	e.preventDefault();
@@ -236,7 +255,6 @@ function createAddress(e) {
 		data : data,
 
 	}).done(function(address) {
-		console.log("Look");
 		$("#closeModal").click();
 		addAddressLine(address);
 	});
@@ -278,20 +296,3 @@ function updateAddressLine(address) {
 			+ address.contact.id + "'>delete</a>";
 	item.html(html);
 }
-
-function checkAddressData(data) {
-
-	if (!data.nbr.match(nbrRegex)) {
-	alert("Number must contain 1 number (0-9)");
-	} else if (!data.street.match(nameRegex)) {
-	alert("Last name must contain at least 3 letters (A-Z)");
-	} else if (!data.city.match(nameRegex)) {
-	alert("City must contain at least 3 letters (A-Z)");
-	} else if (!data.zipCode.match(nbrRegex)) {
-	alert("ZipCode must contain at least 3 number (0-9)");
-	} else {
-	return true;
-	}
-
-	return false;
-	}

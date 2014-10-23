@@ -11,7 +11,7 @@
 			<button id="closeModal" type="button" class="close" data-dismiss="modal">
 				&times;<span class="sr-only">Close</span>
 			</button>
-			<h4 class="modal-title" id="myModalLabel">Edit Address</h4>
+			<h4 class="modal-title" id="myModalLabel">Create Address</h4>
 		</div>
 
 		<!-- dialog body -->
@@ -22,34 +22,36 @@
 				<form:hidden path="id" />
 				
 				<div class="form-group">
-					<form:label path="nbr" class="col-sm-2 control-label">Number</form:label>
-					<div class="col-sm-10">
+					<form:label path="nbr" class="col-sm-3 control-label">Number</form:label>
+					<div class="col-sm-9">
 						<form:input class="form-control" path="nbr"
 							placeholder="Enter Your Nbr Street"  />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="street" class="col-sm-2 control-label">Street</form:label>
-					<div class="col-sm-10">
+					<form:label path="street" class="col-sm-3 control-label">Street</form:label>
+					<div class="col-sm-9">
 						<form:input class="form-control" path="street" 
-							placeholder="Enter Your Nbr Street"  />
+							placeholder="Enter Your Street"  />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="city" class="col-sm-2 control-label">City</form:label>
-					<div class="col-sm-10">
-						<form:input class="form-control" path="city" />
+					<form:label path="city" class="col-sm-3 control-label">City</form:label>
+					<div class="col-sm-9">
+						<form:input class="form-control" path="city"
+							placeholder="Enter Your City"  />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="zipCode" class="col-sm-2 control-label">Zip code</form:label>
-					<div class="col-sm-10">
-						<form:input class="form-control" path="zipCode" />
+					<form:label path="zipCode" class="col-sm-3 control-label">Zip Code</form:label>
+					<div class="col-sm-9">
+						<form:input class="form-control" path="zipCode"
+							placeholder="Enter Your ZipCode"  />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="type" class="col-sm-2 control-label">Address type</form:label>
-						<div class="col-sm-10">
+					<form:label path="type" class="col-sm-3 control-label">Address Type</form:label>
+						<div class="col-sm-9">
 						<select class="form-control">
 							<option>----- Select an address type -----</option>
 							<option>Payment address</option>
@@ -58,7 +60,7 @@
 					</div>
 				</div>
 
-				<input type="submit" value="Submit" />
+				<input type="submit" class="btn btn-primary" value="Submit" />
 			</form:form>
 		</div>
 	</div>
