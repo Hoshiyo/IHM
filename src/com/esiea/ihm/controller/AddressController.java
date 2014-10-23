@@ -1,6 +1,7 @@
 package com.esiea.ihm.controller;
 
 import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.esiea.ihm.entity.Address;
+import com.esiea.ihm.entity.Contact;
 import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 import com.esiea.ihm.model.dao.impl.ContactDAOImpl;
 
@@ -40,7 +43,7 @@ public class AddressController {
 	}
 	
 	@RequestMapping(value = "/{addressId:[0-9]+}/edit", method = RequestMethod.GET)
-	public ModelAndView editContactForm(@PathVariable String addressId) {
+	public ModelAndView editAddressForm(@PathVariable String addressId) {
 		Address address = AddressDAOImpl.getInstance().getAddressByKey(
 				addressId);
 		if (address == null) {
@@ -69,14 +72,38 @@ public class AddressController {
 	
 	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.PUT)
 	@ResponseBody
-	public Address editContact(@RequestBody Address address) {
+	public Address editAddress(@RequestBody Address address) {
 		AddressDAOImpl.getInstance().updateAddress(address);
 		return address;
 	}
 
 	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Address deleteContact(@PathVariable String addressId) {
+	public Address deleteAddress(@PathVariable String addressId) {
 		return AddressDAOImpl.getInstance().removeAddress(addressId);
+	}
+	
+	@RequestMapping(value="/search", method= RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView searchAddress(@RequestBody String searchParam) {
+		if(searchParam == null)
+			return displayAddresses();
+		
+		ModelAndView model = new ModelAndView("searchAddress");
+		
+		ArrayList<Address> addressByStreetList = new ArrayList<Address>();
+		addressByStreetList.addAll(AddressDAOImpl.getInstance().getAddressByStreet(searchParam));
+		
+		ArrayList<Address> addressByCityList = new ArrayList<Address>();
+		addressByCityList.addAll(AddressDAOImpl.getInstance().getAddressByCity(searchParam));
+		
+		ArrayList<Address> addressByContactList = new ArrayList<Address>();
+		addressByContactList.addAll(AddressDAOImpl.getInstance().getAddressByContact(ContactDAOImpl.getInstance().getContactByFName(searchParam).get(0)));
+		
+		
+		model.addObject("streetList", addressByStreetList);
+		model.addObject("cityList", addressByCityList);
+		model.addObject("contactList", addressByContactList);
+		return model;
 	}
 }

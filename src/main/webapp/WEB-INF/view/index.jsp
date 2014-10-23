@@ -2,10 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link href="${pageContext.request.contextPath}/favicon.ico"
+			rel="icon" type="image/x-icon">
 		<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap.min.css" />"
 			rel="stylesheet">
 		<link href="<c:url value="/resources/themes/jqueryui/jquery-ui.min.css" />"
@@ -35,7 +38,7 @@
 		<title>Home page</title>
 	</head>
 <body>
-	<h2>Hello World!</h2>
+	<h2>iWho's Who</h2>
 
 	<div id="myModal" class="modal fade"></div>
 
@@ -49,7 +52,7 @@
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
-			<button type="submit" class="btn btn-default">
+			<button id="searchContact" type="submit" class="btn btn-default">
 				<span class="glyphicon glyphicon-search"></span>
 			</button>
 		</form>
@@ -78,8 +81,15 @@
 						</a>
 						<h3 class="firstname">${listValue.FName}</h3>
 						<h3 class="lastname">${listValue.LName}</h3>
+<<<<<<< HEAD
+						<p class="address">Delivery address: ${listValue.getLastDeliveryStringAddress()}</p>
+						<p class="address">Payment address: ${listValue.getPaymentStringAddress()}</p>
+						<p class="phone">${listValue.phoneNbr}</p>
+						<p class="email">montpellier@yahoo.fr</p>
+=======
 						<p class="phone">${listValue.phoneNbr}</p>
 						<p class="email">${listValue.email}</p>
+>>>>>>> 56c316fc656a07649c125c01c0c95da1ee05e873
 					</li>
 				</c:forEach>
 			</ul>			
