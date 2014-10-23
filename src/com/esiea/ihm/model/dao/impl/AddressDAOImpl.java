@@ -49,68 +49,80 @@ public class AddressDAOImpl implements IAddressDAO {
 		Contact contact = ContactDAOImpl.getInstance().getContactByKey("0");
 		Address address = new Address(contact, 3, "rue de l'eau", "Konoha",
 				445, DELIVERY);
+		updateAddress(address);
 		mAddressList.put("0", address);
 		contact.addAddress(address);
 		address = new Address(contact, 3, "rue de l'herbe", "Konoha", 445,
 				PAYMENT);
+		updateAddress(address);
 		mAddressList.put("1", address);
 		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("1");
 		address = new Address(contact, 3, "rue de la terre", "Konoha", 445,
 				DELIVERY);
+		updateAddress(address);
 		mAddressList.put("2", address);
 		contact.addAddress(address);
 		address = new Address(contact, 3, "rue de l'eau", "Konoha", 445,
 				PAYMENT);
+		updateAddress(address);
 		mAddressList.put("3", address);
 		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("2");
 		address = new Address(contact, 3, "rue de la foudre", "Konoha", 445,
 				DELIVERY);
+		updateAddress(address);
 		mAddressList.put("4", address);
 		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("3");
 		address = new Address(contact, 5, "Câle", "Bateau de Luffy", 000,
 				PAYMENT);
+		updateAddress(address);
 		mAddressList.put("5", address);
 		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("4");
 		address = new Address(contact, 16, "Ripper Street", "Gotham", 638,
 				PAYMENT);
+		updateAddress(address);
 		mAddressList.put("6", address);
 		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("4");
 		address = new Address(contact, 7, "Space Square", "Gotham", 638,
 				DELIVERY);
+		updateAddress(address);
 		mAddressList.put("7", address);
 		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("5");
 		address = new Address(contact, 8, "Central Park", "New York", 457,
 				PAYMENT);
+		updateAddress(address);
 		mAddressList.put("8", address);
 		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("5");
 		address = new Address(contact, 27, "5th Avenue", "New York", 457,
 				PAYMENT);
+		updateAddress(address);
 		mAddressList.put("9", address);
 		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("6");
 		address = new Address(contact, 20, "Shiper's Dock", "Gotham", 638,
 				PAYMENT);
+		updateAddress(address);
 		mAddressList.put("10", address);
 		contact.addAddress(address);
 
 		contact = ContactDAOImpl.getInstance().getContactByKey("6");
 		address = new Address(contact, 20, "Shiper's Dock", "Gotham", 638,
 				DELIVERY);
+		updateAddress(address);
 		mAddressList.put("11", address);
 		contact.addAddress(address);
 	}
@@ -184,6 +196,32 @@ public class AddressDAOImpl implements IAddressDAO {
 
 		Address newAddress = new Address(contact, nbr, street, city, zipCode,
 				type);
+		
+		String source = newAddress.getStreet();
+	    StringBuffer res = new StringBuffer();
+
+	    String[] strArr = source.split(" ");
+	    for (String str : strArr) {
+	        char[] stringArray = str.trim().toCharArray();
+	        stringArray[0] = Character.toUpperCase(stringArray[0]);
+	        str = new String(stringArray);
+
+	        res.append(str).append(" ");
+	    }
+	    newAddress.setStreet(res.toString());
+	    
+		source = newAddress.getCity();
+	    res = new StringBuffer();
+
+	    strArr = source.split(" ");
+	    for (String str : strArr) {
+	        char[] stringArray = str.trim().toCharArray();
+	        stringArray[0] = Character.toUpperCase(stringArray[0]);
+	        str = new String(stringArray);
+
+	        res.append(str).append(" ");
+	    }
+	    newAddress.setCity(res.toString());
 
 		contact.addAddress(newAddress);
 		mAddressList.put(Integer.toString(newAddress.getId()), newAddress);
@@ -296,6 +334,31 @@ public class AddressDAOImpl implements IAddressDAO {
 	}
 
 	public void addAddress(Address address) {
+		String source = address.getStreet();
+	    StringBuffer res = new StringBuffer();
+
+	    String[] strArr = source.split(" ");
+	    for (String str : strArr) {
+	        char[] stringArray = str.trim().toCharArray();
+	        stringArray[0] = Character.toUpperCase(stringArray[0]);
+	        str = new String(stringArray);
+
+	        res.append(str).append(" ");
+	    }
+	    address.setStreet(res.toString());
+	    
+		source = address.getCity();
+	    res = new StringBuffer();
+
+	    strArr = source.split(" ");
+	    for (String str : strArr) {
+	        char[] stringArray = str.trim().toCharArray();
+	        stringArray[0] = Character.toUpperCase(stringArray[0]);
+	        str = new String(stringArray);
+
+	        res.append(str).append(" ");
+	    }
+	    address.setCity(res.toString());
 		mAddressList.put(Integer.toString(address.getId()), address);
 	}
 
@@ -311,6 +374,31 @@ public class AddressDAOImpl implements IAddressDAO {
 	}
 
 	public void updateAddress(Address address) {
+		String source = address.getStreet();
+	    StringBuffer res = new StringBuffer();
+
+	    String[] strArr = source.split(" ");
+	    for (String str : strArr) {
+	        char[] stringArray = str.trim().toCharArray();
+	        stringArray[0] = Character.toUpperCase(stringArray[0]);
+	        str = new String(stringArray);
+
+	        res.append(str).append(" ");
+	    }
+	    address.setStreet(res.toString());
+	    
+		source = address.getCity();
+	    res = new StringBuffer();
+
+	    strArr = source.split(" ");
+	    for (String str : strArr) {
+	        char[] stringArray = str.trim().toCharArray();
+	        stringArray[0] = Character.toUpperCase(stringArray[0]);
+	        str = new String(stringArray);
+
+	        res.append(str).append(" ");
+	    }
+	    address.setCity(res.toString());
 		mAddressList.put(Integer.toString(address.getId()), address);
 	}
 }

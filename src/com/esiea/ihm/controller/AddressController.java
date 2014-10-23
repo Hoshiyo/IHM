@@ -52,9 +52,21 @@ public class AddressController {
 		return new ModelAndView("addressForm", "address", address);
 	}
 
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	public String createAddressForm(
+			@RequestParam(value = "contact", required = true, defaultValue = "-1") String contactID,
+			Model model) {
+		model.addAttribute("address", new Address(ContactDAOImpl.getInstance()
+				.getContactByKey(contactID)));
+		return "addressForm";
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
 	public String createAddress(@RequestBody Address address) {
 		address.getContact().addAddress(address);
+		address.setStreet(address.getStreet().substring(0, 0).toUpperCase());
+		address.setCity(address.getCity().substring(0, 0).toUpperCase());
+	    
 		AddressDAOImpl.getInstance().addAddress(address);
 		
 		return "index";
