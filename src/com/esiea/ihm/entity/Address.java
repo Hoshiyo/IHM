@@ -24,7 +24,8 @@ public class Address implements Serializable {
 
 	private static int ID = 0;
 
-	private int mId, mNbr, mZipCode;
+	private int mId;
+	private Integer mNbr, mZipCode;
 	private String mStreet, mCity, mContactId;
 	private Contact mContact;
 	private AddressType type;
@@ -114,7 +115,7 @@ public class Address implements Serializable {
 	 * @return le numéro de la rue.
 	 * 
 	 */
-	public int getNbr() {
+	public Integer getNbr() {
 		return mNbr;
 	}
 
@@ -127,7 +128,7 @@ public class Address implements Serializable {
 	 * @return le code postal.
 	 * 
 	 */
-	public int getZipCode() {
+	public Integer getZipCode() {
 		return mZipCode;
 	}
 

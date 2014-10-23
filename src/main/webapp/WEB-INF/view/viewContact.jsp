@@ -32,7 +32,6 @@
 
 <div id="addressModal" class="modal fade"></div>
 
-<h1>Display the contact with id : ${contact.id}</h1>
 <ul class="list-group">
 	<li class="list-group-item" ><h3 class="firstname">${contact.FName}</h3>
 	<h3 class="lastname">${contact.LName}</h3></li>

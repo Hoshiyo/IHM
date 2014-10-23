@@ -3,7 +3,6 @@ var dateRegex = /((0|1)\d\/(0|1)\d\/\d{4})/;
 var nameRegex = '[a-zA-Z]{3,}';
 var phoneRegex = /(\+\d{3}|0\d)( |-|\.)?\d{2}( |-|\.)?\d{2}( |-|\.)?\d{2}( |-|\.)?\d{2}/;
 var nbrRegex = '^[0-9]+$';
-var adrTypeRegex = '(0|1)'
 
 function getContactForm() {
 	$.ajax({
@@ -314,8 +313,6 @@ function checkAddressData(data) {
 		alert("City must contain at least 3 letters (A-Z)");
 	} else if (!data.zipCode.match(nbrRegex)) {
 		alert("ZipCode must contain at least 3 number (0-9)");
-	} else if (!data.type.match(adrTypeRegex)) {
-		alert("Select an address type");
 	} else {
 		return true;
 	}
