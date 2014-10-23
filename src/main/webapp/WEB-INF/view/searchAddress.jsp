@@ -9,6 +9,20 @@
 </head>
 <body>
 
+<h1>By Number</h1>
+<c:if test="${not empty nbrList}">
+
+	<ul>
+		<c:forEach var="address" items="${nbrList}">
+			<li>Address : ${address.nbr} ${address.street}</li>
+			<li>City : ${address.city}</li>
+			<li>Zip code : ${address.zipCode}</li>
+			<li>Address type : ${address.type}</li>
+		</c:forEach>
+	</ul>
+	
+</c:if>
+
 <h1>By Street</h1>
 <c:if test="${not empty streetList}">
 
@@ -27,19 +41,6 @@
 
 	<ul>
 		<c:forEach var="address" items="${cityList}">
-			<li>Address : ${address.nbr} ${address.street}</li>
-			<li>City : ${address.city}</li>
-			<li>Zip code : ${address.zipCode}</li>
-			<li>Address type : ${address.type}</li>
-		</c:forEach>
-	</ul>
-	
-</c:if>
-<h1>By Phone Number</h1>
-<c:if test="${not empty contactList}">
-
-	<ul>
-		<c:forEach var="address" items="${contactList}">
 			<li>Address : ${address.nbr} ${address.street}</li>
 			<li>City : ${address.city}</li>
 			<li>Zip code : ${address.zipCode}</li>
