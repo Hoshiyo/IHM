@@ -61,11 +61,7 @@
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 
-<<<<<<< HEAD
-		<form id="searchContact" class="navbar-form navbar-left" role="search" action="/contact/search" method="GET">
-=======
 		<form class="navbar-form navbar-left" role="search" action="search" method="GET">
->>>>>>> dc1dfc533462f99812fdaff2b208b0a382228adc
 			<div class="form-group">
 				<input id="searchField" type="text" name="search" class="form-control-search" placeholder="Search"/>
 			</div>
