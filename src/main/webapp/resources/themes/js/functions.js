@@ -349,6 +349,7 @@ function editAddress(e) {
 
 	var data = getAddressFormData();
 
+	console.log(JSON.stringify(data));
 	$.ajax({
 		headers : {
 			'Accept' : 'application/json',
