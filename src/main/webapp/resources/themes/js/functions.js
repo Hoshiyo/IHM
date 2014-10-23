@@ -134,16 +134,18 @@ function createContactLine(contact) {
 	return contactLine;
 }
 
-function setEventOnNewContact(item) {
+function addContactLine(contact) {
+	$("#contactList").append(createContactLine(contact));
+	
 	$(".new-contact-line .deleteContact").click(function(e) {
 		e.preventDefault();
 
 		$.ajax({
-			url : $(item).attr("href"),
+			url : $(this).attr("href"),
 			type : "DELETE"
 
 		}).done(function(html) {
-			$(item).parent().remove();
+			$("#contact-" + contact.id).remove();
 		})
 	});
 	
@@ -151,7 +153,7 @@ function setEventOnNewContact(item) {
 		e.preventDefault();
 
 		$.ajax({
-			url : $(item).attr("href"),
+			url : $(this).attr("href"),
 			type : "GET"
 
 		}).done(function(html) {
@@ -163,16 +165,12 @@ function setEventOnNewContact(item) {
 	$(".new-contact-line").removeClass("new-contact-line");
 }
 
-function addContactLine(contact) {
-	$("#contactList").append(createContactLine(contact));
-	setEventOnNewContact(item);
-}
-
 function updateContactLine(contact) {
-	var item = $("#contact-" + contact.id);
-	var html = createContactLine(contact);
-	item.replaceWith(html);
-	setEventOnNewContact(item);
+	var id = "#contact-" + contact.id;
+	$(id + " .firstname").html(contact.fname);
+	$(id + " .lastname").html(contact.lname);
+	$(id + " .email").html(contact.email);
+	$(id + " .phone").html(contact.phoneNbr);
 }
 
 function getAddressFormData() {
