@@ -88,14 +88,14 @@ public class AddressController {
 	public ModelAndView searchAddress(@RequestParam(value="search") String searchParam) {
 		if(searchParam == null)
 			return displayAddresses();
+
+		searchParam = searchParam.toLowerCase();
 		
 		ModelAndView model = new ModelAndView("searchAddress");
 		
-		
 		ArrayList<Address> addressByNbrList = new ArrayList<Address>();
-		if(searchParam.length() == 1) {
+		
 		addressByNbrList.addAll(AddressDAOImpl.getInstance().getAddressByNbr(Integer.parseInt(searchParam)));
-		}
 		
 		ArrayList<Address> addressByStreetList = new ArrayList<Address>();
 		addressByStreetList.addAll(AddressDAOImpl.getInstance().getAddressByStreet(searchParam));

@@ -38,11 +38,10 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="dateOfBirth" class="col-sm-2 control-label">Anniversary
-								Date</form:label>
+					<form:label path="dateOfBirth" class="col-sm-2 control-label">Date of Birth</form:label>
 					<div class="col-sm-10">
 						<form:input class="form-control" path="dateOfBirth"
-							placeholder="Enter Your Anniversary Date" />
+							placeholder="Enter Your Date of Birth" />
 					</div>
 				</div>
 				<div class="form-group">
