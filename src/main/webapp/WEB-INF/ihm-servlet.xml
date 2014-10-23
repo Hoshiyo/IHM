@@ -8,7 +8,6 @@
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-	<resources mapping="/favicon.ico" location="/favicon.ico" />
 	
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
