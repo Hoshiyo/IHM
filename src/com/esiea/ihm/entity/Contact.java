@@ -190,11 +190,18 @@ public class Contact implements Serializable {
 		return mPhoneNbr;
 	}
 
-	public void setPhoneNbr(String mphoneNbr) {
-		this.mPhoneNbr = mphoneNbr.replaceAll("\\d{2}", "$0 ").trim();
+	public void setPhoneNbr(String phoneNbr) {
+		phoneNbr = phoneNbr.replaceAll("[^0-9]", "");
+		System.out.println(phoneNbr);
+		this.mPhoneNbr = phoneNbr.replaceAll("\\d{2}", "$0 ").trim();
+		System.out.println(mPhoneNbr);
 	}
 
 	public void addAddress(Address address) {
+		for(int i=0; i<mAddresses.size(); i++)
+			if(mAddresses.get(i).getType().equals(AddressType.PAYMENT))
+				return;
+		
 		mAddresses.add(address);
 	}
     

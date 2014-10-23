@@ -84,13 +84,19 @@ public class AddressController {
 		return AddressDAOImpl.getInstance().removeAddress(addressId);
 	}
 	
-	@RequestMapping(value="/search", method= RequestMethod.POST)
+	@RequestMapping(value="/search", method= RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView searchAddress(@RequestBody String searchParam) {
+	public ModelAndView searchAddress(@RequestParam(value="search") String searchParam) {
 		if(searchParam == null)
 			return displayAddresses();
 		
 		ModelAndView model = new ModelAndView("searchAddress");
+		
+		
+		ArrayList<Address> addressByNbrList = new ArrayList<Address>();
+		if(searchParam.length() == 1) {
+		addressByNbrList.addAll(AddressDAOImpl.getInstance().getAddressByNbr(Integer.parseInt(searchParam)));
+		}
 		
 		ArrayList<Address> addressByStreetList = new ArrayList<Address>();
 		addressByStreetList.addAll(AddressDAOImpl.getInstance().getAddressByStreet(searchParam));
@@ -98,13 +104,9 @@ public class AddressController {
 		ArrayList<Address> addressByCityList = new ArrayList<Address>();
 		addressByCityList.addAll(AddressDAOImpl.getInstance().getAddressByCity(searchParam));
 		
-		ArrayList<Address> addressByContactList = new ArrayList<Address>();
-		addressByContactList.addAll(AddressDAOImpl.getInstance().getAddressByContact(ContactDAOImpl.getInstance().getContactByFName(searchParam).get(0)));
-		
-		
+		model.addObject("nbrList", addressByNbrList);
 		model.addObject("streetList", addressByStreetList);
 		model.addObject("cityList", addressByCityList);
-		model.addObject("contactList", addressByContactList);
 		return model;
 	}
 }

@@ -3,14 +3,18 @@ package com.esiea.ihm.controller;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -104,11 +108,12 @@ public class ContactController {
 		return ContactDAOImpl.getInstance().removeContact(contactId);
 	}
 	
-	@RequestMapping(value="/search", method= RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView searchContact(@RequestBody String searchParam) {
+	@RequestMapping(value="/search", method= RequestMethod.GET)
+	public ModelAndView searchContact(@RequestParam(value="search") String searchParam) {
 		if(searchParam == null)
 			return displayContacts();
+		
+		System.out.println("Search= "+searchParam);
 		
 		ModelAndView model = new ModelAndView("searchContact");
 		
@@ -121,7 +126,6 @@ public class ContactController {
 		
 		ArrayList<Contact> contactByPhoneNbrList = new ArrayList<Contact>();
 		contactByPhoneNbrList.addAll(ContactDAOImpl.getInstance().getContactByPhoneNbr(searchParam));
-		
 		
 		model.addObject("nameList", contactByNameList);
 		model.addObject("emailList", contactByEmailList);
