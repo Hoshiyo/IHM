@@ -35,6 +35,9 @@
 		div.viewContact {
 			cursor: pointer;
 		}
+		div.viewContact:hover {
+			color: #428bca;
+		}
 	</style>
 		
 	<!-- JavaScript Includes -->
@@ -65,8 +68,11 @@
 			<div class="form-group">
 				<input id="searchField" type="text" name="search" class="form-control-search" placeholder="Search"/>
 			</div>
-			<button type="submit" class="btn btn-default">
-				<span class="glyphicon glyphicon-search"></span>
+			<button id="searchContact" type="submit" class="btn btn-default">
+				<img src="<c:url value="/searchByContact.png" />" alt="search contact" height="18" width="18">
+			</button>
+			<button id="searchAddress" type="submit" class="btn btn-default">
+				<img src="<c:url value="/searchByAddress.png" />" alt="search address" height="18" width="18">
 			</button>
 		</form>
 	</nav>
@@ -82,7 +88,7 @@
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</a>
-						<a class="createAddress" href="/contact/${listValue.id}/newAddress" data-toggle="modal" data-target="#addressModal">
+						<a class="createAddress" href="${listValue.id}/newAddress" data-toggle="modal" data-target="#addressModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-home"></span>
 							</button>
