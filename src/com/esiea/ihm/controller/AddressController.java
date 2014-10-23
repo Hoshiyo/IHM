@@ -64,9 +64,6 @@ public class AddressController {
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
 	public String createAddress(@RequestBody Address address) {
 		address.getContact().addAddress(address);
-		address.setStreet(address.getStreet().substring(0, 0).toUpperCase());
-		address.setCity(address.getCity().substring(0, 0).toUpperCase());
-	    
 		AddressDAOImpl.getInstance().addAddress(address);
 		
 		return "index";

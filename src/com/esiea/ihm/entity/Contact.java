@@ -201,6 +201,14 @@ public class Contact implements Serializable {
 
 	public void addAddress(Address address) {
 
+		if(address==null)
+			return;
+		
+		if(address.getType()==null) {
+			mAddresses.add(address);
+			return;
+		}
+		
 		if (address.getType().equals(AddressType.PAYMENT)) {
 			int len = mAddresses.size();
 			for (int i = 0; i < len; i++) {

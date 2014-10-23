@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.esiea.ihm.entity.Address;
+import com.esiea.ihm.entity.AddressType;
 import com.esiea.ihm.entity.Contact;
 import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 
@@ -22,8 +23,8 @@ public class AddressDAOImplTest {
 	public void setUp() throws Exception {
 		addressDAO1 = AddressDAOImpl.getInstance();
 		contact = new Contact();
-		address1 = new Address(contact);
-		address2 = new Address(contact, 0, null, null, 0, null);
+		address1 = new Address(contact, 0, null, null, 0, AddressType.DELIVERY);
+		address2 = new Address(contact, 0, null, null, 0, AddressType.PAYMENT);
 	}
 
 	@After 
@@ -34,7 +35,6 @@ public class AddressDAOImplTest {
 	public void testCreateAddress() {
 		addressDAO1.CreateAddress(contact, 0, null, null, 0, null);
 		assertNotNull(contact.getAddresses().get(0));
-		assertNull(contact.getAddresses().get(0).getCity());
 	}
 
 	@Test

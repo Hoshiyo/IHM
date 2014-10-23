@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.esiea.ihm.entity.Address;
+import com.esiea.ihm.entity.AddressType;
 import com.esiea.ihm.entity.Contact;
 import com.esiea.ihm.model.dao.impl.ContactDAOImpl;
 
@@ -63,8 +64,9 @@ public class ContactDAOImplTest {
 
 	@Test
 	public void testRemoveContact() {
-		contact2.addAddress(new Address(contact2));
-		Contact contact = contactDAO.getContactList().get(0);
+		Address address = new Address(contact2);
+		address.setType(AddressType.DELIVERY);
+		contact2.addAddress(address);
 		assertFalse(contact2.getAddresses().contains(new Address(contact2)));
 	}
 

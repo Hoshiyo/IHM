@@ -197,6 +197,15 @@ public class AddressDAOImpl implements IAddressDAO {
 
 		Address newAddress = new Address(contact, nbr, street, city, zipCode,
 				type);
+
+		if(newAddress.getCity()==null)
+			newAddress.setCity("null");
+		
+		if(newAddress.getStreet()==null)
+			newAddress.setStreet("null");
+		
+		if(newAddress.getType()==null)
+			newAddress.setType(DELIVERY);
 		
 		String source = newAddress.getStreet();
 	    StringBuffer res = new StringBuffer();
@@ -335,6 +344,12 @@ public class AddressDAOImpl implements IAddressDAO {
 	}
 
 	public void addAddress(Address address) {
+		if(address.getCity()==null)
+			address.setCity("null");
+		
+		if(address.getStreet()==null)
+			address.setStreet("null");
+		
 		String source = address.getStreet();
 	    StringBuffer res = new StringBuffer();
 
