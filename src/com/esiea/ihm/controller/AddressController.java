@@ -52,23 +52,12 @@ public class AddressController {
 		return new ModelAndView("addressForm", "address", address);
 	}
 
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String createAddressForm(
-			@RequestParam(value = "contact", required = true, defaultValue = "-1") String contactID,
-			Model model) {
-		System.out.println("I'm in /new !!!");
-		model.addAttribute("address", new Address(ContactDAOImpl.getInstance()
-				.getContactByKey(contactID)));
-		return "addressForm";
-	}
-
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody
-	public Address createAddress(@RequestBody Address address) {
-		System.out.println("OK");
-		System.out.println("contact: " + address.getContact().getFName());
+	public String createAddress(@RequestBody Address address) {
+		address.getContact().addAddress(address);
 		AddressDAOImpl.getInstance().addAddress(address);
-		return address;
+		
+		return "index";
 	}
 	
 	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.PUT)

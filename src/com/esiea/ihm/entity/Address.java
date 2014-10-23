@@ -1,5 +1,9 @@
 package com.esiea.ihm.entity;
 
+import java.io.Serializable;
+
+import com.esiea.ihm.model.dao.impl.ContactDAOImpl;
+
 /**
  * La classe Address est notres classe où l'on définit les attributs propre à l'adresse.
  * On retrouve le nombre et le nom de la rue, le code postal, le nom de la ville, le
@@ -11,12 +15,14 @@ package com.esiea.ihm.entity;
  * 
  *
  */
-public class Address {
+public class Address  implements Serializable {
 	
+	private static final long serialVersionUID = -7279317417520053385L;
+
 	private static int ID = 0;
 	
 	private int mId, mNbr, mZipCode;
-	private String mStreet, mCity;
+	private String mStreet, mCity, mContactId;
 	private Contact mContact;
 	private AddressType type;
 
@@ -34,6 +40,7 @@ public class Address {
 		genId();
 		
 		mContact = contact;
+		mContactId = Integer.toString(contact.getId());
 		mNbr = nbr;
 		mZipCode = zipCode;
 		mStreet = street;
@@ -42,7 +49,11 @@ public class Address {
 	}
 
 	public Address(Contact contact) {
-		mContact = contact;
+		mContactId = Integer.toString(contact.getId());
+		genId();
+	}
+	
+	public Address() {
 		genId();
 	}
 	
@@ -56,6 +67,20 @@ public class Address {
 		
 		return mId;
 	}
+	
+	/**
+	 * 
+	 * @return L'id du contact associé
+	 * 
+	 */
+	public String getContactId() {
+		return mContactId;
+	}
+	
+	public void setContactId(String contactId) {
+		mContactId = contactId;
+		mContact = ContactDAOImpl.getInstance().getContactByKey(contactId);
+	}	
     
 	/**
 	 * 
@@ -64,6 +89,13 @@ public class Address {
 	 */
 	public Contact getContact() {
 		return mContact;
+	}
+	
+	/**
+	 * Set the contact associated
+	 */
+	public void setContact(Contact contact) {
+		mContact = contact;
 	}
     
 	/**

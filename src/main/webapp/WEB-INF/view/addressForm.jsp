@@ -21,6 +21,8 @@
 				
 				<form:hidden path="id" />
 				
+				<form:hidden path="contactId" />
+				
 				<div class="form-group">
 					<form:label path="nbr" class="col-sm-3 control-label">Number</form:label>
 					<div class="col-sm-9">
@@ -52,11 +54,11 @@
 				<div class="form-group">
 					<form:label path="type" class="col-sm-3 control-label">Address Type</form:label>
 						<div class="col-sm-9">
-						<select class="form-control">
-							<option>----- Select an address type -----</option>
-							<option>Payment address</option>
-							<option>Delivery address</option>
-						</select>
+						<form:select path="type" class="form-control">
+							<form:option value="-1">----- Select an address type -----</form:option>
+							<form:option value="0">Delivery address</form:option>
+							<form:option value="1">Payment address</form:option>
+						</form:select>
 					</div>
 				</div>
 

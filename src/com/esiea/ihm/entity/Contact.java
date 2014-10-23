@@ -14,21 +14,18 @@ import com.esiea.ihm.model.dao.impl.AddressDAOImpl;
 
 /**
  * 
- * La classe Contact nous permet notamment de recenser les données propre à un contact.
- * Nous avons : - Un ID (qui fait office de compteur dans notre cas).
- *              - L'id qui référence le contact.
- *              - Le nom et prénom.
- *              - La date de naissance.
- *              - Le numéro de téléphone.
- *              - Un booléen nous permettant de voir l'état du contact (un contact crée est actif).
+ * La classe Contact nous permet notamment de recenser les données propre à un
+ * contact. Nous avons : - Un ID (qui fait office de compteur dans notre cas). -
+ * L'id qui référence le contact. - Le nom et prénom. - La date de naissance. -
+ * Le numéro de téléphone. - Un booléen nous permettant de voir l'état du
+ * contact (un contact crée est actif).
  * 
- * @author              
+ * @author
  * @version 1
  * 
  */
 public class Contact implements Serializable {
 
-	
 	private static final long serialVersionUID = -1285094871893130945L;
 
 	private static int ID = 0;
@@ -44,7 +41,7 @@ public class Contact implements Serializable {
 
 	public Contact() {
 	}
-	
+
 	/**
 	 * 
 	 * @param fName
@@ -60,19 +57,20 @@ public class Contact implements Serializable {
 		this.mId = ID;
 		ID++;
 
-		if(fName!=null)
-			this.mFName = fName.substring(0, 1).toUpperCase() + fName.substring(1);
-		
-		if(lName!=null)
+		if (fName != null)
+			this.mFName = fName.substring(0, 1).toUpperCase()
+					+ fName.substring(1);
+
+		if (lName != null)
 			this.mLName = lName.toUpperCase();
-		
+
 		this.mEmail = email;
 		this.mDateOfBirth = dateOfBirth;
 		this.mPhoneNbr = phoneNbr;
 
 		mActif = true;
 	}
-    
+
 	/**
 	 * 
 	 * @return l'id du contact.
@@ -89,10 +87,10 @@ public class Contact implements Serializable {
 	public int genId() {
 		mId = ID;
 		ID++;
-		
+
 		return mId;
 	}
-    
+
 	/**
 	 * 
 	 * @return Le prénom du contact.
@@ -103,9 +101,11 @@ public class Contact implements Serializable {
 	}
 
 	public void setFName(String fName) {
-		this.mFName = Character.toUpperCase(fName.charAt(0)) + fName.substring(1);;
+		this.mFName = Character.toUpperCase(fName.charAt(0))
+				+ fName.substring(1);
+		;
 	}
-    
+
 	/**
 	 * 
 	 * @return Le nom de famille du contact.
@@ -118,7 +118,7 @@ public class Contact implements Serializable {
 	public void setLName(String mLName) {
 		this.mLName = mLName.toUpperCase();
 	}
-    
+
 	/**
 	 * 
 	 * @return L'adresse mail du contact.
@@ -131,7 +131,7 @@ public class Contact implements Serializable {
 	public void setEmail(String mEmail) {
 		this.mEmail = mEmail;
 	}
-    
+
 	/**
 	 * 
 	 * @return La date de naissance du contact (si elle est renseignée).
@@ -150,27 +150,29 @@ public class Contact implements Serializable {
 	 * On fait un "set" sur la date de naissance des contacts.
 	 * 
 	 * @param dateOfBirth
-	 * On a un String avec trois numéros séparé par un "char" ou un "String".
+	 *            On a un String avec trois numéros séparé par un "char" ou un
+	 *            "String".
 	 * 
 	 */
 	public void setDateOfBirth(String dateOfBirth) {
 
 		mDateOfBirth = Calendar.getInstance();
-	    DateFormat df = new SimpleDateFormat("dd/MM/yyy", Locale.FRANCE);
-	    Date result;
+		DateFormat df = new SimpleDateFormat("dd/MM/yyy", Locale.FRANCE);
+		Date result;
 		try {
 			result = df.parse(dateOfBirth);
 		} catch (ParseException e) {
 			mDateOfBirth = Calendar.getInstance();
 			e.printStackTrace();
 			return;
-		} 
-	    mDateOfBirth.setTime(result);
+		}
+		mDateOfBirth.setTime(result);
 	}
-    
+
 	/**
 	 * 
-	 * @return L'état du contact (à savoir actif = création du contact, ou passif = contact non crée).
+	 * @return L'état du contact (à savoir actif = création du contact, ou
+	 *         passif = contact non crée).
 	 * 
 	 */
 	public boolean isActif() {
@@ -198,48 +200,57 @@ public class Contact implements Serializable {
 	}
 
 	public void addAddress(Address address) {
-		for(int i=0; i<mAddresses.size(); i++)
-			if(mAddresses.get(i).getType().equals(AddressType.PAYMENT))
-				return;
-		
+
+		if (address.getType().equals(AddressType.PAYMENT)) {
+			int len = mAddresses.size();
+			for (int i = 0; i < len; i++) {
+				if (mAddresses.get(i).getType().equals(AddressType.PAYMENT)) {
+					return;
+				}
+			}
+		}
+
 		mAddresses.add(address);
 	}
-    
+
 	/**
-	 * Un contact peut posséder une adresse de livraison et de facturation différente.
+	 * Un contact peut posséder une adresse de livraison et de facturation
+	 * différente.
+	 * 
 	 * @return La liste des adresses du contact.
 	 * 
 	 */
 	public List<Address> getAddresses() {
 		List<Address> addressList = new ArrayList<Address>(mAddresses);
-		System.out.println("Hello: " + mAddresses.size());
 		return addressList;
 	}
-	
+
 	public String getPaymentStringAddress() {
-		for(int i=0; i<mAddresses.size();i++)
-		{
-			if(mAddresses.get(i)!=null)
-			if(mAddresses.get(i).getType().equals(AddressType.PAYMENT))
-				return (mAddresses.get(i).getNbr()+" "+mAddresses.get(i).getStreet()+" "+mAddresses.get(i).getCity()+" "+mAddresses.get(i).getZipCode());
+		for (int i = 0; i < mAddresses.size(); i++) {
+			if (mAddresses.get(i) != null)
+				if (mAddresses.get(i).getType().equals(AddressType.PAYMENT))
+					return (mAddresses.get(i).getNbr() + " "
+							+ mAddresses.get(i).getStreet() + " "
+							+ mAddresses.get(i).getCity() + " " + mAddresses
+							.get(i).getZipCode());
 		}
-		
+
 		return "null";
 	}
-	
+
 	public String getLastDeliveryStringAddress() {
 		Address resultAddress = null;
-		
-		for(int i=0; i<mAddresses.size(); i++)
-		{
-			if(mAddresses.get(i)!=null)
-			if(mAddresses.get(i).getType().equals(AddressType.DELIVERY))
-				resultAddress=mAddresses.get(i);
+
+		for (int i = 0; i < mAddresses.size(); i++) {
+			if (mAddresses.get(i) != null)
+				if (mAddresses.get(i).getType().equals(AddressType.DELIVERY))
+					resultAddress = mAddresses.get(i);
 		}
-		
-		if(resultAddress!=null)
-		{
-			return (resultAddress.getNbr()+" "+resultAddress.getStreet()+" "+resultAddress.getCity()+" "+resultAddress.getZipCode());
+
+		if (resultAddress != null) {
+			return (resultAddress.getNbr() + " " + resultAddress.getStreet()
+					+ " " + resultAddress.getCity() + " " + resultAddress
+						.getZipCode());
 		}
 		return "null";
 	}
@@ -254,7 +265,7 @@ public class Contact implements Serializable {
 	}
 
 	public void deleteAddress(Address address) {
-		if(address != null)
+		if (address != null)
 			mAddresses.remove(address);
 	}
 

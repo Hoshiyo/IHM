@@ -79,7 +79,7 @@
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</a>
-						<a class="createAddress" href="/address/new" data-toggle="modal" data-target="#addressModal">
+						<a class="createAddress" href="/contact/${listValue.id}/newAddress" data-toggle="modal" data-target="#addressModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-home"></span>
 							</button>
