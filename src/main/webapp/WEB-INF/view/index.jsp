@@ -39,11 +39,11 @@
 <body>
 	<h2>iWho's Who</h2>
 
-	<div id="contactModal" class="modal fade"></div>
+	<div id="myModal" class="modal fade"></div>
 
 	<nav class="navbar navbar-default" role="navigation">
 		<button id="addContact" class="btn btn-default navbar-btn"
-			data-toggle="modal" data-target="#contactModal">
+			data-toggle="modal" data-target="#myModal">
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 
@@ -73,7 +73,7 @@
 								<span class="glyphicon glyphicon-home"></span>
 							</button>
 						</a>
-						<a class="editContact" href="/contact/${listValue.id}/edit" data-toggle="modal" data-target="#contactModal">
+						<a class="editContact" href="/contact/${listValue.id}/edit" data-toggle="modal" data-target="#myModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-user"></span>
 							</button>
@@ -112,7 +112,7 @@
 						type : "GET"
 
 					}).done(function(html) {
-						$("#contactModal").html(html);
+						$("#myModal").html(html);
 						$("#contactForm").submit(editContact);
 					})
 				})
