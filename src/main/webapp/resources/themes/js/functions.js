@@ -2,6 +2,7 @@ var emailRegex = '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}$';
 var dateRegex = /((0|1)\d\/(0|1)\d\/\d{4})/;
 var nameRegex = '[a-zA-Z]{3,}';
 var phoneRegex = /(\+\d{3}|0\d)( |-|\.)?\d{2}( |-|\.)?\d{2}( |-|\.)?\d{2}( |-|\.)?\d{2}/;
+var nbrRegex = '^[0-9]+$';
 
 function getContactForm() {
 	$.ajax({
@@ -115,7 +116,7 @@ function createContactLine(contact) {
 			<span class='glyphicon glyphicon-trash'></span> \
 		</button> \
 	</a> \
-	<a class='editAddress' href='/contact/" + contact.id + "'> \
+	<a class='createAddress' href='/contact/" + contact.id + "'> \
 		<button class='btn btn-default'><span class='glyphicon glyphicon-home'> \
 			</span> \
 		</button> \
@@ -136,6 +137,8 @@ function createContactLine(contact) {
 
 function addContactLine(contact) {
 	$("#contactList").append(createContactLine(contact));
+	
+	$(".new-contact-line .createAddress").click(getAddressForm);
 	
 	$(".new-contact-line .deleteContact").click(function(e) {
 		e.preventDefault();
@@ -175,22 +178,8 @@ function updateContactLine(contact) {
 
 function initContactList() {
 	$("#addContact").click(getContactForm);
+	$(".createAddress").click(getAddressForm);
 
-	$(".viewContact").each(function(id, item) {
-
-		$(item).click(function(e) {
-			e.preventDefault();
-
-			$.ajax({
-				url : "/contact/" + $(item).parent().attr("id").replace("contact-", ""),
-				type : "GET"
-
-			}).done(function(html) {
-				$("body").html(html);
-			})
-		})
-	});
-	
 	$(".editContact").each(function(id, item) {
 
 		$(item).click(function(e) {
@@ -230,6 +219,18 @@ function initContactList() {
  * 
  */
 
+
+
+function getAddressForm() {
+	$.ajax({
+		url : "/address/new",
+
+	}).done(function(html) {
+		$("#addressModal").html(html);
+		$("#addressForm").submit(createAddress);
+	})
+}
+
 function getAddressFormData() {
 	var id = $("#id").val();
 	var nbr = $("#nbr").val();
@@ -245,7 +246,24 @@ function getAddressFormData() {
 		"type" : type
 	};
 
-	return JSON.stringify(json);
+	return json;
+}
+
+function checkAddressData(data) {
+
+	if (!data.nbr.match(nbrRegex)) {
+		alert("Number must contain 1 number (0-9)");
+	} else if (!data.street.match(nameRegex)) {
+		alert("Street must contain at least 3 letters (A-Z)");
+	} else if (!data.city.match(nameRegex)) {
+		alert("City must contain at least 3 letters (A-Z)");
+	} else if (!data.zipCode.match(nbrRegex)) {
+		alert("ZipCode must contain at least 3 number (0-9)");
+	} else {
+		return true;
+	}
+
+	return false;
 }
 
 function createAddress(e) {
@@ -253,6 +271,10 @@ function createAddress(e) {
 	e.preventDefault();
 
 	var data = getAddressFormData();
+	if (checkAddressData(data) === false) {
+		return;
+	}
+	
 
 	$.ajax({
 		headers : {
@@ -264,6 +286,7 @@ function createAddress(e) {
 		data : data,
 
 	}).done(function(address) {
+		$("#closeModal").click();
 		addAddressLine(address);
 	});
 

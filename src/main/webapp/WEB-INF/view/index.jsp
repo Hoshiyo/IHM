@@ -47,20 +47,52 @@
 	<title>Home page</title>
 </head>
 
+<<<<<<< HEAD
+=======
+		<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap.min.css" />"
+			rel="stylesheet">
+		<link href="<c:url value="/resources/themes/jqueryui/jquery-ui.min.css" />"
+			rel="stylesheet">
+		<link href="<c:url value="/resources/themes/bootstrap/css/bootstrap-theme.min.css" />"
+			rel="stylesheet">
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			.list-group .editContact,
+			.list-group .createAddress,
+			.list-group .deleteContact {
+				float: right;
+				padding: 3px;
+			}
+			p {
+				line-height: 1em;
+				margin: 10px 0 !important;
+			}
+			h3.firstname,
+			h3.lastname {
+				display: inline;
+			}
+			
+		</style>
+		<title>Home page</title>
+	</head>
+>>>>>>> 126f717e2d9109d2bfe0b84d0313ca4b55c141c1
 <body>
 	<h2>iWho's Who</h2>
 
-	<div id="myModal" class="modal fade"></div>
+	<div id="contactModal" class="modal fade"></div>
+	<div id="addressModal" class="modal fade"></div>
 
 	<nav class="navbar navbar-default" role="navigation">
 		<button id="addContact" class="btn btn-default navbar-btn"
-			data-toggle="modal" data-target="#myModal">
+			data-toggle="modal" data-target="#contactModal">
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 
-		<form class="navbar-form navbar-left" role="search">
+		<form class="navbar-form navbar-left" role="search" action="/contact/search" method="GET">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
+				<input type="text" name="search" class="form-control-search" placeholder="Search"/>
 			</div>
 			<button id="searchContact" type="submit" class="btn btn-default">
 				<span class="glyphicon glyphicon-search"></span>
@@ -79,17 +111,21 @@
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</a>
-						<a class="editAddress" href="/contact/${listValue.id}">
+						<a class="createAddress" href="/address/new" data-toggle="modal" data-target="#addressModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-home"></span>
 							</button>
 						</a>
-						<a class="editContact" href="/contact/${listValue.id}/edit" data-toggle="modal" data-target="#myModal">
+						<a class="editContact" href="/contact/${listValue.id}/edit" data-toggle="modal" data-target="#contactModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-user"></span>
 							</button>
 						</a>
+<<<<<<< HEAD
 						<div class="viewContact">
+=======
+						<div>
+>>>>>>> 126f717e2d9109d2bfe0b84d0313ca4b55c141c1
 							<h3 class="firstname">${listValue.FName}</h3>
 							<h3 class="lastname">${listValue.LName}</h3>
 							<p class="phone">${listValue.phoneNbr}</p>

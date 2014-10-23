@@ -195,6 +195,10 @@ public class Contact implements Serializable {
 	}
 
 	public void addAddress(Address address) {
+		for(int i=0; i<mAddresses.size(); i++)
+			if(mAddresses.get(i).getType().equals(AddressType.PAYMENT))
+				return;
+		
 		mAddresses.add(address);
 	}
     
