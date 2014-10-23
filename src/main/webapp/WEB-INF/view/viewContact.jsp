@@ -29,6 +29,9 @@
 	}
 -->
 </style>
+
+<div id="addressModal" class="modal fade"></div>
+
 <h1>Display the contact with id : ${contact.id}</h1>
 <ul class="list-group">
 	<li class="list-group-item" ><h3 class="firstname">${contact.FName}</h3>
@@ -43,21 +46,51 @@
 
 	<ul id="addressList" class="list-group">
 		<c:forEach var="address" items="${addresses}">
-			<li class="list-group-item" >
-				<a class="deleteAddress" href="${address.id}">
+			<li id="#address-${address.id}" class="list-group-item" >
+				<a class="deleteAddress" href="../address/${address.id}">
 					<button class="btn btn-default">
 						<span class="glyphicon glyphicon-trash"></span>
 					</button>
 				</a>
-				<a class="editAddress" href="${address.id}/edit" data-toggle="modal" data-target="#addressModal">
+				<a class="editAddress" href="../address/${address.id}/edit" data-toggle="modal" data-target="#addressModal">
 					<button class="btn btn-default">
 						<span class="glyphicon glyphicon-home"></span>
 					</button>
 				</a><span class="address">${address.type} :</span>
-				${address.nbr}, ${address.street} - ${address.city}, ${address.zipCode}</li>
+				<span class="addressInfo">${address.nbr}, ${address.street} - ${address.city}, ${address.zipCode}</span></li>
 		</c:forEach>
 	</ul>
 </c:if>
 <div class="back">
 	<a href="javascript:history.go(-1)"><button id="backHomePage" class="btn btn-default">Back To Home Page</button></a>
 </div>
+<script>
+	$(".editAddress").each(function(id, item) {
+		$(item).click(function(e) {
+			e.preventDefault();
+
+			$.ajax({
+				url : $(item).attr("href"),
+				type : "GET"
+
+			}).done(function(html) {
+				$("#addressModal").html(html);
+				$("#addressForm").submit(editAddress);
+			})
+		});
+	});
+	
+	$(".deleteAddress").each(function(id, item) {
+		$(item).click(function(e) {
+			e.preventDefault();
+
+			$.ajax({
+				url : $(item).attr("href"),
+				type : "DELETE"
+
+			}).done(function(html) {
+				$(item).parent().remove();
+			})
+		});
+	});
+</script>

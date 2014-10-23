@@ -73,7 +73,8 @@ public class AddressController {
 	@ResponseBody
 	public Address editAddress(@RequestBody Address address) {
 		AddressDAOImpl.getInstance().updateAddress(address);
-		return address;
+		
+		return new Address(null, address.getNbr(), address.getStreet(), address.getCity(), address.getZipCode(), address.getType());
 	}
 
 	@RequestMapping(value = "/{addressId:[0-9]+}", method = RequestMethod.DELETE)

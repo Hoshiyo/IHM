@@ -277,6 +277,18 @@ public class Contact implements Serializable {
 			mAddresses.remove(address);
 	}
 
+	public void updateAddress(Address newAddress) {
+		int addressId = newAddress.getId();
+		
+		for (Address address : mAddresses) {
+			if(address.getId() == addressId) {
+				mAddresses.remove(address);
+				mAddresses.add(newAddress);
+				break;
+			}
+		}
+	}
+
 	// public void setAddresses(List<Address> addresses) {
 	// mAddresses = addresses;
 	// }

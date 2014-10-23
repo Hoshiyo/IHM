@@ -8,7 +8,8 @@
 
 		<!-- dialog header -->
 		<div class="modal-header">
-			<button id="closeModal" type="button" class="close" data-dismiss="modal">
+			<button id="closeModal" type="button" class="close"
+				data-dismiss="modal">
 				&times;<span class="sr-only">Close</span>
 			</button>
 			<h4 class="modal-title" id="myModalLabel">Create Address</h4>
@@ -18,46 +19,44 @@
 		<div class="modal-body">
 			<form:form id="addressForm" method="POST" action="/address/"
 				commandName="address" class="form-horizontal" role="form">
-				
+
 				<form:hidden path="id" />
-				
+
 				<form:hidden path="contactId" />
-				
+
 				<div class="form-group">
 					<form:label path="nbr" class="col-sm-3 control-label">Number</form:label>
 					<div class="col-sm-9">
 						<form:input class="form-control" path="nbr"
-							placeholder="Enter Your Nbr Street"  />
+							placeholder="Enter Your Nbr Street" />
 					</div>
 				</div>
 				<div class="form-group">
 					<form:label path="street" class="col-sm-3 control-label">Street</form:label>
 					<div class="col-sm-9">
-						<form:input class="form-control" path="street" 
-							placeholder="Enter Your Street"  />
+						<form:input class="form-control" path="street"
+							placeholder="Enter Your Street" />
 					</div>
 				</div>
 				<div class="form-group">
 					<form:label path="city" class="col-sm-3 control-label">City</form:label>
 					<div class="col-sm-9">
 						<form:input class="form-control" path="city"
-							placeholder="Enter Your City"  />
+							placeholder="Enter Your City" />
 					</div>
 				</div>
 				<div class="form-group">
 					<form:label path="zipCode" class="col-sm-3 control-label">Zip Code</form:label>
 					<div class="col-sm-9">
 						<form:input class="form-control" path="zipCode"
-							placeholder="Enter Your ZipCode"  />
+							placeholder="Enter Your ZipCode" />
 					</div>
 				</div>
 				<div class="form-group">
 					<form:label path="type" class="col-sm-3 control-label">Address Type</form:label>
-						<div class="col-sm-9">
+					<div class="col-sm-9">
 						<form:select path="type" class="form-control">
-							<form:option value="-1">----- Select an address type -----</form:option>
-							<form:option value="0">Delivery address</form:option>
-							<form:option value="1">Payment address</form:option>
+							<form:options items="${type}" />
 						</form:select>
 					</div>
 				</div>
