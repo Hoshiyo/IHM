@@ -132,7 +132,7 @@ public class ContactDAOImpl implements IContactDAO {
 		for (int i = 0; i < mContactList.size(); i++) {
 
 			if(mContactList.get(Integer.toString(i))!=null)
-			if (mContactList.get(Integer.toString(i)).getFName().equalsIgnoreCase(fName) || mContactList.get(Integer.toString(i)).getFName().contains(fName)) {
+			if (mContactList.get(Integer.toString(i)).getFName().toLowerCase().equalsIgnoreCase(fName.toLowerCase()) || mContactList.get(Integer.toString(i)).getFName().toLowerCase().contains(fName.toLowerCase())) {
 				contacts.add(mContactList.get(Integer.toString(i)));
 			}
 		}
@@ -146,7 +146,7 @@ public class ContactDAOImpl implements IContactDAO {
 		for (int i = 0; i < mContactList.size(); i++) {
 
 			if(mContactList.get(Integer.toString(i))!=null)
-			if (mContactList.get(Integer.toString(i)).getLName().equalsIgnoreCase(lName) || mContactList.get(Integer.toString(i)).getLName().contains(lName)) {
+			if (mContactList.get(Integer.toString(i)).getLName().toLowerCase().equalsIgnoreCase(lName.toLowerCase()) || mContactList.get(Integer.toString(i)).getLName().toLowerCase().contains(lName.toLowerCase())) {
 				contacts.add(mContactList.get(Integer.toString(i)));
 			}
 		}
@@ -160,7 +160,7 @@ public class ContactDAOImpl implements IContactDAO {
 		for (int i = 0; i < mContactList.size(); i++) {
 
 			if(mContactList.get(Integer.toString(i))!=null)
-			if (mContactList.get(Integer.toString(i)).getEmail().equalsIgnoreCase(email) || mContactList.get(Integer.toString(i)).getEmail().contains(email)) {
+			if (mContactList.get(Integer.toString(i)).getEmail().toLowerCase().equalsIgnoreCase(email.toLowerCase()) || mContactList.get(Integer.toString(i)).getEmail().toLowerCase().contains(email.toLowerCase())) {
 				contacts.add(mContactList.get(Integer.toString(i)));
 			}
 		}

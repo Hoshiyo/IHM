@@ -83,17 +83,17 @@
 			<ul id="contactList" class="list-group">
 				<c:forEach var="listValue" items="${lists}">
 					<li id="contact-${listValue.id}" class="list-group-item" >
-						<a class="deleteContact" href="${listValue.id}">
+						<a class="deleteContact" href="/contact/${listValue.id}">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</a>
-						<a class="createAddress" href="${listValue.id}/newAddress" data-toggle="modal" data-target="#addressModal">
+						<a class="createAddress" href="/contact/${listValue.id}/newAddress" data-toggle="modal" data-target="#addressModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-home"></span>
 							</button>
 						</a>
-						<a class="editContact" href="${listValue.id}/edit" data-toggle="modal" data-target="#contactModal">
+						<a class="editContact" href="/contact/${listValue.id}/edit" data-toggle="modal" data-target="#contactModal">
 							<button class="btn btn-default">
 								<span class="glyphicon glyphicon-user"></span>
 							</button>

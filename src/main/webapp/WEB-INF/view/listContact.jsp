@@ -5,7 +5,7 @@
 
 	<ul>
 		<c:forEach var="listValue" items="${lists}">
-			<li>${listValue.FName}<a href=""></a></li>
+			<li>${listValue.FName}<a href="/contact/"></a></li>
 		</c:forEach>
 	</ul>
 
