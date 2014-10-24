@@ -88,8 +88,7 @@ public class AddressController {
 	public ModelAndView searchAddress(@RequestParam(value="search") String searchParam) {
 		if(searchParam == null)
 			return displayAddresses();
-
-		searchParam = searchParam.toLowerCase();
+		
 		
 		ModelAndView model = new ModelAndView("searchAddress");
 		

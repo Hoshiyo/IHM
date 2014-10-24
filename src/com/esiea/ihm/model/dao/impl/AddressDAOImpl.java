@@ -289,8 +289,8 @@ public class AddressDAOImpl implements IAddressDAO {
 			if(address == null) {
 				continue;
 			}
-			if (address.getStreet()
-					.equalsIgnoreCase(street)) {
+			if (address.getStreet().toLowerCase()
+					.equalsIgnoreCase(street.toLowerCase()) || address.getStreet().toLowerCase().contains(street.toLowerCase())) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
 		}
@@ -308,8 +308,8 @@ public class AddressDAOImpl implements IAddressDAO {
 			if(address == null) {
 				continue;
 			}
-			if (address.getCity()
-					.equalsIgnoreCase(city)) {
+			if (address.getCity().toLowerCase()
+					.equalsIgnoreCase(city.toLowerCase()) || address.getCity().toLowerCase().contains(city.toLowerCase())) {
 				addressList.add(mAddressList.get(Integer.toString(i)));
 			}
 		}
