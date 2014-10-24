@@ -45,7 +45,7 @@
 
 	<ul id="addressList" class="list-group">
 		<c:forEach var="address" items="${addresses}">
-			<li id="#address-${address.id}" class="list-group-item" >
+			<li id="address-${address.id}" class="list-group-item" >
 				<a class="deleteAddress" href="../address/${address.id}">
 					<button class="btn btn-default">
 						<span class="glyphicon glyphicon-trash"></span>

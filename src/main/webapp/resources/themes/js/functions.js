@@ -361,6 +361,7 @@ function editAddress(e) {
 
 	}).done(function(address) {
 		updateAddressLine(address);
+		$("#closeModal").click();
 	});
 
 	return false;
@@ -372,6 +373,6 @@ function addAddressLine(address) {
 
 function updateAddressLine(address) {
 	var id = "#address-" + address.id;
-	$(id + " .addressInfo").html(address.type + " :");
-	$(id + " .addressInfo").html(address.nbr, address.street - address.city, address.zipCode);
+	$(id + " .address").html(address.type + " :");
+	$(id + " .addressInfo").html(address.nbr +', '+ address.street + " - " + address.city +', '+ address.zipCode);
 }
